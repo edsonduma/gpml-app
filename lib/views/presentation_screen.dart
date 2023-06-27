@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gpml/utils/constants.dart';
-import 'package:gpml/views/login_screen.dart';
-import 'package:gpml/views/register_screen.dart';
+import 'package:stivy/utils/constants.dart';
+import 'package:stivy/views/login_screen.dart';
+import 'package:stivy/views/register_screen.dart';
+import 'package:stivy/views/home_screen.dart';
 
 // Future addProds(prod) async {
 //   final response = await http.post(
@@ -131,7 +132,12 @@ class PresentationScreen extends StatelessWidget {
                 ),
                 SizedBox(width: 65),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomeScreen(),
+                    ),
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.only(
                       top: 10,

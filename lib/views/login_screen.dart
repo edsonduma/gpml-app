@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gpml/utils/constants.dart';
-import 'package:gpml/views/home_screen.dart';
+import 'package:stivy/utils/constants.dart';
+import 'package:stivy/views/home_screen.dart';
+import 'package:stivy/views/menu_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -39,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 children: [
                   Text(
-                    'GMPL',
+                    'stivy',
                     style: TextStyle(
                       color: secondColor,
                       fontWeight: FontWeight.bold,
@@ -126,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => HomeScreen(),
+                        builder: (context) => MenuScreen(),
                       ),
                     ),
                     child: Padding(

@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:gpml/utils/constants.dart';
-import 'package:gpml/views/components/my_custom_buttons.dart';
+import 'package:stivy/utils/constants.dart';
+import 'package:stivy/views/components/my_custom_buttons.dart';
+import 'package:stivy/views/agencies_list_screen.dart';
+import 'package:stivy/views/models_list_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _LoginScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _LoginScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   // final Color mySecondColor = Color(0xFFc712a2);
 
   @override
@@ -78,12 +80,22 @@ class _LoginScreenState extends State<HomeScreen> {
                       SizedBox(height: 60),
                       MyCustomButtom(
                         labelName: 'Agencia de Moda',
-                        onPressed: () {},
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AgenciesListScreen(),
+                          ),
+                        ),
                       ),
                       SizedBox(height: 20),
                       MyCustomButtom(
                         labelName: 'Modelos free',
-                        onPressed: () {},
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ModelsListScreen(),
+                          ),
+                        ),
                       ),
                       SizedBox(height: 20),
                       MyCustomButtom(

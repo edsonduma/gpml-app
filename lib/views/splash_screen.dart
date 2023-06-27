@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:gpml/utils/constants.dart';
-import 'package:gpml/views/presentation_screen.dart';
+import 'package:stivy/utils/constants.dart';
+import 'package:stivy/views/presentation_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -30,11 +30,12 @@ class _SplashScreenState extends State<SplashScreen> {
         color: primaryColor,
         child: Center(
           child: Text(
-            'GMPL',
+            'stivy'.toUpperCase(),
             style: TextStyle(
               color: secondColor,
               fontWeight: FontWeight.bold,
               fontSize: 100,
+              fontFamily: 'Clarendon FS',
             ),
           ),
         ),

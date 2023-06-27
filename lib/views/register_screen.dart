@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gpml/utils/constants.dart';
-import 'package:gpml/views/presentation_screen.dart';
+import 'package:stivy/utils/constants.dart';
+import 'package:stivy/views/presentation_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});

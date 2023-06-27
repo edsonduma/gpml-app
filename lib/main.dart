@@ -1,10 +1,20 @@
+import 'package:stivy/views/menu_models_screen.dart';
+import 'package:stivy/views/menu_screen.dart';
+import 'package:stivy/views/agencies_list_screen.dart';
+import 'package:stivy/views/agency_details_screen.dart';
+import 'package:stivy/views/about_screen.dart';
+import 'package:stivy/views/events_screen.dart';
+import 'package:stivy/views/models_details_screen.dart';
+import 'package:stivy/views/models_create_screen.dart';
+import 'package:stivy/views/models_list_screen.dart';
+import 'package:stivy/views/outros/teste_safe_area.dart';
 import 'package:flutter/material.dart';
-import 'package:gpml/utils/constants.dart';
-import 'package:gpml/views/home_screen.dart';
-import 'package:gpml/views/login_screen.dart';
-import 'package:gpml/views/presentation_screen.dart';
-import 'package:gpml/views/register_screen.dart';
-import 'package:gpml/views/splash_screen.dart';
+import 'package:stivy/utils/constants.dart';
+import 'package:stivy/views/home_screen.dart';
+import 'package:stivy/views/login_screen.dart';
+import 'package:stivy/views/presentation_screen.dart';
+import 'package:stivy/views/register_screen.dart';
+import 'package:stivy/views/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'GPML app',
+      title: appName,
       theme: ThemeData(
         // primarySwatch: primaryColor,
         primaryColor: primaryColor,
@@ -27,6 +37,16 @@ class MyApp extends StatelessWidget {
       // home: LoginScreen(),
       // home: HomeScreen(),
       // home: RegisterScreen(),
+      // home: MyTeste(),
+      // home: ModelsScreen(),
+      // home: AboutScreen(),
+      // home: EventsScreen(),
+      // home: ModelsDetailsScreen(),
+      // home: ModelsListScreen(),
+      // home: AgencyDetailsScreen(),
+      // home: AgenciesListScreen(),
+      // home: MenuScreen(),
+      // home: MenuModelsScreen(),
     );
   }
 }

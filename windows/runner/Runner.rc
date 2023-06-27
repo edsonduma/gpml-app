@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "gpml" "\0"
+            VALUE "FileDescription", "stivy" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "gpml" "\0"
+            VALUE "InternalName", "stivy" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "gpml.exe" "\0"
-            VALUE "ProductName", "gpml" "\0"
+            VALUE "OriginalFilename", "stivy.exe" "\0"
+            VALUE "ProductName", "stivy" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
