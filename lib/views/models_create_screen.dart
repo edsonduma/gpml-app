@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
 import 'package:stivy/views/components/my_custom_input.dart';
 
-class ModelsScreen extends StatefulWidget {
-  const ModelsScreen({super.key});
+class ModelsCreateScreen extends StatefulWidget {
+  const ModelsCreateScreen({super.key});
 
   @override
-  State<ModelsScreen> createState() => _ModelsScreenState();
+  State<ModelsCreateScreen> createState() => _ModelsCreateScreenState();
 }
 
-class _ModelsScreenState extends State<ModelsScreen> {
+class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
   // final Color mySecondColor = Color(0xFFc712a2);
   final diffBetweenInputs = 20.0;
 
@@ -154,7 +154,9 @@ class _ModelsScreenState extends State<ModelsScreen> {
                       ),
                       SizedBox(height: 30),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
                         child: Padding(
                           padding: const EdgeInsets.only(
                             top: 10,

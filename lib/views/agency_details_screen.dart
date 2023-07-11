@@ -1,7 +1,12 @@
+import 'package:stivy/views/agency_models_screen.dart';
+import 'package:stivy/views/components/my_custom_appbar.dart';
 import 'package:stivy/views/components/my_custom_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
 import 'package:stivy/views/components/my_custom_input.dart';
+import 'package:stivy/views/about_screen.dart';
+import 'package:stivy/views/events_screen.dart';
+import 'package:stivy/views/login_screen.dart';
 
 class AgencyDetailsScreen extends StatelessWidget {
   const AgencyDetailsScreen({super.key});
@@ -10,26 +15,11 @@ class AgencyDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: primaryColor,
-      // appBar: AppBar(
-      //   backgroundColor: primaryColor,
-      // ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             SizedBox(height: 30),
-            Container(
-              alignment: Alignment.centerLeft,
-              child: TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: Text(
-                  'voltar',
-                  style: TextStyle(
-                    color: secondColor,
-                    fontSize: 20,
-                  ),
-                ),
-              ),
-            ),
+            MyCustomAppBar(),
             SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.only(top: 10),
@@ -71,152 +61,97 @@ class AgencyDetailsScreen extends StatelessWidget {
             ),
             SizedBox(height: 15),
             Column(children: [
-              Row(children: [
-                SizedBox(width: 20),
-                Column(
-                  children: [
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'MODELOS',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                        ),
+              Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AboutScreen(),
                       ),
                     ),
-                    SizedBox(height: 25),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'CRIANÇAS',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                        ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: secondColor,
+                      // side: const BorderSide(
+                      //   width: 2, // the thickness
+                      //   // color: Color(0xFFe9a42c), // the color of the border
+                      //   color: Color(0xFFc712a2), // the color of the border
+                      // ),
+                    ),
+                    child: Text(
+                      'S',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
                       ),
                     ),
-                    SizedBox(height: 25),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'ACTORES',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                        ),
+                  ),
+                  Text(
+                    'Sobre',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+              Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AgencyModelsScreen(),
                       ),
                     ),
-                    SizedBox(height: 25),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'ACTORES',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                        ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: secondColor,
+                    ),
+                    child: Text(
+                      'A',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
                       ),
                     ),
-                  ],
-                ),
-                SizedBox(width: 25),
-                Column(
-                  children: [
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'ACTORES',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                        ),
+                  ),
+                  Text(
+                    'Agenciados',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+              Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => EventsScreen(),
                       ),
                     ),
-                    SizedBox(height: 25),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'COMERCIAL',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                        ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: secondColor,
+                    ),
+                    child: Text(
+                      'E',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
                       ),
                     ),
-                    SizedBox(height: 25),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'ACTORES',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                        ),
-                      ),
+                  ),
+                  Text(
+                    'Eventos',
+                    style: TextStyle(
+                      color: Colors.white,
                     ),
-                    SizedBox(height: 25),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'ACTORES',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(width: 25),
-                Column(
-                  children: [
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'PLUZ SIZE',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 25),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'ESPECIAIS',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 25),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'ACTORES',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 25),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'ACTORES',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ]),
+                  ),
+                ],
+              ),
             ]),
             SizedBox(height: 20),
           ],

@@ -96,41 +96,42 @@ class PresentationScreen extends StatelessWidget {
             ),
             SizedBox(height: 50),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(width: 20),
-                ElevatedButton(
-                  // onPressed: () => LoginScreen(),
-                  onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => LoginScreen(),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      top: 10,
-                      bottom: 10,
-                      left: 8,
-                      right: 8,
-                    ),
-                    child: Text(
-                      'Membro',
-                      style: TextStyle(
-                        color: secondColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25,
-                      ),
-                    ),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: primaryColor,
-                    side: const BorderSide(
-                      width: 2, // the thickness
-                      color: Color(0xFFc712a2), // the color of the border
-                    ),
-                  ),
-                ),
-                SizedBox(width: 65),
+                // SizedBox(width: 20),
+                // ElevatedButton(
+                //   // onPressed: () => LoginScreen(),
+                //   onPressed: () => Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //       builder: (context) => LoginScreen(),
+                //     ),
+                //   ),
+                //   child: Padding(
+                //     padding: const EdgeInsets.only(
+                //       top: 10,
+                //       bottom: 10,
+                //       left: 8,
+                //       right: 8,
+                //     ),
+                //     child: Text(
+                //       'Membro',
+                //       style: TextStyle(
+                //         color: secondColor,
+                //         fontWeight: FontWeight.bold,
+                //         fontSize: 25,
+                //       ),
+                //     ),
+                //   ),
+                //   style: ElevatedButton.styleFrom(
+                //     backgroundColor: primaryColor,
+                //     side: const BorderSide(
+                //       width: 2, // the thickness
+                //       color: Color(0xFFc712a2), // the color of the border
+                //     ),
+                //   ),
+                // ),
+                // SizedBox(width: 65),
                 ElevatedButton(
                   onPressed: () => Navigator.push(
                     context,
@@ -146,7 +147,7 @@ class PresentationScreen extends StatelessWidget {
                       right: 8,
                     ),
                     child: Text(
-                      'Visitante',
+                      'Ver mais...',
                       style: TextStyle(
                         color: secondColor,
                         fontWeight: FontWeight.bold,
@@ -164,7 +165,7 @@ class PresentationScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 40),
+            SizedBox(height: 30),
             Center(
               child: ElevatedButton(
                 // onPressed: () => RegisterScreen(),

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
+import 'package:stivy/views/agency_models_screen.dart';
+import 'package:stivy/views/components/my_custom_appbar.dart';
 import 'package:stivy/views/components/my_custom_buttons.dart';
 import 'package:stivy/views/agencies_list_screen.dart';
+import 'package:stivy/views/login_screen.dart';
+import 'package:stivy/views/menu_models_screen.dart';
 import 'package:stivy/views/models_list_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -25,19 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             SizedBox(height: 30),
-            Container(
-              alignment: Alignment.centerLeft,
-              child: TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: Text(
-                  'voltar',
-                  style: TextStyle(
-                    color: secondColor,
-                    fontSize: 20,
-                  ),
-                ),
-              ),
-            ),
+            MyCustomAppBar(),
             SizedBox(height: 30),
             Padding(
               padding: EdgeInsets.only(top: 10),

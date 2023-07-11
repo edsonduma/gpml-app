@@ -296,7 +296,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         right: 45,
                       ),
                       child: Text(
-                        'Cadastrar',
+                        'Salvar',
                         style: TextStyle(
                             color: primaryColor,
                             fontSize: 25,

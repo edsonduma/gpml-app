@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
 import 'package:stivy/views/components/my_custom_buttons.dart';
+import 'package:stivy/views/models_create_screen.dart';
 
 class MenuModelsScreen extends StatefulWidget {
   const MenuModelsScreen({super.key});
@@ -77,7 +78,12 @@ class _MenuModelsScreenState extends State<MenuModelsScreen> {
                       ),
                       SizedBox(height: 60),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ModelsCreateScreen(),
+                          ),
+                        ),
                         child: Padding(
                           padding: const EdgeInsets.only(
                             top: 10,

@@ -1,7 +1,9 @@
+import 'package:stivy/views/components/my_custom_appbar.dart';
 import 'package:stivy/views/components/my_custom_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
 import 'package:stivy/views/components/my_custom_input.dart';
+import 'package:stivy/views/login_screen.dart';
 
 class EventsScreen extends StatelessWidget {
   const EventsScreen({super.key});
@@ -17,19 +19,7 @@ class EventsScreen extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 30),
-            Container(
-              alignment: Alignment.centerLeft,
-              child: TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: Text(
-                  'voltar',
-                  style: TextStyle(
-                    color: secondColor,
-                    fontSize: 20,
-                  ),
-                ),
-              ),
-            ),
+            MyCustomAppBar(),
             SizedBox(height: 30),
             Padding(
               padding: EdgeInsets.only(top: 10),

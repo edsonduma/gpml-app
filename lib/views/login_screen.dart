@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
 import 'package:stivy/views/home_screen.dart';
-import 'package:stivy/views/menu_screen.dart';
+import 'package:stivy/views/agency_details_screen.dart';
+import 'package:stivy/views/menu_models_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  final String pageFrom;
+
+  // const LoginScreen({super.key});
+  const LoginScreen({Key? key, required this.pageFrom}) : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -123,13 +127,19 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   SizedBox(height: 70),
                   ElevatedButton(
-                    // onPressed: () => HomeScreen(),
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MenuScreen(),
-                      ),
-                    ),
+                    onPressed: () {
+                      switch (widget.pageFrom) {
+                        case 'admin':
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const MenuModelsScreen(),
+                            ),
+                          );
+                        case 'requesting':
+                          Navigator.of(context).pop();
+                      }
+                    },
                     child: Padding(
                       padding: const EdgeInsets.only(
                         top: 12,
@@ -140,9 +150,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Text(
                         'Entrar',
                         style: TextStyle(
-                            color: primaryColor,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold),
+                          color: primaryColor,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                     style: ElevatedButton.styleFrom(
