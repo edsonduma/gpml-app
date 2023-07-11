@@ -143,8 +143,8 @@ class PresentationScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(
                       top: 10,
                       bottom: 10,
-                      left: 8,
-                      right: 8,
+                      left: 40,
+                      right: 40,
                     ),
                     child: Text(
                       'Ver mais...',
