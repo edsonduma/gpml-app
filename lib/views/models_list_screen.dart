@@ -20,7 +20,7 @@ class ModelsListScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              // SizedBox(height: 30),
+              SizedBox(height: 30),
               MyCustomAppBar(),
               SizedBox(height: 30),
               Padding(

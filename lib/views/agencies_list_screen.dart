@@ -18,223 +18,221 @@ class AgenciesListScreen extends StatelessWidget {
       // appBar: AppBar(
       //   backgroundColor: primaryColor,
       // ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              // SizedBox(height: 30),
-              MyCustomAppBar(),
-              Padding(
-                padding: EdgeInsets.only(top: 10),
-                child: Container(
-                  // color: Colors.white,
-                  // margin: EdgeInsets.all(30.0),
-                  // padding: EdgeInsets.all(10.0),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 2,
-                      color: const Color(0xFF707070), // #707070
-                    ),
-                    color: Colors.white,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: 30),
+            MyCustomAppBar(),
+            Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: Container(
+                // color: Colors.white,
+                // margin: EdgeInsets.all(30.0),
+                // padding: EdgeInsets.all(10.0),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 2,
+                    color: const Color(0xFF707070), // #707070
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      top: 20,
-                      left: 50,
-                      right: 50,
-                      bottom: 10,
-                    ),
-                    child: Column(
-                      children: [
-                        Text(
-                          'As melhores agencias da cidade capital você encontra aqui!',
-                          style: TextStyle(
-                            color: secondColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
+                  color: Colors.white,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    top: 20,
+                    left: 50,
+                    right: 50,
+                    bottom: 10,
+                  ),
+                  child: Column(
+                    children: [
+                      Text(
+                        'As melhores agencias da cidade capital você encontra aqui!',
+                        style: TextStyle(
+                          color: secondColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
                         ),
-                        SizedBox(height: 10),
-                        TextField(
-                          decoration: InputDecoration(
-                            // border: const OutlineInputBorder(),
-                            hintText: 'Pesquisar',
-                            // hintStyle: TextStyle(color: secondColor),
-                            hintStyle: TextStyle(color: thirdColor),
-                          ),
-                          style: TextStyle(
-                            color: secondColor,
-                          ),
+                      ),
+                      SizedBox(height: 10),
+                      TextField(
+                        decoration: InputDecoration(
+                          // border: const OutlineInputBorder(),
+                          hintText: 'Pesquisar',
+                          // hintStyle: TextStyle(color: secondColor),
+                          hintStyle: TextStyle(color: thirdColor),
                         ),
-                      ],
-                    ),
+                        style: TextStyle(
+                          color: secondColor,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-              SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  InkWell(
-                    child: Column(
-                      children: [
-                        Card(
-                          child: Container(
-                            color: Colors.black,
-                            width: 120,
-                            height: 150,
-                          ),
+            ),
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                InkWell(
+                  child: Column(
+                    children: [
+                      Card(
+                        child: Container(
+                          color: Colors.black,
+                          width: 120,
+                          height: 150,
                         ),
-                        Text(
-                          'Cael Pascoal',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AgencyDetailsScreen(),
                       ),
+                      Text(
+                        'Cael Pascoal',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AgencyDetailsScreen(),
                     ),
                   ),
-                  InkWell(
-                    child: Column(
-                      children: [
-                        Card(
-                          child: Container(
-                            color: Colors.black,
-                            width: 120,
-                            height: 150,
-                          ),
+                ),
+                InkWell(
+                  child: Column(
+                    children: [
+                      Card(
+                        child: Container(
+                          color: Colors.black,
+                          width: 120,
+                          height: 150,
                         ),
-                        Text(
-                          'Emma Diogo',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AgencyDetailsScreen(),
                       ),
+                      Text(
+                        'Emma Diogo',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AgencyDetailsScreen(),
                     ),
                   ),
-                  InkWell(
-                    child: Column(
-                      children: [
-                        Card(
-                          child: Container(
-                            color: Colors.black,
-                            width: 120,
-                            height: 150,
-                          ),
+                ),
+                InkWell(
+                  child: Column(
+                    children: [
+                      Card(
+                        child: Container(
+                          color: Colors.black,
+                          width: 120,
+                          height: 150,
                         ),
-                        Text(
-                          'Nádia Campos',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AgencyDetailsScreen(),
                       ),
+                      Text(
+                        'Nádia Campos',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AgencyDetailsScreen(),
                     ),
                   ),
-                ],
-              ),
-              SizedBox(height: 15),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  InkWell(
-                    child: Column(
-                      children: [
-                        Card(
-                          child: Container(
-                            color: Colors.black,
-                            width: 120,
-                            height: 150,
-                          ),
+                ),
+              ],
+            ),
+            SizedBox(height: 15),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                InkWell(
+                  child: Column(
+                    children: [
+                      Card(
+                        child: Container(
+                          color: Colors.black,
+                          width: 120,
+                          height: 150,
                         ),
-                        Text(
-                          'Stélvia Firmino',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AgencyDetailsScreen(),
                       ),
+                      Text(
+                        'Stélvia Firmino',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AgencyDetailsScreen(),
                     ),
                   ),
-                  InkWell(
-                    child: Column(
-                      children: [
-                        Card(
-                          child: Container(
-                            color: Colors.black,
-                            width: 120,
-                            height: 150,
-                          ),
+                ),
+                InkWell(
+                  child: Column(
+                    children: [
+                      Card(
+                        child: Container(
+                          color: Colors.black,
+                          width: 120,
+                          height: 150,
                         ),
-                        Text(
-                          'Stélvia Firmino',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AgencyDetailsScreen(),
                       ),
+                      Text(
+                        'Stélvia Firmino',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AgencyDetailsScreen(),
                     ),
                   ),
-                  InkWell(
-                    child: Column(
-                      children: [
-                        Card(
-                          child: Container(
-                            color: Colors.black,
-                            width: 120,
-                            height: 150,
-                          ),
+                ),
+                InkWell(
+                  child: Column(
+                    children: [
+                      Card(
+                        child: Container(
+                          color: Colors.black,
+                          width: 120,
+                          height: 150,
                         ),
-                        Text(
-                          'Stélvia Firmino',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AgencyDetailsScreen(),
                       ),
+                      Text(
+                        'Stélvia Firmino',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AgencyDetailsScreen(),
                     ),
                   ),
-                ],
-              ),
-            ],
-          ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
