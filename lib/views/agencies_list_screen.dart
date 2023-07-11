@@ -22,7 +22,7 @@ class AgenciesListScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: 30),
+              // SizedBox(height: 30),
               MyCustomAppBar(),
               Padding(
                 padding: EdgeInsets.only(top: 10),
