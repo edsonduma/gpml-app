@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:stivy/models/user.dart';
 import 'package:stivy/utils/constants.dart';
+import 'package:stivy/utils/sqflite_helper.dart';
 import 'package:stivy/views/presentation_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -11,6 +13,20 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
 // final Color mySecondColor = Color(0xFFc712a2);
+  TextEditingController? _nomeController,
+      _emailController,
+      _passwordController,
+      _passwordCheckingController;
+
+  @override
+  initState() {
+    super.initState();
+
+    _nomeController = TextEditingController();
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
+    _passwordCheckingController = TextEditingController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +64,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   SizedBox(height: 20),
                   TextField(
+                    controller: _nomeController,
                     decoration: const InputDecoration(
                       // border: UnderlineInputBorder(
                       //   borderSide: BorderSide(color: Colors.red),
@@ -83,6 +100,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   SizedBox(height: 10),
                   TextField(
+                    controller: _emailController,
                     decoration: const InputDecoration(
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
@@ -115,6 +133,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   SizedBox(height: 10),
                   TextField(
+                    controller: _passwordController,
                     decoration: const InputDecoration(
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
@@ -147,6 +166,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   SizedBox(height: 10),
                   TextField(
+                    controller: _passwordCheckingController,
                     decoration: const InputDecoration(
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
@@ -283,11 +303,37 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ]),
                   SizedBox(height: 50),
                   ElevatedButton(
-                    onPressed: () => Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(
-                          builder: (context) => PresentationScreen()),
-                      (route) => false,
-                    ),
+                    onPressed: () {
+                      if (_nomeController!.text.isNotEmpty) {
+                        if (_emailController!.text.isNotEmpty) {
+                          if (_passwordController!.text.isNotEmpty) {
+                            if (_passwordCheckingController!.text.isNotEmpty) {
+                              if (_passwordController!.text ==
+                                  _passwordCheckingController!.text) {
+                                User user = User(
+                                  nome: _nomeController!.text,
+                                  email: _emailController!.text,
+                                  password: _passwordController!.text,
+                                );
+
+                                SqfliteHelper.insert(User.TABLE_NAME, {
+                                  'nome': user.nome,
+                                  'email': user.email,
+                                  'password': user.password,
+                                });
+
+                                Navigator.of(context).pushAndRemoveUntil(
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          PresentationScreen()),
+                                  (route) => false,
+                                );
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
                     child: Padding(
                       padding: const EdgeInsets.only(
                         top: 12,

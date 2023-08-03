@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
+import 'package:stivy/utils/sqflite_helper.dart';
 import 'package:stivy/views/home_screen.dart';
 import 'package:stivy/views/agency_details_screen.dart';
 import 'package:stivy/views/menu_models_screen.dart';
@@ -16,6 +17,15 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   // final Color mySecondColor = Color(0xFFc712a2);
+  TextEditingController? _emailController, _passwordController;
+
+  @override
+  initState() {
+    super.initState();
+
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   SizedBox(height: 70),
                   TextField(
+                    controller: _emailController,
                     decoration: const InputDecoration(
                       // border: UnderlineInputBorder(
                       //   borderSide: BorderSide(color: Colors.red),
@@ -69,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           width: 2,
                         ),
                       ),
-                      labelText: 'Nome',
+                      labelText: 'Email',
                       // fillColor: Color(0xFFe9a42c),
                       // fillColor: Color(0xFFc712a2),
                       labelStyle: TextStyle(
@@ -90,6 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   SizedBox(height: 20),
                   TextField(
+                    controller: _passwordController,
                     decoration: const InputDecoration(
                       // border: UnderlineInputBorder(
                       //   borderSide: BorderSide(color: Colors.red),
@@ -127,17 +139,29 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   SizedBox(height: 70),
                   ElevatedButton(
-                    onPressed: () {
-                      switch (widget.pageFrom) {
-                        case 'admin':
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const MenuModelsScreen(),
-                            ),
+                    onPressed: () async {
+                      if (_emailController!.text.isNotEmpty) {
+                        if (_passwordController!.text.isNotEmpty) {
+                          bool loginStatus = await SqfliteHelper.login(
+                            _emailController!.text,
+                            _passwordController!.text,
                           );
-                        case 'requesting':
-                          Navigator.of(context).pop();
+
+                          if (loginStatus) {
+                            switch (widget.pageFrom) {
+                              case 'admin':
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const MenuModelsScreen(),
+                                  ),
+                                );
+                              case 'requesting':
+                                Navigator.of(context).pop();
+                            }
+                          }
+                        }
                       }
                     },
                     child: Padding(

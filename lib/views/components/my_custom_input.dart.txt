@@ -1,0 +1,41 @@
+import 'package:stivy/utils/constants.dart';
+import 'package:flutter/material.dart';
+
+class MyCustomInput extends StatelessWidget {
+  MyCustomInput({
+    super.key,
+    required this.labelName,
+  });
+
+  final String labelName;
+  // final TextEditingController controller = TextEditingController();
+  var value;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      // controller: controller,
+      // onChanged: (value) => value = controller.text,
+      onChanged: (value) {
+        print('value: $value, ${this.value}');
+        // this.value = controller.text;
+        this.value = value;
+        // print('value2: $value, ${this.value}');
+      },
+      // onSubmitted: (value) => value = controller.text,
+      // onSubmitted: (value) {
+      //   value = controller.text;
+
+      //   print('value: $value');
+      // },
+      decoration: InputDecoration(
+        border: const OutlineInputBorder(),
+        hintText: labelName,
+        hintStyle: TextStyle(color: secondColor),
+      ),
+      style: TextStyle(
+        color: secondColor,
+      ),
+    );
+  }
+}

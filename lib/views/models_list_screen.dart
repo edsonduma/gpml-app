@@ -2,7 +2,7 @@ import 'package:stivy/views/components/my_custom_appbar.dart';
 import 'package:stivy/views/components/my_custom_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
-import 'package:stivy/views/components/my_custom_input.dart';
+import 'package:stivy/views/components/my_custom_input.dart.txt';
 import 'package:stivy/views/login_screen.dart';
 import 'package:stivy/views/models_details_screen.dart';
 

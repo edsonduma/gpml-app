@@ -1,7 +1,9 @@
+import 'package:stivy/models/model.dart';
+import 'package:stivy/utils/sqflite_helper.dart';
 import 'package:stivy/views/components/my_custom_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
-import 'package:stivy/views/components/my_custom_input.dart';
+import 'package:stivy/views/components/my_custom_input.dart.txt';
 
 class ModelsCreateScreen extends StatefulWidget {
   const ModelsCreateScreen({super.key});
@@ -13,6 +15,10 @@ class ModelsCreateScreen extends StatefulWidget {
 class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
   // final Color mySecondColor = Color(0xFFc712a2);
   final diffBetweenInputs = 20.0;
+
+  String? nome, apelido;
+  double? altura, cintura, anca, sapato;
+  late List<String> trabalhos, contactos;
 
   @override
   Widget build(BuildContext context) {
@@ -71,35 +77,101 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                       ),
                       SizedBox(height: 40),
                       Text(
-                        'Adicionar Modelos',
+                        'Cadastrar Modelos',
                         style: TextStyle(
                           color: secondColor,
                           fontSize: 18,
                         ),
                       ),
                       SizedBox(height: diffBetweenInputs),
-                      MyCustomInput(
-                        labelName: 'Nome',
+                      // MyCustomInput(
+                      //   labelName: 'Nome',
+                      // ),
+                      TextFormField(
+                        onChanged: (value) {
+                          // print('value: $value');
+                          nome = value;
+                        },
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          hintText: 'Nome',
+                          hintStyle: TextStyle(color: secondColor),
+                        ),
+                        style: TextStyle(
+                          color: secondColor,
+                        ),
                       ),
                       SizedBox(height: diffBetweenInputs),
-                      MyCustomInput(
-                        labelName: 'Apelido',
+                      TextFormField(
+                        onChanged: (value) {
+                          apelido = value;
+                        },
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          hintText: 'Apelido',
+                          hintStyle: TextStyle(color: secondColor),
+                        ),
+                        style: TextStyle(
+                          color: secondColor,
+                        ),
                       ),
                       SizedBox(height: diffBetweenInputs),
-                      MyCustomInput(
-                        labelName: 'Altura',
+                      TextFormField(
+                        onChanged: (value) {
+                          altura = value as double?;
+                        },
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          hintText: 'Altura',
+                          hintStyle: TextStyle(color: secondColor),
+                        ),
+                        style: TextStyle(
+                          color: secondColor,
+                        ),
                       ),
                       SizedBox(height: diffBetweenInputs),
-                      MyCustomInput(
-                        labelName: 'Cintura',
+                      TextFormField(
+                        onChanged: (value) {
+                          // cintura = value as double?;
+
+                          cintura = double.parse(value);
+                        },
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          hintText: 'Cintura',
+                          hintStyle: TextStyle(color: secondColor),
+                        ),
+                        style: TextStyle(
+                          color: secondColor,
+                        ),
                       ),
                       SizedBox(height: diffBetweenInputs),
-                      MyCustomInput(
-                        labelName: 'Anca',
+                      TextFormField(
+                        onChanged: (value) {
+                          anca = double.parse(value);
+                        },
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          hintText: 'Anca',
+                          hintStyle: TextStyle(color: secondColor),
+                        ),
+                        style: TextStyle(
+                          color: secondColor,
+                        ),
                       ),
                       SizedBox(height: diffBetweenInputs),
-                      MyCustomInput(
-                        labelName: 'Sapato',
+                      TextFormField(
+                        onChanged: (value) {
+                          sapato = double.parse(value);
+                        },
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          hintText: 'Sapato',
+                          hintStyle: TextStyle(color: secondColor),
+                        ),
+                        style: TextStyle(
+                          color: secondColor,
+                        ),
                       ),
                       SizedBox(height: 30),
                       Text(
@@ -155,7 +227,31 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                       SizedBox(height: 30),
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.of(context).pop();
+                          if (nome!.isNotEmpty) {
+                            Model myModel = Model(
+                              nome: nome!,
+                              apelido: apelido!,
+                              altura: altura!,
+                              cintura: cintura!,
+                              anca: anca!,
+                              sapato: sapato!,
+                              trabalhos: trabalhos,
+                              contactos: contactos,
+                            );
+
+                            SqfliteHelper.insert(Model.TABLE_NAME, {
+                              'nome': myModel.nome,
+                              'apelido': myModel.apelido,
+                              'altura': myModel.altura,
+                              'cintura': myModel.cintura,
+                              'anca': myModel.anca,
+                              'sapato': myModel.sapato,
+                              'trabalhos': myModel.trabalhos,
+                              'contactos': myModel.contactos,
+                            });
+
+                            Navigator.of(context).pop();
+                          }
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(
