@@ -1,28 +1,46 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:sqflite_common_ffi_web/sqflite_ffi_web.dart';
 
 class SqfliteHelper {
   static late final _database;
 
   static Future<void> init() async {
-    _database = openDatabase(
-      // Set the path to the database. Note: Using the `join` function from the
-      // `path` package is best practice to ensure the path is correctly
-      // constructed for each platform.
-      join(await getDatabasesPath(), 'stivy_database.db'),
-      // When the database is first created, create a table to store users.
-      onCreate: (db, version) {
-        // Run the CREATE TABLE statement on the database.
-        return db.execute(
-          'CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, email TEXT NOT NULL, password TEXT NOT NULL)',
-        );
-      },
-      // Set the version. This executes the onCreate function and provides a
-      // path to perform database upgrades and downgrades.
-      version: 1,
-    );
+    onCreate(db, version) {
+      // Run the CREATE TABLE statement on the database.
+      return db.execute(
+        'CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, email TEXT NOT NULL, password TEXT NOT NULL)',
+      );
+    }
+
+    if (kIsWeb) {
+      // var path = 'storage/';
+      // Change default factory on the web
+      databaseFactory = databaseFactoryFfiWeb;
+      // path = 'stivy_web.db';
+
+      _database = openDatabase(
+        // path,
+        'storage/stivy_web.db',
+        onCreate: onCreate,
+        version: 1,
+      );
+    } else {
+      _database = openDatabase(
+        // Set the path to the database. Note: Using the `join` function from the
+        // `path` package is best practice to ensure the path is correctly
+        // constructed for each platform.
+        join(await getDatabasesPath(), 'stivy_database.db'),
+        // When the database is first created, create a table to store users.
+        onCreate: onCreate,
+        // Set the version. This executes the onCreate function and provides a
+        // path to perform database upgrades and downgrades.
+        version: 1,
+      );
+    }
   }
 
   // Define a function that inserts users into the database
