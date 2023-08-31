@@ -1,13 +1,15 @@
+import 'package:stivy/views/about_screen.dart';
+import 'package:stivy/views/agencies/agency_models_screen.dart';
 import 'package:stivy/views/components/my_custom_appbar.dart';
 import 'package:stivy/views/components/my_custom_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
 import 'package:stivy/views/components/my_custom_input.dart.txt';
+import 'package:stivy/views/agencies/agency_details_screen.dart';
 import 'package:stivy/views/login_screen.dart';
-import 'package:stivy/views/models_details_screen.dart';
 
-class ModelsListScreen extends StatelessWidget {
-  const ModelsListScreen({super.key});
+class AgenciesListScreen extends StatelessWidget {
+  const AgenciesListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,6 @@ class ModelsListScreen extends StatelessWidget {
           children: [
             SizedBox(height: 30),
             MyCustomAppBar(),
-            SizedBox(height: 30),
             Padding(
               padding: EdgeInsets.only(top: 10),
               child: Container(
@@ -45,43 +46,12 @@ class ModelsListScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        'Modelos'.toUpperCase(),
+                        'As melhores agencias da cidade capital você encontra aqui!',
                         style: TextStyle(
                           color: secondColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                         ),
-                      ),
-                      SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'TODOS'.toUpperCase(),
-                            style: TextStyle(
-                              color: secondColor,
-                              fontSize: 15,
-                            ),
-                          ),
-                          SizedBox(width: 30),
-                          Text(
-                            'MULHERES'.toUpperCase(),
-                            style: TextStyle(
-                              color: secondColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                            ),
-                          ),
-                          SizedBox(width: 30),
-                          Text(
-                            'HOMENS'.toUpperCase(),
-                            style: TextStyle(
-                              color: secondColor,
-                              fontSize: 15,
-                            ),
-                          ),
-                          SizedBox(width: 20),
-                        ],
                       ),
                       SizedBox(height: 10),
                       TextField(
@@ -95,48 +65,6 @@ class ModelsListScreen extends StatelessWidget {
                           color: secondColor,
                         ),
                       ),
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.end,
-                      //   children: [
-                      //   ],
-                      // ),
-                      SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          // ElevatedButton(
-                          //   child: Text('Pesquisa Avancada'),
-                          //   onPressed: () {},
-                          // ),
-                          ElevatedButton(
-                            onPressed: () {},
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                top: 10,
-                                bottom: 10,
-                                // left: 15,
-                                // right: 15,
-                              ),
-                              child: Text(
-                                'Pesquisa Avancada',
-                                style: TextStyle(
-                                  color: Color(0xFFc712a2),
-                                  fontSize: 15,
-                                ),
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: thirdColor,
-                              // side: const BorderSide(
-                              //   width: 2, // the thickness
-                              //   color: Color(0xFFe9a42c), // the color of the border
-                              // ),
-                              fixedSize: Size(250, 45),
-                            ),
-                          ),
-                        ],
-                      ),
-                      // SizedBox(height: 30),
                     ],
                   ),
                 ),
@@ -167,7 +95,7 @@ class ModelsListScreen extends StatelessWidget {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ModelsDetailsScreen(),
+                      builder: (context) => AgencyDetailsScreen(),
                     ),
                   ),
                 ),
@@ -192,7 +120,7 @@ class ModelsListScreen extends StatelessWidget {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ModelsDetailsScreen(),
+                      builder: (context) => AgencyDetailsScreen(),
                     ),
                   ),
                 ),
@@ -217,7 +145,7 @@ class ModelsListScreen extends StatelessWidget {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ModelsDetailsScreen(),
+                      builder: (context) => AgencyDetailsScreen(),
                     ),
                   ),
                 ),
@@ -248,7 +176,7 @@ class ModelsListScreen extends StatelessWidget {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ModelsDetailsScreen(),
+                      builder: (context) => AgencyDetailsScreen(),
                     ),
                   ),
                 ),
@@ -273,7 +201,7 @@ class ModelsListScreen extends StatelessWidget {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ModelsDetailsScreen(),
+                      builder: (context) => AgencyDetailsScreen(),
                     ),
                   ),
                 ),
@@ -298,7 +226,7 @@ class ModelsListScreen extends StatelessWidget {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ModelsDetailsScreen(),
+                      builder: (context) => AgencyDetailsScreen(),
                     ),
                   ),
                 ),

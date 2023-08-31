@@ -6,14 +6,57 @@ import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_common_ffi_web/sqflite_ffi_web.dart';
 
 class SqfliteHelper {
+  // static late final _database;
   static late final _database;
 
   static Future<void> init() async {
-    onCreate(db, version) {
-      // Run the CREATE TABLE statement on the database.
-      return db.execute(
-        'CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, email TEXT NOT NULL, password TEXT NOT NULL)',
-      );
+    onCreate(Database db, version) async {
+      // Run the CREATE TABLE IF NOT EXISTS statement on the database.
+      // return db.execute(
+      //   'CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, email TEXT NOT NULL, password TEXT NOT NULL)',
+      //   "INSERT INTO users (id, nome, email, password) VALUES (DEFAULT, 'admin', 'admin@stivy.com', 'admin')",
+      //   // 'CREATE TABLE IF NOT EXISTS agencies (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)',
+      //   // 'CREATE TABLE IF NOT EXISTS models (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)',
+      //   // 'CREATE TABLE IF NOT EXISTS photographers (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)',
+      //   // 'CREATE TABLE IF NOT EXISTS designs (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)',
+      //   // 'CREATE TABLE IF NOT EXISTS stylists (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)',
+      //   // 'CREATE TABLE IF NOT EXISTS makeup_artists (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)',
+      // );
+
+      // return db.execute(
+      //   'CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, email TEXT NOT NULL, password TEXT NOT NULL); ' +
+      //       "INSERT INTO users (id, nome, email, password) VALUES (DEFAULT, 'admin', 'admin', 'admin');",
+      // );
+      // return db.execute(
+      //   'CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, email TEXT NOT NULL, password TEXT NOT NULL)',
+      //   "INSERT INTO users (id, nome, email, password) VALUES (DEFAULT, 'admin', 'admin', 'admin')",
+      // );
+
+      // return db.execute(
+      //   'CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, email TEXT NOT NULL, password TEXT NOT NULL)',
+      // );
+
+      Batch batch = db.batch();
+      // batch.execute("Your query-> Create table if not exists");
+      batch.execute(
+          '''CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, email TEXT NOT NULL, password TEXT NOT NULL)''');
+      batch.execute(
+          '''CREATE TABLE IF NOT EXISTS agencies (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)''');
+      batch.execute(
+          '''CREATE TABLE IF NOT EXISTS models (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)''');
+      batch.execute(
+          '''CREATE TABLE IF NOT EXISTS photographers (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)''');
+      batch.execute(
+          '''CREATE TABLE IF NOT EXISTS designs (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)''');
+      batch.execute(
+          '''CREATE TABLE IF NOT EXISTS stylists (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)''');
+      batch.execute(
+          '''CREATE TABLE IF NOT EXISTS makeup_artists (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)''');
+
+      // "INSERT INTO users (id, nome, email, password) VALUES (DEFAULT, 'admin', 'admin@stivy.com', 'admin')",
+
+      // List<dynamic> res =
+      await batch.commit();
     }
 
     if (kIsWeb) {
@@ -41,6 +84,41 @@ class SqfliteHelper {
         version: 1,
       );
     }
+    executeSeeds();
+
+    // Database myDb = await openDatabase('');
+    // myDb.insert(table, values);
+    // int idReturned = await _database.rawInsert(
+    //     "INSERT INTO users (id, nome, email, password) VALUES (DEFAULT, 'admin', 'admin', 'admin')");
+    // print("idReturned $idReturned");
+
+    // int idReturned = await db.rawInsert(
+    //     "INSERT INTO users (id, nome, email, password) VALUES (DEFAULT, 'admin', 'admin', 'admin')");
+    // print("idReturned $idReturned");
+  }
+
+  static Future<void> executeSeeds() async {
+    Database db = await _database;
+
+    await db.insert(
+      'users',
+      {'nome': 'admin', 'email': 'admin', 'password': 'admin'},
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+
+    // await db.(
+    //     'CREATE TABLE IF NOT EXISTS agencies (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)');
+
+    await db.insert(
+      'agencies',
+      {'nome': 'TESTE'},
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+    // await db.insert(
+    //   'users',
+    //   {'nome': 'admin', 'email': 'admin', 'password': 'admin'},
+    //   conflictAlgorithm: ConflictAlgorithm.replace,
+    // );
   }
 
   // Define a function that inserts users into the database
@@ -90,7 +168,7 @@ class SqfliteHelper {
     return maps[0];
   }
 
-  static Future<bool> login(String email, String password) async {
+  static Future<String?> login(String email, String password) async {
     final db = await _database;
     // final maps = await db.query('users',
     //     where: 'email = ? AND password = ?', whereArgs: [email, password]);
@@ -99,6 +177,9 @@ class SqfliteHelper {
     // print('maps.length: ${maps.length}, ${maps.isNotEmpty}');
 
     // return maps.isNotEmpty;
-    return maps.length != 0;
+    // return maps.length != 0;
+
+    if (maps.length != 0) return maps[0]['nome'];
+    return null;
   }
 }

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stivy/utils/constants.dart';
 import 'package:stivy/utils/sqflite_helper.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:stivy/views/adminhome_screen.dart';
 import 'package:stivy/views/home_screen.dart';
-import 'package:stivy/views/agency_details_screen.dart';
-import 'package:stivy/views/menu_models_screen.dart';
+import 'package:stivy/views/agencies/agency_details_screen.dart';
+import 'package:stivy/views/models/menu_models_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   final String pageFrom;
@@ -87,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: Color(0xFFc712a2),
                         fontWeight: FontWeight.bold,
                       ),
-                      hintText: 'Digite nome de utilizador',
+                      hintText: 'Digite seu email',
                       hintStyle: TextStyle(
                         color: Color(0xFFc712a2),
                         fontWeight: FontWeight.bold,
@@ -125,7 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: Color(0xFFc712a2),
                         fontWeight: FontWeight.bold,
                       ),
-                      hintText: 'Digite senha do utilizador',
+                      hintText: 'Digite sua senha',
                       hintStyle: TextStyle(
                         color: Color(0xFFc712a2),
                         fontWeight: FontWeight.bold,
@@ -142,28 +145,50 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () async {
                       if (_emailController!.text.isNotEmpty) {
                         if (_passwordController!.text.isNotEmpty) {
-                          bool loginStatus = await SqfliteHelper.login(
+                          // bool loginStatus =
+                          String? loggedUsername = await SqfliteHelper.login(
                             _emailController!.text,
                             _passwordController!.text,
                           );
 
-                          if (loginStatus) {
+                          if (loggedUsername != null) {
                             switch (widget.pageFrom) {
                               case 'admin':
+                                GetStorage box = GetStorage();
+                                box.write('nome', loggedUsername);
+
+                                // obtain shared preferences
+                                // final prefs =
+                                //     await SharedPreferences.getInstance();
+
+                                // // set value
+                                // await prefs.setString('nome', loggedUsername);
+
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                        const MenuModelsScreen(),
+                                        // const MenuModelsScreen(),
+                                        const AdminHomeScreen(),
                                   ),
                                 );
                               case 'requesting':
                                 Navigator.of(context).pop();
                             }
+                          } else {
+                            print("usuario ou senha errados!");
                           }
                         }
                       }
                     },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      side: const BorderSide(
+                        width: 2, // the thickness
+                        // color: Color(0xFFe9a42c), // the color of the border
+                        color: Color(0xFFc712a2), // the color of the border
+                      ),
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.only(
                         top: 12,
@@ -180,25 +205,17 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      side: const BorderSide(
-                        width: 2, // the thickness
-                        // color: Color(0xFFe9a42c), // the color of the border
-                        color: Color(0xFFc712a2), // the color of the border
-                      ),
-                    ),
                     /* ... */
                   ),
                   SizedBox(height: 20),
                   TextButton(
                     onPressed: () {},
+                    style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all(secondColor),
+                    ),
                     child: Text(
                       'Recuperar senha',
                       style: TextStyle(fontSize: 20),
-                    ),
-                    style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all(secondColor),
                     ),
                   )
                 ],

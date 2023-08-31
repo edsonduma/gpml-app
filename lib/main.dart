@@ -1,25 +1,23 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:stivy/models/user.dart';
 import 'package:stivy/utils/constants.dart';
 import 'package:stivy/utils/sqflite_helper.dart';
-import 'package:stivy/views/menu_models_screen.dart';
-import 'package:stivy/views/agency_details_screen.dart';
-import 'package:stivy/views/agencies_list_screen.dart';
-import 'package:stivy/views/agency_models_screen.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:stivy/views/models/menu_models_screen.dart';
+import 'package:stivy/views/agencies/agency_details_screen.dart';
+import 'package:stivy/views/agencies/agencies_list_screen.dart';
+import 'package:stivy/views/agencies/agency_models_screen.dart';
 import 'package:stivy/views/about_screen.dart';
 import 'package:stivy/views/events_screen.dart';
-import 'package:stivy/views/models_details_screen.dart';
-import 'package:stivy/views/models_create_screen.dart';
-import 'package:stivy/views/models_list_screen.dart';
+import 'package:stivy/views/models/models_details_screen.dart';
+import 'package:stivy/views/models/models_create_screen.dart';
+import 'package:stivy/views/models/models_list_screen.dart';
 import 'package:stivy/views/outros/teste_safe_area.dart';
 import 'package:stivy/views/home_screen.dart';
 import 'package:stivy/views/login_screen.dart';
 import 'package:stivy/views/presentation_screen.dart';
 import 'package:stivy/views/register_screen.dart';
 import 'package:stivy/views/splash_screen.dart';
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
 
 Future<void> main() async {
   // Avoid errors caused by flutter upgrade.
@@ -33,6 +31,7 @@ Future<void> main() async {
   //   join(await getDatabasesPath(), 'stivy_database.db'),
   // );
 
+  await GetStorage.init();
   await SqfliteHelper.init();
   runApp(const MyApp());
 }

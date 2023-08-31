@@ -5,17 +5,18 @@ import 'package:stivy/views/components/my_custom_appbar.dart';
 import 'package:stivy/views/components/my_custom_buttons.dart';
 import 'package:stivy/views/agencies/agencies_list_screen.dart';
 import 'package:stivy/views/login_screen.dart';
+import 'package:stivy/views/agencies/menu_agencies_screen.dart';
 import 'package:stivy/views/models/menu_models_screen.dart';
 import 'package:stivy/views/models/models_list_screen.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class AdminHomeScreen extends StatefulWidget {
+  const AdminHomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<AdminHomeScreen> createState() => _AdminHomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _AdminHomeScreenState extends State<AdminHomeScreen> {
   // final Color mySecondColor = Color(0xFFc712a2);
 
   @override
@@ -54,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     children: [
                       Text(
-                        'Serviços Disponíveis',
+                        'Menu Administrativo',
                         style: TextStyle(
                           color: secondColor,
                           fontWeight: FontWeight.bold,
@@ -63,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       SizedBox(height: 10),
                       Text(
-                        'Escolha os nossos serviços',
+                        'Cadastrar Dados',
                         style: TextStyle(
                           color: secondColor,
                           fontSize: 18,
@@ -75,40 +76,41 @@ class _HomeScreenState extends State<HomeScreen> {
                         onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => AgenciesListScreen(),
+                            // builder: (context) => AgenciesListScreen(),
+                            builder: (context) => MenuAgenciesScreen(),
                           ),
                         ),
                       ),
-                      SizedBox(height: 20),
-                      MyCustomButtom(
-                        labelName: 'Modelos free',
-                        onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ModelsListScreen(),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20),
-                      MyCustomButtom(
-                        labelName: 'Fotografos',
-                        onPressed: () {},
-                      ),
-                      SizedBox(height: 20),
-                      MyCustomButtom(
-                        labelName: 'Design',
-                        onPressed: () {},
-                      ),
-                      SizedBox(height: 20),
-                      MyCustomButtom(
-                        labelName: 'Stylist',
-                        onPressed: () {},
-                      ),
-                      SizedBox(height: 20),
-                      MyCustomButtom(
-                        labelName: 'Make up',
-                        onPressed: () {},
-                      ),
+                      // SizedBox(height: 20),
+                      // MyCustomButtom(
+                      //   labelName: 'Modelos free',
+                      //   onPressed: () => Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //       builder: (context) => ModelsListScreen(),
+                      //     ),
+                      //   ),
+                      // ),
+                      // SizedBox(height: 20),
+                      // MyCustomButtom(
+                      //   labelName: 'Fotografos',
+                      //   onPressed: () {},
+                      // ),
+                      // SizedBox(height: 20),
+                      // MyCustomButtom(
+                      //   labelName: 'Design',
+                      //   onPressed: () {},
+                      // ),
+                      // SizedBox(height: 20),
+                      // MyCustomButtom(
+                      //   labelName: 'Stylist',
+                      //   onPressed: () {},
+                      // ),
+                      // SizedBox(height: 20),
+                      // MyCustomButtom(
+                      //   labelName: 'Make up',
+                      //   onPressed: () {},
+                      // ),
                     ],
                   ),
                 ),

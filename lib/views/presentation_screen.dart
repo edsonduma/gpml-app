@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:stivy/utils/constants.dart';
 import 'package:stivy/views/login_screen.dart';
 import 'package:stivy/views/register_screen.dart';
 import 'package:stivy/views/home_screen.dart';
+
+import 'adminhome_screen.dart';
 
 // Future addProds(prod) async {
 //   final response = await http.post(
@@ -133,12 +136,20 @@ class PresentationScreen extends StatelessWidget {
                 // ),
                 // SizedBox(width: 65),
                 ElevatedButton(
-                  onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HomeScreen(),
-                    ),
-                  ),
+                  onPressed: () {
+                    GetStorage box = GetStorage();
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        // builder: (context) => HomeScreen(),
+                        builder: (context) =>
+                            (box.read('nome') != '' && box.read('nome') != null)
+                                ? AdminHomeScreen()
+                                : HomeScreen(),
+                      ),
+                    );
+                  },
                   child: Padding(
                     padding: const EdgeInsets.only(
                       top: 10,
@@ -165,41 +176,41 @@ class PresentationScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 30),
-            Center(
-              child: ElevatedButton(
-                // onPressed: () => RegisterScreen(),
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => RegisterScreen(),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    top: 10,
-                    bottom: 10,
-                    left: 8,
-                    right: 8,
-                  ),
-                  child: Text(
-                    'Cadastrar',
-                    style: TextStyle(
-                      color: secondColor,
-                      fontSize: 20,
-                    ),
-                  ),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  side: const BorderSide(
-                    width: 2, // the thickness
-                    color: Color(0xFFe9a42c), // the color of the border
-                  ),
-                ),
-                /* ... */
-              ),
-            ),
+            // SizedBox(height: 30),
+            // Center(
+            //   child: ElevatedButton(
+            //     // onPressed: () => RegisterScreen(),
+            //     onPressed: () => Navigator.push(
+            //       context,
+            //       MaterialPageRoute(
+            //         builder: (context) => RegisterScreen(),
+            //       ),
+            //     ),
+            //     child: Padding(
+            //       padding: const EdgeInsets.only(
+            //         top: 10,
+            //         bottom: 10,
+            //         left: 8,
+            //         right: 8,
+            //       ),
+            //       child: Text(
+            //         'Cadastrar',
+            //         style: TextStyle(
+            //           color: secondColor,
+            //           fontSize: 20,
+            //         ),
+            //       ),
+            //     ),
+            //     style: ElevatedButton.styleFrom(
+            //       backgroundColor: Colors.white,
+            //       side: const BorderSide(
+            //         width: 2, // the thickness
+            //         color: Color(0xFFe9a42c), // the color of the border
+            //       ),
+            //     ),
+            //     /* ... */
+            //   ),
+            // ),
             // SizedBox(height: 13),
             // SizedBox(height: 20),
             // Text(

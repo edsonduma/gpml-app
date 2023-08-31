@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
+import 'package:stivy/views/components/my_custom_appbar.dart';
 import 'package:stivy/views/components/my_custom_buttons.dart';
 import 'package:stivy/views/models_create_screen.dart';
 
-class MenuModelsScreen extends StatefulWidget {
-  const MenuModelsScreen({super.key});
+class MenuAgenciesScreen extends StatefulWidget {
+  const MenuAgenciesScreen({super.key});
 
   @override
-  State<MenuModelsScreen> createState() => _MenuModelsScreenState();
+  State<MenuAgenciesScreen> createState() => _MenuAgenciesScreenState();
 }
 
-class _MenuModelsScreenState extends State<MenuModelsScreen> {
+class _MenuAgenciesScreenState extends State<MenuAgenciesScreen> {
   // final Color mySecondColor = Color(0xFFc712a2);
 
   @override
@@ -24,19 +25,20 @@ class _MenuModelsScreenState extends State<MenuModelsScreen> {
         child: Column(
           children: [
             SizedBox(height: 30),
-            Container(
-              alignment: Alignment.centerLeft,
-              child: TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: Text(
-                  'voltar',
-                  style: TextStyle(
-                    color: secondColor,
-                    fontSize: 20,
-                  ),
-                ),
-              ),
-            ),
+            // Container(
+            //   alignment: Alignment.centerLeft,
+            //   child: TextButton(
+            //     onPressed: () => Navigator.of(context).pop(),
+            //     child: Text(
+            //       'voltar',
+            //       style: TextStyle(
+            //         color: secondColor,
+            //         fontSize: 20,
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            MyCustomAppBar(),
             SizedBox(height: 30),
             Padding(
               padding: EdgeInsets.only(top: 10),
@@ -61,7 +63,7 @@ class _MenuModelsScreenState extends State<MenuModelsScreen> {
                   child: Column(
                     children: [
                       Text(
-                        'HADJA MODELS',
+                        'AGENCIAS',
                         style: TextStyle(
                           color: secondColor,
                           fontWeight: FontWeight.bold,
@@ -70,7 +72,7 @@ class _MenuModelsScreenState extends State<MenuModelsScreen> {
                       ),
                       SizedBox(height: 10),
                       Text(
-                        'Hadja Models',
+                        'Gestao de Agencias',
                         style: TextStyle(
                           color: secondColor,
                           fontSize: 18,
