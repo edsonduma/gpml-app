@@ -1,4 +1,4 @@
-import 'package:stivy/views/agency_models_screen.dart';
+import 'package:stivy/views/agencies/agency_models_screen.dart';
 import 'package:stivy/views/components/my_circle_button.dart';
 import 'package:stivy/views/components/my_custom_appbar.dart';
 import 'package:flutter/material.dart';

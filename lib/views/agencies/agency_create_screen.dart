@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
 import 'package:stivy/views/components/my_custom_input.dart.txt';
 
-class ModelsCreateScreen extends StatefulWidget {
-  const ModelsCreateScreen({super.key});
+class AgencyCreateScreen extends StatefulWidget {
+  const AgencyCreateScreen({super.key});
 
   @override
-  State<ModelsCreateScreen> createState() => _ModelsCreateScreenState();
+  State<AgencyCreateScreen> createState() => _AgencyCreateScreenState();
 }
 
-class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
+class _AgencyCreateScreenState extends State<AgencyCreateScreen> {
   // final Color mySecondColor = Color(0xFFc712a2);
   final diffBetweenInputs = 20.0;
 
@@ -30,7 +30,7 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Container(
               alignment: Alignment.centerLeft,
               child: TextButton(
@@ -44,9 +44,9 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Padding(
-              padding: EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(top: 10),
               child: Container(
                 // color: Colors.white,
                 // margin: EdgeInsets.all(30.0),
@@ -68,16 +68,16 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                   child: Column(
                     children: [
                       Text(
-                        'Hadja Models',
+                        'Cadastro de Agência',
                         style: TextStyle(
                           color: secondColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 30,
                         ),
                       ),
-                      SizedBox(height: 40),
+                      const SizedBox(height: 40),
                       Text(
-                        'Cadastrar Modelos',
+                        'Cadastrar Agência',
                         style: TextStyle(
                           color: secondColor,
                           fontSize: 18,
@@ -173,7 +173,7 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                           color: secondColor,
                         ),
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       Text(
                         'Trabalhos',
                         style: TextStyle(
@@ -183,8 +183,8 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                       ),
                       SizedBox(height: diffBetweenInputs),
                       ElevatedButton(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(
                               horizontal: 20, vertical: 10),
                           //   top: 10,
                           //   bottom: 10,
@@ -205,11 +205,11 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                           //   width: 2, // the thickness
                           //   color: Color(0xFFe9a42c), // the color of the border
                           // ),
-                          fixedSize: Size(150, 45),
+                          fixedSize: const Size(150, 45),
                         ),
                         onPressed: () {},
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       Text(
                         'Contactos',
                         style: TextStyle(
@@ -224,7 +224,7 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                         // keyboardType: TextInputType.multiline,
                         maxLines: 2,
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       ElevatedButton(
                         onPressed: () {
                           if (nome!.isNotEmpty) {
@@ -253,8 +253,8 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                             Navigator.of(context).pop();
                           }
                         },
-                        child: Padding(
-                          padding: const EdgeInsets.only(
+                        child: const Padding(
+                          padding: EdgeInsets.only(
                             top: 10,
                             bottom: 10,
                             left: 8,
@@ -274,7 +274,7 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                           //   width: 2, // the thickness
                           //   color: Color(0xFFe9a42c), // the color of the border
                           // ),
-                          fixedSize: Size(150, 45),
+                          fixedSize: const Size(150, 45),
                         ),
                       ),
                     ],

@@ -72,7 +72,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                       ),
                       SizedBox(height: 60),
                       MyCustomButtom(
-                        labelName: 'Agencia de Moda',
+                        labelName: 'Agência de Moda',
                         onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(

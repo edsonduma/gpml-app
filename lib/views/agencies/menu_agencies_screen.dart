@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
+import 'package:stivy/views/agencies/agency_create_screen.dart';
 import 'package:stivy/views/components/my_custom_appbar.dart';
 import 'package:stivy/views/components/my_custom_buttons.dart';
-import 'package:stivy/views/models_create_screen.dart';
+import 'package:stivy/views/models/models_create_screen.dart';
 
 class MenuAgenciesScreen extends StatefulWidget {
   const MenuAgenciesScreen({super.key});
@@ -24,7 +25,7 @@ class _MenuAgenciesScreenState extends State<MenuAgenciesScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             // Container(
             //   alignment: Alignment.centerLeft,
             //   child: TextButton(
@@ -39,9 +40,9 @@ class _MenuAgenciesScreenState extends State<MenuAgenciesScreen> {
             //   ),
             // ),
             MyCustomAppBar(),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Padding(
-              padding: EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(top: 10),
               child: Container(
                 // color: Colors.white,
                 // margin: EdgeInsets.all(30.0),
@@ -63,31 +64,31 @@ class _MenuAgenciesScreenState extends State<MenuAgenciesScreen> {
                   child: Column(
                     children: [
                       Text(
-                        'AGENCIAS',
+                        'AGÊNCIAS',
                         style: TextStyle(
                           color: secondColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 30,
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Text(
-                        'Gestao de Agencias',
+                        'Gestão de Agências',
                         style: TextStyle(
                           color: secondColor,
                           fontSize: 18,
                         ),
                       ),
-                      SizedBox(height: 60),
+                      const SizedBox(height: 60),
                       ElevatedButton(
                         onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ModelsCreateScreen(),
+                            builder: (context) => const AgencyCreateScreen(),
                           ),
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(
+                        child: const Padding(
+                          padding: EdgeInsets.only(
                             top: 10,
                             bottom: 10,
                             left: 8,
@@ -107,14 +108,14 @@ class _MenuAgenciesScreenState extends State<MenuAgenciesScreen> {
                           //   width: 2, // the thickness
                           //   color: Color(0xFFe9a42c), // the color of the border
                           // ),
-                          fixedSize: Size(200, 45),
+                          fixedSize: const Size(200, 45),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: () {},
-                        child: Padding(
-                          padding: const EdgeInsets.only(
+                        child: const Padding(
+                          padding: EdgeInsets.only(
                             top: 10,
                             bottom: 10,
                             left: 8,
@@ -134,14 +135,14 @@ class _MenuAgenciesScreenState extends State<MenuAgenciesScreen> {
                           //   width: 2, // the thickness
                           //   color: Color(0xFFe9a42c), // the color of the border
                           // ),
-                          fixedSize: Size(200, 45),
+                          fixedSize: const Size(200, 45),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: () {},
-                        child: Padding(
-                          padding: const EdgeInsets.only(
+                        child: const Padding(
+                          padding: EdgeInsets.only(
                             top: 10,
                             bottom: 10,
                             left: 8,
@@ -161,7 +162,7 @@ class _MenuAgenciesScreenState extends State<MenuAgenciesScreen> {
                           //   width: 2, // the thickness
                           //   color: Color(0xFFe9a42c), // the color of the border
                           // ),
-                          fixedSize: Size(200, 45),
+                          fixedSize: const Size(200, 45),
                         ),
                       ),
                     ],

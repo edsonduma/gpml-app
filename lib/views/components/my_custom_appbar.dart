@@ -80,7 +80,7 @@ class MyCustomAppBar extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    'admin',
+                    'login',
                     style: TextStyle(
                       color: secondColor,
                       fontSize: 20,
