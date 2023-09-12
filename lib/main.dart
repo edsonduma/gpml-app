@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
 import 'package:stivy/utils/sqflite_helper.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:stivy/views/splash_screen.dart';
 import 'package:stivy/views/models/menu_models_screen.dart';
 import 'package:stivy/views/agencies/agency_details_screen.dart';
 import 'package:stivy/views/agencies/agencies_list_screen.dart';
@@ -17,7 +18,6 @@ import 'package:stivy/views/home_screen.dart';
 import 'package:stivy/views/login_screen.dart';
 import 'package:stivy/views/presentation_screen.dart';
 import 'package:stivy/views/register_screen.dart';
-import 'package:stivy/views/splash_screen.dart';
 
 Future<void> main() async {
   // Avoid errors caused by flutter upgrade.
@@ -48,21 +48,21 @@ class MyApp extends StatelessWidget {
         // primarySwatch: primaryColor,
         primaryColor: primaryColor,
       ),
-      home: SplashScreen(),
-      // home: PresentationScreen(),
-      // home: LoginScreen(),
-      // home: HomeScreen(),
-      // home: RegisterScreen(),
-      // home: MyTeste(),
-      // home: ModelsScreen(),
-      // home: AboutScreen(),
-      // home: EventsScreen(),
-      // home: ModelsDetailsScreen(),
-      // home: ModelsListScreen(),
-      // home: AgencyDetailsScreen(),
-      // home: AgenciesListScreen(),
-      // home: MenuScreen(),
-      // home: MenuModelsScreen(),
+      home: const SplashScreen(),
+      // home: const PresentationScreen(),
+      // home: const LoginScreen(),
+      // home: const HomeScreen(),
+      // home: const RegisterScreen(),
+      // home: const MyTeste(),
+      // home: const ModelsScreen(),
+      // home: const AboutScreen(),
+      // home: const EventsScreen(),
+      // home: const ModelsDetailsScreen(),
+      // home: const ModelsListScreen(),
+      // home: const AgencyDetailsScreen(),
+      // home: const AgenciesListScreen(),
+      // home: const MenuScreen(),
+      // home: const MenuModelsScreen(),
     );
   }
 }

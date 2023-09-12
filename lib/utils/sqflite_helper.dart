@@ -41,17 +41,17 @@ class SqfliteHelper {
       batch.execute(
           '''CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, email TEXT NOT NULL, password TEXT NOT NULL)''');
       batch.execute(
-          '''CREATE TABLE IF NOT EXISTS agencies (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)''');
-      batch.execute(
-          '''CREATE TABLE IF NOT EXISTS models (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)''');
-      batch.execute(
-          '''CREATE TABLE IF NOT EXISTS photographers (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)''');
-      batch.execute(
-          '''CREATE TABLE IF NOT EXISTS designs (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)''');
-      batch.execute(
-          '''CREATE TABLE IF NOT EXISTS stylists (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)''');
-      batch.execute(
-          '''CREATE TABLE IF NOT EXISTS makeup_artists (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)''');
+          '''CREATE TABLE IF NOT EXISTS agencies (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, foto TEXT, Contatos TEXT)''');
+      // batch.execute(
+      //     '''CREATE TABLE IF NOT EXISTS models (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)''');
+      // batch.execute(
+      //     '''CREATE TABLE IF NOT EXISTS photographers (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)''');
+      // batch.execute(
+      //     '''CREATE TABLE IF NOT EXISTS designs (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)''');
+      // batch.execute(
+      //     '''CREATE TABLE IF NOT EXISTS stylists (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)''');
+      // batch.execute(
+      //     '''CREATE TABLE IF NOT EXISTS makeup_artists (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)''');
 
       // "INSERT INTO users (id, nome, email, password) VALUES (DEFAULT, 'admin', 'admin@stivy.com', 'admin')",
 

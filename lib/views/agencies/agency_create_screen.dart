@@ -1,3 +1,4 @@
+import 'package:stivy/models/agency.dart';
 import 'package:stivy/models/model.dart';
 import 'package:stivy/utils/sqflite_helper.dart';
 import 'package:stivy/views/components/my_custom_buttons.dart';
@@ -16,9 +17,7 @@ class _AgencyCreateScreenState extends State<AgencyCreateScreen> {
   // final Color mySecondColor = Color(0xFFc712a2);
   final diffBetweenInputs = 20.0;
 
-  String? nome, apelido;
-  double? altura, cintura, anca, sapato;
-  late List<String> trabalhos, contactos;
+  String? nome, foto, contactos;
 
   @override
   Widget build(BuildContext context) {
@@ -102,80 +101,9 @@ class _AgencyCreateScreenState extends State<AgencyCreateScreen> {
                         ),
                       ),
                       SizedBox(height: diffBetweenInputs),
-                      TextFormField(
-                        onChanged: (value) {
-                          apelido = value;
-                        },
-                        decoration: InputDecoration(
-                          border: const OutlineInputBorder(),
-                          hintText: 'Apelido',
-                          hintStyle: TextStyle(color: secondColor),
-                        ),
-                        style: TextStyle(
-                          color: secondColor,
-                        ),
-                      ),
-                      SizedBox(height: diffBetweenInputs),
-                      TextFormField(
-                        onChanged: (value) {
-                          altura = value as double?;
-                        },
-                        decoration: InputDecoration(
-                          border: const OutlineInputBorder(),
-                          hintText: 'Altura',
-                          hintStyle: TextStyle(color: secondColor),
-                        ),
-                        style: TextStyle(
-                          color: secondColor,
-                        ),
-                      ),
-                      SizedBox(height: diffBetweenInputs),
-                      TextFormField(
-                        onChanged: (value) {
-                          // cintura = value as double?;
-
-                          cintura = double.parse(value);
-                        },
-                        decoration: InputDecoration(
-                          border: const OutlineInputBorder(),
-                          hintText: 'Cintura',
-                          hintStyle: TextStyle(color: secondColor),
-                        ),
-                        style: TextStyle(
-                          color: secondColor,
-                        ),
-                      ),
-                      SizedBox(height: diffBetweenInputs),
-                      TextFormField(
-                        onChanged: (value) {
-                          anca = double.parse(value);
-                        },
-                        decoration: InputDecoration(
-                          border: const OutlineInputBorder(),
-                          hintText: 'Anca',
-                          hintStyle: TextStyle(color: secondColor),
-                        ),
-                        style: TextStyle(
-                          color: secondColor,
-                        ),
-                      ),
-                      SizedBox(height: diffBetweenInputs),
-                      TextFormField(
-                        onChanged: (value) {
-                          sapato = double.parse(value);
-                        },
-                        decoration: InputDecoration(
-                          border: const OutlineInputBorder(),
-                          hintText: 'Sapato',
-                          hintStyle: TextStyle(color: secondColor),
-                        ),
-                        style: TextStyle(
-                          color: secondColor,
-                        ),
-                      ),
-                      const SizedBox(height: 30),
+                      // const SizedBox(height: 30),
                       Text(
-                        'Trabalhos',
+                        'Foto de Capa',
                         style: TextStyle(
                           color: secondColor,
                           fontSize: 18,
@@ -207,7 +135,9 @@ class _AgencyCreateScreenState extends State<AgencyCreateScreen> {
                           // ),
                           fixedSize: const Size(150, 45),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          // select image from mobile device.
+                        },
                       ),
                       const SizedBox(height: 30),
                       Text(
@@ -228,26 +158,16 @@ class _AgencyCreateScreenState extends State<AgencyCreateScreen> {
                       ElevatedButton(
                         onPressed: () {
                           if (nome!.isNotEmpty) {
-                            Model myModel = Model(
+                            Agency myAgency = Agency(
                               nome: nome!,
-                              apelido: apelido!,
-                              altura: altura!,
-                              cintura: cintura!,
-                              anca: anca!,
-                              sapato: sapato!,
-                              trabalhos: trabalhos,
-                              contactos: contactos,
+                              foto: foto!,
+                              contactos: contactos!,
                             );
 
-                            SqfliteHelper.insert(Model.TABLE_NAME, {
-                              'nome': myModel.nome,
-                              'apelido': myModel.apelido,
-                              'altura': myModel.altura,
-                              'cintura': myModel.cintura,
-                              'anca': myModel.anca,
-                              'sapato': myModel.sapato,
-                              'trabalhos': myModel.trabalhos,
-                              'contactos': myModel.contactos,
+                            SqfliteHelper.insert(Agency.TABLE_NAME, {
+                              'nome': myAgency.nome,
+                              'foto': myAgency.foto,
+                              'contactos': myAgency.contactos,
                             });
 
                             Navigator.of(context).pop();
