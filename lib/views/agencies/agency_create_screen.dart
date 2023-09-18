@@ -17,7 +17,7 @@ class _AgencyCreateScreenState extends State<AgencyCreateScreen> {
   // final Color mySecondColor = Color(0xFFc712a2);
   final diffBetweenInputs = 20.0;
 
-  String? nome, foto, contactos;
+  String? nome, foto, contactos = '';
 
   @override
   Widget build(BuildContext context) {
@@ -151,8 +151,18 @@ class _AgencyCreateScreenState extends State<AgencyCreateScreen> {
                       TextFormField(
                         // minLines:
                         //     2, // any number you need (It works as the rows for the textarea)
-                        // keyboardType: TextInputType.multiline,
                         maxLines: 2,
+                        // keyboardType: TextInputType.multiline,
+                        keyboardType: TextInputType.phone,
+                        onChanged: (value) {
+                          print("value.length: ${value.length}");
+
+                          if (value.length % 9 == 0) {
+                            contactos = "$contactos; $value";
+
+                            print("contactos: $contactos");
+                          }
+                        },
                       ),
                       const SizedBox(height: 30),
                       ElevatedButton(
