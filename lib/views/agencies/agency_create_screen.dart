@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:stivy/models/agency.dart';
 import 'package:stivy/models/model.dart';
 import 'package:stivy/utils/sqflite_helper.dart';
@@ -16,8 +17,8 @@ class AgencyCreateScreen extends StatefulWidget {
 class _AgencyCreateScreenState extends State<AgencyCreateScreen> {
   // final Color mySecondColor = Color(0xFFc712a2);
   final diffBetweenInputs = 20.0;
-
-  String? nome, foto, contactos = '';
+  String nome = '', foto = '', contactos = '';
+  TextEditingController? contactosController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -110,35 +111,76 @@ class _AgencyCreateScreenState extends State<AgencyCreateScreen> {
                         ),
                       ),
                       SizedBox(height: diffBetweenInputs),
-                      ElevatedButton(
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          //   top: 10,
-                          //   bottom: 10,
-                          //   left: 8,
-                          //   right: 8,
-                          // ),
-                          child: Text(
-                            '+',
-                            style: TextStyle(
-                              color: Color(0xFFc712a2),
-                              fontSize: 20,
+                      foto.isEmpty
+                          ? ElevatedButton(
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 10),
+                                //   top: 10,
+                                //   bottom: 10,
+                                //   left: 8,
+                                //   right: 8,
+                                // ),
+                                child: Text(
+                                  '+',
+                                  style: TextStyle(
+                                    color: Color(0xFFc712a2),
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                // side: const BorderSide(
+                                //   width: 2, // the thickness
+                                //   color: Color(0xFFe9a42c), // the color of the border
+                                // ),
+                                fixedSize: const Size(150, 45),
+                              ),
+                              onPressed: () async {
+                                // select image from mobile device.
+                                final result =
+                                    await FilePicker.platform.pickFiles();
+                                if (result == null) return;
+
+                                final file = result.files.first;
+                                // openFile(file);
+
+                                // foto = file.path!;
+                                // setState(() => foto);
+                                setState(() => foto = file.path!);
+                              },
+                            )
+                          : ElevatedButton(
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 10),
+                                //   top: 10,
+                                //   bottom: 10,
+                                //   left: 8,
+                                //   right: 8,
+                                // ),
+                                child: Text(
+                                  'x',
+                                  style: TextStyle(
+                                    // color: Color(0xFFc712a2),
+                                    color: Color(0xFFc712a2),
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                // side: const BorderSide(
+                                //   width: 2, // the thickness
+                                //   color: Color(0xFFe9a42c), // the color of the border
+                                // ),
+                                fixedSize: const Size(150, 45),
+                              ),
+                              onPressed: () {
+                                setState(() => foto = '');
+                              },
                             ),
-                          ),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          // side: const BorderSide(
-                          //   width: 2, // the thickness
-                          //   color: Color(0xFFe9a42c), // the color of the border
-                          // ),
-                          fixedSize: const Size(150, 45),
-                        ),
-                        onPressed: () {
-                          // select image from mobile device.
-                        },
-                      ),
                       const SizedBox(height: 30),
                       Text(
                         'Contactos',
@@ -149,36 +191,46 @@ class _AgencyCreateScreenState extends State<AgencyCreateScreen> {
                       ),
                       SizedBox(height: diffBetweenInputs),
                       TextFormField(
+                        controller: contactosController,
                         // minLines:
                         //     2, // any number you need (It works as the rows for the textarea)
                         maxLines: 2,
                         // keyboardType: TextInputType.multiline,
                         keyboardType: TextInputType.phone,
-                        onChanged: (value) {
-                          print("value.length: ${value.length}");
+                        // onChanged: (value) {
+                        //   print("$value, value.length: ${value.length}");
+                        //   // contactos = '';
+                        //   if (value.length % 9 == 0) {
+                        //     if (value.isNotEmpty) {
+                        //       //   contactos = "$contactos; $value";
+                        //       // } else {
+                        //       //   contactos = value;
 
-                          if (value.length % 9 == 0) {
-                            contactos = "$contactos; $value";
+                        //       contactosController!.text = "$value; ";
+                        //     }
 
-                            print("contactos: $contactos");
-                          }
-                        },
+                        //     print("contactos: $value");
+                        //   }
+                        // },
                       ),
                       const SizedBox(height: 30),
                       ElevatedButton(
                         onPressed: () {
-                          if (nome!.isNotEmpty) {
+                          if (nome.isNotEmpty) {
                             Agency myAgency = Agency(
-                              nome: nome!,
-                              foto: foto!,
-                              contactos: contactos!,
+                              nome: nome,
+                              foto: foto,
+                              // contactos: contactos!,
+                              contactos: contactosController!.text,
                             );
 
-                            SqfliteHelper.insert(Agency.TABLE_NAME, {
-                              'nome': myAgency.nome,
-                              'foto': myAgency.foto,
-                              'contactos': myAgency.contactos,
-                            });
+                            // SqfliteHelper.insert(Agency.TABLE_NAME, {
+                            //   'nome': myAgency.nome,
+                            //   'foto': myAgency.foto,
+                            //   'contactos': myAgency.contactos,
+                            // });
+                            SqfliteHelper.insert(
+                                Agency.TABLE_NAME, myAgency.toMap());
 
                             Navigator.of(context).pop();
                           }

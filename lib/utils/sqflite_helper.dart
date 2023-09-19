@@ -40,8 +40,9 @@ class SqfliteHelper {
       // batch.execute("Your query-> Create table if not exists");
       batch.execute(
           '''CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, email TEXT NOT NULL, password TEXT NOT NULL)''');
+
       batch.execute(
-          '''CREATE TABLE IF NOT EXISTS agencies (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, foto TEXT, Contatos TEXT)''');
+          '''CREATE TABLE IF NOT EXISTS agencies (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, foto TEXT NOT NULL, contactos TEXT NOT NULL)''');
       // batch.execute(
       //     '''CREATE TABLE IF NOT EXISTS models (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)''');
       // batch.execute(
@@ -109,11 +110,11 @@ class SqfliteHelper {
     // await db.(
     //     'CREATE TABLE IF NOT EXISTS agencies (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)');
 
-    await db.insert(
-      'agencies',
-      {'nome': 'TESTE'},
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
+    // await db.insert(
+    //   'agencies',
+    //   {'nome': 'TESTE'},
+    //   conflictAlgorithm: ConflictAlgorithm.replace,
+    // );
     // await db.insert(
     //   'users',
     //   {'nome': 'admin', 'email': 'admin', 'password': 'admin'},
@@ -131,6 +132,11 @@ class SqfliteHelper {
     // `conflictAlgorithm` to use in case the same user is inserted twice.
     //
     // In this case, replace any previous data.
+
+    // db.execute('''DROP TABLE IF EXISTS agencies''');
+    // db.execute(
+    //     '''CREATE TABLE IF NOT EXISTS agencies (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, foto TEXT, contactos TEXT)''');
+
     await db.insert(
       table,
       row,
@@ -140,13 +146,14 @@ class SqfliteHelper {
 
   // A method that retrieves all the users from the users table.
   // Future<List<dynamic>> getList(String table) async {
+  // static Future<List<Map<String, dynamic>>> getList(String table) async {
   static Future<List<Map<String, dynamic>>> getList(String table) async {
     // Get a reference to the database.
     final db = await _database;
 
     // Query the table for all The Dogs.
     // final List<Map<String, dynamic>> maps = await _database.query(table);
-    return await db.query(table);
+    return db.query(table);
   }
 
   // A method that retrieves an instance of Data from the Model table.

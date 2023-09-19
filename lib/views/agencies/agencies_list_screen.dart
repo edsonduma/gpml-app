@@ -1,3 +1,5 @@
+import 'package:stivy/models/agency.dart';
+import 'package:stivy/utils/sqflite_helper.dart';
 import 'package:stivy/views/about_screen.dart';
 import 'package:stivy/views/agencies/agency_models_screen.dart';
 import 'package:stivy/views/components/my_custom_appbar.dart';
@@ -8,16 +10,92 @@ import 'package:stivy/views/components/my_custom_input.dart.txt';
 import 'package:stivy/views/agencies/agency_details_screen.dart';
 import 'package:stivy/views/login_screen.dart';
 
-class AgenciesListScreen extends StatelessWidget {
+class AgenciesListScreen extends StatefulWidget {
   const AgenciesListScreen({super.key});
 
   @override
+  State<AgenciesListScreen> createState() => _AgenciesListScreenState();
+}
+
+class _AgenciesListScreenState extends State<AgenciesListScreen> {
+  // List _listOfAgencies = [];
+  var _listOfAgencies;
+  // double? _widthScreen;
+
+  List<Widget>? myList;
+
+  @override
+  initState() {
+    super.initState();
+
+    setState(() {
+      _listOfAgencies = SqfliteHelper.getList(Agency.TABLE_NAME);
+    });
+    // print("_listOfAgencies: $_listOfAgencies");
+  }
+
+  // final Future<String> _calculation = Future<String>.delayed(
+  //   const Duration(seconds: 2),
+  //   () => 'Data Loaded',
+  // );
+
+  // initData() async {
+
+  //   // myList = generateMyList();
+  // }
+
+  // List<Widget> generateMyList() {
+  //   // List<Widget> myList = _listOfAgencies!.map((e) => Container());
+  //   List<Widget> myList = [];
+
+  //   for (var i = 0; i < _listOfAgencies.length; i++) {
+  //     // myList.add(_listOfAgencies![i]);
+  //     myList.add(
+  //       // _listOfAgencies![i]
+  //       InkWell(
+  //         child: Column(
+  //           children: [
+  //             Card(
+  //               child: Container(
+  //                 color: Colors.black,
+  //                 width: 120,
+  //                 height: 150,
+  //               ),
+  //             ),
+  //             Text(
+  //               _listOfAgencies![i].nome,
+  //               style: TextStyle(
+  //                 color: Colors.white,
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //         onTap: () => Navigator.push(
+  //           context,
+  //           MaterialPageRoute(
+  //             builder: (context) => AgencyDetailsScreen(),
+  //           ),
+  //         ),
+  //       ),
+  //     );
+  //   }
+
+  //   print("myList: $myList");
+
+  //   return myList;
+  // }
+
+  @override
   Widget build(BuildContext context) {
+    // Future<List<Map<String, dynamic>>> myAgenciesList = ;
+    // _widthScreen = MediaQuery.of(context).size.width;
+
+    // print("_listOfAgencies: $_listOfAgencies");
+    // print("length: ${_listOfAgencies.length}");
+
+    // height: MediaQuery.of(context).size.height,
     return Scaffold(
       backgroundColor: primaryColor,
-      // appBar: AppBar(
-      //   backgroundColor: primaryColor,
-      // ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -71,167 +149,268 @@ class AgenciesListScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                InkWell(
-                  child: Column(
-                    children: [
-                      Card(
-                        child: Container(
-                          color: Colors.black,
-                          width: 120,
-                          height: 150,
-                        ),
+            // GridView.count(
+            //   crossAxisCount: 3,
+            //   children: SqfliteHelper.getList(Agency.TABLE_NAME).,
+            // ),
+            SizedBox(
+              height: 500,
+              child: FutureBuilder(
+                future: _listOfAgencies,
+                builder: (_, AsyncSnapshot<List> snapshot) {
+                  print(
+                      "${snapshot.data!.length}, snapshot.data: ${snapshot.data!}");
+
+                  return GridView.builder(
+                      // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      // crossAxisCount: 3,
+                      // // vertical spacing between the items
+                      // mainAxisSpacing: 10,
+                      // // horizontal spacing between the items
+                      // crossAxisSpacing: 10,
+                      gridDelegate:
+                          const SliverGridDelegateWithMaxCrossAxisExtent(
+                        // number of items per row
+
+                        maxCrossAxisExtent: 120,
+                        childAspectRatio: 3 / 4,
+                        crossAxisSpacing: 20,
+                        mainAxisSpacing: 20,
                       ),
-                      Text(
-                        'Cael Pascoal',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => AgencyDetailsScreen(),
-                    ),
-                  ),
-                ),
-                InkWell(
-                  child: Column(
-                    children: [
-                      Card(
-                        child: Container(
-                          color: Colors.black,
-                          width: 120,
-                          height: 150,
-                        ),
-                      ),
-                      Text(
-                        'Emma Diogo',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => AgencyDetailsScreen(),
-                    ),
-                  ),
-                ),
-                InkWell(
-                  child: Column(
-                    children: [
-                      Card(
-                        child: Container(
-                          color: Colors.black,
-                          width: 120,
-                          height: 150,
-                        ),
-                      ),
-                      Text(
-                        'Nádia Campos',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => AgencyDetailsScreen(),
-                    ),
-                  ),
-                ),
-              ],
+                      // scrollDirection: Axis.vertical,
+                      // number of items in your list
+                      // itemCount: 20,
+                      itemCount: snapshot.data!.length,
+                      // SqfliteHelper.getList(Agency.TABLE_NAME)
+                      itemBuilder: (_, int index) {
+                        var [..., lastValue] =
+                            snapshot.data![index]["foto"]!.split("/");
+
+                        return InkWell(
+                          child: Column(
+                            children: [
+                              Card(
+                                child: Container(
+                                  // color: Colors.black,
+                                  width: 150,
+                                  height: 130,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    image: DecorationImage(
+                                      // image: AssetImage(''),
+                                      // image: AssetImage() ??
+                                      // image: AssetImage(
+                                      //             "assets/images/${myFotos[myFotos.length - 1]}") ==
+                                      //         null
+                                      //     ? AssetImage(
+                                      //         'assets/images/background_presentation.jpg')
+                                      //     : AssetImage(
+                                      //         "assets/images/${myFotos[myFotos.length - 1]}"),
+
+                                      // AssetImage(
+                                      //     "assets/images/$lastValue"),
+
+                                      // Image.asset(
+                                      //   "assets/images/${myFotos[myFotos.length - 1]}",
+                                      //   width: 90,
+                                      //   errorBuilder: (BuildContext context,
+                                      //       Object exception,
+                                      //       StackTrace stackTrace) {
+                                      //     return Image.asset(
+                                      //       "assets/images/your_sample_image.png",
+                                      //       width: 90,
+                                      //     );
+                                      //   },
+                                      // ),
+
+                                      image: Image.asset(
+                                        // "assets/images/$lastValue",
+                                        'assets/images/background_presentation.jpg',
+                                        // width: 90,
+                                        errorBuilder: (BuildContext context,
+                                            Object exception,
+                                            StackTrace? stackTrace) {
+                                          return Image.asset(
+                                            'assets/images/background_presentation.jpg',
+                                            // width: 90,
+                                          );
+                                        },
+                                      ).image,
+
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                // 'Cael Pascoal',
+                                // 'testetstetstetste',
+                                snapshot.data![index]["nome"],
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => AgencyDetailsScreen(),
+                            ),
+                          ),
+                        );
+                      });
+                },
+              ),
             ),
-            SizedBox(height: 15),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                InkWell(
-                  child: Column(
-                    children: [
-                      Card(
-                        child: Container(
-                          color: Colors.black,
-                          width: 120,
-                          height: 150,
-                        ),
-                      ),
-                      Text(
-                        'Stélvia Firmino',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => AgencyDetailsScreen(),
-                    ),
-                  ),
-                ),
-                InkWell(
-                  child: Column(
-                    children: [
-                      Card(
-                        child: Container(
-                          color: Colors.black,
-                          width: 120,
-                          height: 150,
-                        ),
-                      ),
-                      Text(
-                        'Stélvia Firmino',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => AgencyDetailsScreen(),
-                    ),
-                  ),
-                ),
-                InkWell(
-                  child: Column(
-                    children: [
-                      Card(
-                        child: Container(
-                          color: Colors.black,
-                          width: 120,
-                          height: 150,
-                        ),
-                      ),
-                      Text(
-                        'Stélvia Firmino',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => AgencyDetailsScreen(),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+
+            // GridView.extent(
+            //   // maxCrossAxisExtent: _widthScreen!,
+            //   maxCrossAxisExtent: 200,
+            //   mainAxisSpacing: 10,
+            //   crossAxisSpacing: 10,
+            //   padding: EdgeInsets.all(10),
+            //   children: _listOfAgencies == null
+            //       ? <Widget>[Container()]
+            //       : generateMyList(),
+            // ),
+
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     InkWell(
+            //       child: Column(
+            //         children: [
+            //           Card(
+            //             child: Container(
+            //               color: Colors.black,
+            //               width: 120,
+            //               height: 150,
+            //             ),
+            //           ),
+            //           Text(
+            //             'Emma Diogo',
+            //             style: TextStyle(
+            //               color: Colors.white,
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //       onTap: () => Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //           builder: (context) => AgencyDetailsScreen(),
+            //         ),
+            //       ),
+            //     ),
+            //     InkWell(
+            //       child: Column(
+            //         children: [
+            //           Card(
+            //             child: Container(
+            //               color: Colors.black,
+            //               width: 120,
+            //               height: 150,
+            //             ),
+            //           ),
+            //           Text(
+            //             'Nádia Campos',
+            //             style: TextStyle(
+            //               color: Colors.white,
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //       onTap: () => Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //           builder: (context) => AgencyDetailsScreen(),
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            // SizedBox(height: 15),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     InkWell(
+            //       child: Column(
+            //         children: [
+            //           Card(
+            //             child: Container(
+            //               color: Colors.black,
+            //               width: 120,
+            //               height: 150,
+            //             ),
+            //           ),
+            //           Text(
+            //             'Stélvia Firmino',
+            //             style: TextStyle(
+            //               color: Colors.white,
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //       onTap: () => Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //           builder: (context) => AgencyDetailsScreen(),
+            //         ),
+            //       ),
+            //     ),
+            //     InkWell(
+            //       child: Column(
+            //         children: [
+            //           Card(
+            //             child: Container(
+            //               color: Colors.black,
+            //               width: 120,
+            //               height: 150,
+            //             ),
+            //           ),
+            //           Text(
+            //             'Stélvia Firmino',
+            //             style: TextStyle(
+            //               color: Colors.white,
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //       onTap: () => Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //           builder: (context) => AgencyDetailsScreen(),
+            //         ),
+            //       ),
+            //     ),
+            //     InkWell(
+            //       child: Column(
+            //         children: [
+            //           Card(
+            //             child: Container(
+            //               color: Colors.black,
+            //               width: 120,
+            //               height: 150,
+            //             ),
+            //           ),
+            //           Text(
+            //             'Stélvia Firmino',
+            //             style: TextStyle(
+            //               color: Colors.white,
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //       onTap: () => Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //           builder: (context) => AgencyDetailsScreen(),
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
           ],
         ),
       ),
