@@ -63,7 +63,7 @@ class _MenuModelsScreenState extends State<MenuModelsScreen> {
                   child: Column(
                     children: [
                       Text(
-                        'HADJA MODELS',
+                        'MODELOS',
                         style: TextStyle(
                           color: secondColor,
                           fontWeight: FontWeight.bold,
@@ -72,7 +72,7 @@ class _MenuModelsScreenState extends State<MenuModelsScreen> {
                       ),
                       SizedBox(height: 10),
                       Text(
-                        'Hadja Models',
+                        'MODELOS',
                         style: TextStyle(
                           color: secondColor,
                           fontSize: 18,

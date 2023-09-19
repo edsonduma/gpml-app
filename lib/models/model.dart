@@ -1,10 +1,10 @@
 class Model {
   int? id;
   static const TABLE_NAME = 'models';
-  final String nome, apelido;
+  final String nome, apelido, contactos;
   final double altura, cintura, anca, sapato;
   final List<String> trabalhos;
-  final List<String> contactos;
+  // final List<String> contactos;
 
   Model({
     int? this.id,

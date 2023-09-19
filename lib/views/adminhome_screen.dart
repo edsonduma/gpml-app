@@ -76,8 +76,17 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                         onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            // builder: (context) => AgenciesListScreen(),
                             builder: (context) => MenuAgenciesScreen(),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      MyCustomButtom(
+                        labelName: 'Modelos',
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MenuModelsScreen(),
                           ),
                         ),
                       ),

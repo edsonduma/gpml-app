@@ -16,9 +16,24 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
   // final Color mySecondColor = Color(0xFFc712a2);
   final diffBetweenInputs = 20.0;
 
-  String? nome, apelido;
+  String? nome, apelido, contactos;
   double? altura, cintura, anca, sapato;
-  late List<String> trabalhos, contactos;
+  late List<String> trabalhos;
+
+  // Initial Selected Value
+  String dropdownvalue = 'Freelance';
+
+  // final types = [
+  //   'Modelos',
+  //   'Fotografos',
+  //   'Designers',
+  //   'Stylist',
+  //   'Make up',
+  // ];
+  final types = [
+    'Freelance',
+    'Agenciado',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +45,7 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Container(
               alignment: Alignment.centerLeft,
               child: TextButton(
@@ -44,9 +59,9 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 30),
+            // const SizedBox(height: 30),
             Padding(
-              padding: EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(top: 10),
               child: Container(
                 // color: Colors.white,
                 // margin: EdgeInsets.all(30.0),
@@ -68,14 +83,14 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                   child: Column(
                     children: [
                       Text(
-                        'Hadja Models',
+                        'Modelos',
                         style: TextStyle(
                           color: secondColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 30,
                         ),
                       ),
-                      SizedBox(height: 40),
+                      const SizedBox(height: 40),
                       Text(
                         'Cadastrar Modelos',
                         style: TextStyle(
@@ -87,6 +102,48 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                       // MyCustomInput(
                       //   labelName: 'Nome',
                       // ),
+                      DecoratedBox(
+                        // hintText: 'Vinculação',
+                        decoration: BoxDecoration(
+                          // border: Border.all(),
+                          border: Border.all(color: Colors.black38, width: 3),
+                          borderRadius: BorderRadius.circular(5),
+                          // hintStyle: TextStyle(color: secondColor),
+                        ),
+                        // style: TextStyle(
+                        //   color: secondColor,
+                        // ),
+                        child: SizedBox(
+                          // width: MediaQuery.of(context).size.width,
+                          child: DropdownButton(
+                            isExpanded: true,
+                            // Initial Value
+                            value: dropdownvalue,
+
+                            // Down Arrow Icon
+                            icon: const Icon(Icons.keyboard_arrow_down),
+
+                            // Array list of types
+                            items: types.map((String types) {
+                              return DropdownMenuItem(
+                                value: types,
+                                child: Text(
+                                  types,
+                                  style: TextStyle(color: secondColor),
+                                ),
+                              );
+                            }).toList(),
+                            // After selecting the desired option,it will
+                            // change button value to selected value
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                dropdownvalue = newValue!;
+                              });
+                            },
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: diffBetweenInputs),
                       TextFormField(
                         onChanged: (value) {
                           // print('value: $value');
@@ -173,7 +230,7 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                           color: secondColor,
                         ),
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       Text(
                         'Trabalhos',
                         style: TextStyle(
@@ -183,8 +240,17 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                       ),
                       SizedBox(height: diffBetweenInputs),
                       ElevatedButton(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          // side: const BorderSide(
+                          //   width: 2, // the thickness
+                          //   color: Color(0xFFe9a42c), // the color of the border
+                          // ),
+                          fixedSize: const Size(150, 45),
+                        ),
+                        onPressed: () {},
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(
                               horizontal: 20, vertical: 10),
                           //   top: 10,
                           //   bottom: 10,
@@ -199,17 +265,8 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                             ),
                           ),
                         ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          // side: const BorderSide(
-                          //   width: 2, // the thickness
-                          //   color: Color(0xFFe9a42c), // the color of the border
-                          // ),
-                          fixedSize: Size(150, 45),
-                        ),
-                        onPressed: () {},
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       Text(
                         'Contactos',
                         style: TextStyle(
@@ -224,7 +281,7 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                         // keyboardType: TextInputType.multiline,
                         maxLines: 2,
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       ElevatedButton(
                         onPressed: () {
                           if (nome!.isNotEmpty) {
@@ -236,25 +293,35 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                               anca: anca!,
                               sapato: sapato!,
                               trabalhos: trabalhos,
-                              contactos: contactos,
+                              contactos: contactos!,
                             );
 
-                            SqfliteHelper.insert(Model.TABLE_NAME, {
-                              'nome': myModel.nome,
-                              'apelido': myModel.apelido,
-                              'altura': myModel.altura,
-                              'cintura': myModel.cintura,
-                              'anca': myModel.anca,
-                              'sapato': myModel.sapato,
-                              'trabalhos': myModel.trabalhos,
-                              'contactos': myModel.contactos,
-                            });
+                            // SqfliteHelper.insert(Model.TABLE_NAME, {
+                            //   'nome': myModel.nome,
+                            //   'apelido': myModel.apelido,
+                            //   'altura': myModel.altura,
+                            //   'cintura': myModel.cintura,
+                            //   'anca': myModel.anca,
+                            //   'sapato': myModel.sapato,
+                            //   'trabalhos': myModel.trabalhos,
+                            //   'contactos': myModel.contactos,
+                            // });
+                            SqfliteHelper.insert(
+                                Model.TABLE_NAME, myModel.toMap());
 
                             Navigator.of(context).pop();
                           }
                         },
-                        child: Padding(
-                          padding: const EdgeInsets.only(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: thirdColor,
+                          // side: const BorderSide(
+                          //   width: 2, // the thickness
+                          //   color: Color(0xFFe9a42c), // the color of the border
+                          // ),
+                          fixedSize: const Size(150, 45),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.only(
                             top: 10,
                             bottom: 10,
                             left: 8,
@@ -267,14 +334,6 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                               fontSize: 20,
                             ),
                           ),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: thirdColor,
-                          // side: const BorderSide(
-                          //   width: 2, // the thickness
-                          //   color: Color(0xFFe9a42c), // the color of the border
-                          // ),
-                          fixedSize: Size(150, 45),
                         ),
                       ),
                     ],

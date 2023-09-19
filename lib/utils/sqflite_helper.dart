@@ -43,8 +43,8 @@ class SqfliteHelper {
 
       batch.execute(
           '''CREATE TABLE IF NOT EXISTS agencies (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, foto TEXT NOT NULL, contactos TEXT NOT NULL)''');
-      // batch.execute(
-      //     '''CREATE TABLE IF NOT EXISTS models (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)''');
+      batch.execute(
+          '''CREATE TABLE IF NOT EXISTS models (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, apelido TEXT NOT NULL, altura REAL NOT NULL, cintura REAL NOT NULL, anca REAL NOT NULL, sapato REAL NOT NULL, contactos TEXT NOT NULL, agenciado INTEGER NOT NULL)''');
       // batch.execute(
       //     '''CREATE TABLE IF NOT EXISTS photographers (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL)''');
       // batch.execute(
