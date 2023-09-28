@@ -120,7 +120,7 @@ class ModelsListScreen extends StatelessWidget {
                               child: Text(
                                 'Pesquisa Avancada',
                                 style: TextStyle(
-                                  color: Color(0xFFc712a2),
+                                  color: mySecondColor,
                                   fontSize: 15,
                                 ),
                               ),

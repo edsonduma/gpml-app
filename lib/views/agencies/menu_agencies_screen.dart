@@ -13,7 +13,7 @@ class MenuAgenciesScreen extends StatefulWidget {
 }
 
 class _MenuAgenciesScreenState extends State<MenuAgenciesScreen> {
-  // final Color mySecondColor = Color(0xFFc712a2);
+  // final Color mySecondColor = mySecondColor;
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +97,7 @@ class _MenuAgenciesScreenState extends State<MenuAgenciesScreen> {
                           child: Text(
                             'Adicionar',
                             style: TextStyle(
-                              color: Color(0xFFc712a2),
+                              color: mySecondColor,
                               fontSize: 20,
                             ),
                           ),
@@ -124,7 +124,7 @@ class _MenuAgenciesScreenState extends State<MenuAgenciesScreen> {
                           child: Text(
                             'Alterar',
                             style: TextStyle(
-                              color: Color(0xFFc712a2),
+                              color: mySecondColor,
                               fontSize: 20,
                             ),
                           ),
@@ -151,7 +151,7 @@ class _MenuAgenciesScreenState extends State<MenuAgenciesScreen> {
                           child: Text(
                             'Apagar',
                             style: TextStyle(
-                              color: Color(0xFFc712a2),
+                              color: mySecondColor,
                               fontSize: 20,
                             ),
                           ),

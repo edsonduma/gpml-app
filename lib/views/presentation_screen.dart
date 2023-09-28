@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:provider/provider.dart';
 import 'package:stivy/utils/constants.dart';
+import 'package:stivy/utils/supabase_handler.dart';
 import 'package:stivy/views/login_screen.dart';
 import 'package:stivy/views/register_screen.dart';
 import 'package:stivy/views/home_screen.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'adminhome_screen.dart';
 
@@ -36,17 +39,18 @@ class PresentationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double widthScreen = MediaQuery.of(context).size.width;
-    double heightScreen = MediaQuery.of(context).size.height;
+    // double widthScreen = MediaQuery.of(context).size.width;
+    // double heightScreen = MediaQuery.of(context).size.height;
+    Size screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
-              width: widthScreen,
-              height: heightScreen - heightScreen / 3,
-              decoration: BoxDecoration(
+              width: screenSize.width,
+              height: screenSize.height - screenSize.height / 3,
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 image: DecorationImage(
                   // image: AssetImage('images/vector-excited-audience.jpg'),
@@ -78,13 +82,13 @@ class PresentationScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
                     shadows: <Shadow>[
-                      Shadow(
+                      const Shadow(
                         offset: Offset(2.0, 2.0),
                         blurRadius: 3.0,
                         // color: Color.fromARGB(255, 0, 0, 0),
                         color: Colors.black,
                       ),
-                      Shadow(
+                      const Shadow(
                         offset: Offset(2.0, 2.0),
                         blurRadius: 8.0,
                         // color: Color.fromARGB(125, 0, 0, 255),
@@ -97,7 +101,7 @@ class PresentationScreen extends StatelessWidget {
               ),
               //padding: <-- Using to shift text position a little bit for your requirement
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -130,25 +134,41 @@ class PresentationScreen extends StatelessWidget {
                 //     backgroundColor: primaryColor,
                 //     side: const BorderSide(
                 //       width: 2, // the thickness
-                //       color: Color(0xFFc712a2), // the color of the border
+                //       color: mySecondColor, // the color of the border
                 //     ),
                 //   ),
                 // ),
                 // SizedBox(width: 65),
                 ElevatedButton(
                   onPressed: () {
-                    GetStorage box = GetStorage();
+                    // GetStorage box = GetStorage();
 
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        // builder: (context) => HomeScreen(),
-                        builder: (context) =>
-                            (box.read('nome') != '' && box.read('nome') != null)
-                                ? AdminHomeScreen()
-                                : HomeScreen(),
-                      ),
-                    );
+                    supabase.auth.onAuthStateChange.listen((data) {
+                      // final Session? session = data.session;
+                      final AuthState authState = context.read<AuthState>();
+                      // authState = data.session;
+                      // Do something when there is an auth event
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          // builder: (context) => HomeScreen(),
+                          builder: (context) => authState.session != null
+                              ? AdminHomeScreen()
+                              : HomeScreen(),
+                        ),
+                      );
+
+                      // if (session != null) {
+                      //   // new Timer(const Duration(milliseconds: 2000), () {
+                      //   // });
+                      //   setState(() {
+                      //     Navigator.of(context).pushAndRemoveUntil(
+                      //       MaterialPageRoute(builder: (context) => PresentationScreen()),
+                      //       (route) => false,
+                      //     );
+                      //   });
+                      // }
+                    });
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(
@@ -170,7 +190,7 @@ class PresentationScreen extends StatelessWidget {
                     backgroundColor: primaryColor,
                     side: const BorderSide(
                       width: 2, // the thickness
-                      color: Color(0xFFc712a2), // the color of the border
+                      color: mySecondColor, // the color of the border
                     ),
                   ),
                 ),

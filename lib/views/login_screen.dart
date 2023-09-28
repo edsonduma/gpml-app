@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
 import 'package:stivy/utils/sqflite_helper.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:stivy/utils/supabase_handler.dart';
+import 'package:stivy/utils/supabase_helper.dart';
 import 'package:stivy/views/adminhome_screen.dart';
 import 'package:stivy/views/home_screen.dart';
 import 'package:stivy/views/agencies/agency_details_screen.dart';
@@ -19,8 +21,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  // final Color mySecondColor = Color(0xFFc712a2);
+  late SupaBaseHandler supaBaseHandler = SupaBaseHandler();
+  // final Color mySecondColor = mySecondColor;
   TextEditingController? _emailController, _passwordController;
+  bool passenable = true; //boolean value to track password view enable disable.
 
   @override
   initState() {
@@ -28,6 +32,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _emailController!.dispose();
+    _passwordController!.dispose();
+    super.dispose();
   }
 
   @override
@@ -73,26 +84,26 @@ class _LoginScreenState extends State<LoginScreen> {
                       // ),
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
-                          color: Color(0xFFc712a2),
+                          color: mySecondColor,
                           width: 2,
                         ),
                       ),
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
-                          color: Color(0xFFc712a2),
+                          color: mySecondColor,
                           width: 2,
                         ),
                       ),
                       labelText: 'Email',
                       // fillColor: Color(0xFFe9a42c),
-                      // fillColor: Color(0xFFc712a2),
+                      // fillColor: mySecondColor,
                       labelStyle: TextStyle(
-                        color: Color(0xFFc712a2),
+                        color: mySecondColor,
                         fontWeight: FontWeight.bold,
                       ),
                       hintText: 'Digite seu email',
                       hintStyle: TextStyle(
-                        color: Color(0xFFc712a2),
+                        color: mySecondColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -105,35 +116,49 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: 20),
                   TextField(
                     controller: _passwordController,
-                    decoration: const InputDecoration(
-                      // border: UnderlineInputBorder(
-                      //   borderSide: BorderSide(color: Colors.red),
-                      // ),
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFFc712a2),
-                          width: 2,
+                    obscureText: passenable,
+                    decoration: InputDecoration(
+                        // border: UnderlineInputBorder(
+                        //   borderSide: BorderSide(color: Colors.red),
+                        // ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: mySecondColor,
+                            width: 2,
+                          ),
                         ),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFFc712a2),
-                          width: 2,
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: mySecondColor,
+                            width: 2,
+                          ),
                         ),
-                      ),
-                      labelText: 'Senha',
-                      // fillColor: Color(0xFFe9a42c),
-                      // fillColor: Color(0xFFc712a2),
-                      labelStyle: TextStyle(
-                        color: Color(0xFFc712a2),
-                        fontWeight: FontWeight.bold,
-                      ),
-                      hintText: 'Digite sua senha',
-                      hintStyle: TextStyle(
-                        color: Color(0xFFc712a2),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                        labelText: 'Senha',
+                        // fillColor: Color(0xFFe9a42c),
+                        // fillColor: mySecondColor,
+                        labelStyle: TextStyle(
+                          color: mySecondColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        hintText: 'Digite sua senha',
+                        hintStyle: TextStyle(
+                          color: mySecondColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        suffix: IconButton(
+                            color: secondColor,
+                            onPressed: () {
+                              //add Icon button at end of TextField
+                              setState(() {
+                                //refresh UI
+                                passenable = !passenable;
+                              });
+                            },
+                            icon: Icon(passenable == true
+                                ? Icons.remove_red_eye
+                                : Icons.password))
+                        //eye icon if passenable = true, else, Icon is ***__
+                        ),
                     style: TextStyle(
                       color: secondColor,
                       fontWeight: FontWeight.bold,
@@ -145,17 +170,20 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () async {
                       if (_emailController!.text.isNotEmpty) {
                         if (_passwordController!.text.isNotEmpty) {
-                          // bool loginStatus =
-                          String? loggedUsername = await SqfliteHelper.login(
+                          // String? loggedUsername =
+                          final loginStatus = await supaBaseHandler.login(
                             _emailController!.text,
                             _passwordController!.text,
                           );
 
-                          if (loggedUsername != null) {
+                          print(loginStatus);
+
+                          // if (loggedUsername != null) {
+                          if (loginStatus) {
                             switch (widget.pageFrom) {
                               case 'admin':
-                                GetStorage box = GetStorage();
-                                box.write('nome', loggedUsername);
+                                // GetStorage box = GetStorage();
+                                // box.write('nome', loggedUsername);
 
                                 // obtain shared preferences
                                 // final prefs =
@@ -176,7 +204,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Navigator.of(context).pop();
                             }
                           } else {
-                            print("usuario ou senha errados!");
+                            _emailController!.clear();
+                            _passwordController!.clear();
+
+                            // print("usuario ou senha errados!");
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text('usuario ou senha errados!'),
+                              backgroundColor: Colors.red,
+                            ));
                           }
                         }
                       }
@@ -186,7 +221,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       side: const BorderSide(
                         width: 2, // the thickness
                         // color: Color(0xFFe9a42c), // the color of the border
-                        color: Color(0xFFc712a2), // the color of the border
+                        color: mySecondColor, // the color of the border
                       ),
                     ),
                     child: Padding(

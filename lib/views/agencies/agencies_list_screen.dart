@@ -1,5 +1,7 @@
 import 'package:stivy/models/agency.dart';
 import 'package:stivy/utils/sqflite_helper.dart';
+import 'package:stivy/utils/supabase_handler.dart';
+import 'package:stivy/utils/supabase_helper.dart';
 import 'package:stivy/views/about_screen.dart';
 import 'package:stivy/views/agencies/agency_models_screen.dart';
 import 'package:stivy/views/components/my_custom_appbar.dart';
@@ -19,8 +21,9 @@ class AgenciesListScreen extends StatefulWidget {
 
 class _AgenciesListScreenState extends State<AgenciesListScreen> {
   // List _listOfAgencies = [];
-  var _listOfAgencies;
+  // Future<List<Map<String, dynamic>>> _listOfAgencies = Future(() => []);
   // double? _widthScreen;
+  late SupaBaseHandler supaBaseHandler = SupaBaseHandler();
 
   List<Widget>? myList;
 
@@ -28,9 +31,9 @@ class _AgenciesListScreenState extends State<AgenciesListScreen> {
   initState() {
     super.initState();
 
-    setState(() {
-      _listOfAgencies = SqfliteHelper.getList(Agency.TABLE_NAME);
-    });
+    // setState(() {
+    //   _listOfAgencies = SupabaseHelper.getAllList(Agency.TABLE_NAME);
+    // });
     // print("_listOfAgencies: $_listOfAgencies");
   }
 
@@ -148,18 +151,19 @@ class _AgenciesListScreenState extends State<AgenciesListScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 5),
             // GridView.count(
             //   crossAxisCount: 3,
-            //   children: SqfliteHelper.getList(Agency.TABLE_NAME).,
+            //   children: SupabaseHelper.getList(Agency.TABLE_NAME).,
             // ),
             SizedBox(
               height: 500,
               child: FutureBuilder(
-                future: _listOfAgencies,
-                builder: (_, AsyncSnapshot<List> snapshot) {
+                future: supaBaseHandler.readData(Agency.TABLE_NAME, context),
+                builder: (_, AsyncSnapshot snapshot) {
                   print(
                       "${snapshot.data!.length}, snapshot.data: ${snapshot.data!}");
+                  // print("snapshot.data: ${snapshot.data!}");
 
                   return GridView.builder(
                       // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -181,10 +185,10 @@ class _AgenciesListScreenState extends State<AgenciesListScreen> {
                       // number of items in your list
                       // itemCount: 20,
                       itemCount: snapshot.data!.length,
-                      // SqfliteHelper.getList(Agency.TABLE_NAME)
+                      // SupabaseHelper.getList(Agency.TABLE_NAME)
                       itemBuilder: (_, int index) {
-                        var [..., lastValue] =
-                            snapshot.data![index]["foto"]!.split("/");
+                        // var [..., lastValue] =
+                        //     snapshot.data![index]["foto"]!.split("/");
 
                         return InkWell(
                           child: Column(
@@ -192,8 +196,10 @@ class _AgenciesListScreenState extends State<AgenciesListScreen> {
                               Card(
                                 child: Container(
                                   // color: Colors.black,
-                                  width: 150,
-                                  height: 130,
+                                  // width: 150,
+                                  // height: 130,
+                                  width: 100,
+                                  height: 80,
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     image: DecorationImage(
@@ -245,7 +251,10 @@ class _AgenciesListScreenState extends State<AgenciesListScreen> {
                               Text(
                                 // 'Cael Pascoal',
                                 // 'testetstetstetste',
-                                snapshot.data![index]["nome"],
+                                snapshot.data![index]["nome"] ?? 'default',
+                                // snapshot.data![index]["nome"] == null
+                                //     ? 'default'
+                                //     : snapshot.data![index]["nome"],
                                 style: const TextStyle(
                                   color: Colors.white,
                                 ),

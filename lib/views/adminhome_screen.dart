@@ -17,7 +17,7 @@ class AdminHomeScreen extends StatefulWidget {
 }
 
 class _AdminHomeScreenState extends State<AdminHomeScreen> {
-  // final Color mySecondColor = Color(0xFFc712a2);
+  // final Color mySecondColor = mySecondColor;
 
   @override
   Widget build(BuildContext context) {

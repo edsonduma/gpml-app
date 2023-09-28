@@ -1,7 +1,8 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:stivy/models/agency.dart';
 import 'package:stivy/models/model.dart';
-import 'package:stivy/utils/sqflite_helper.dart';
+import 'package:stivy/utils/supabase_handler.dart';
+// import 'package:stivy/utils/sqflite_helper.dart';
 import 'package:stivy/views/components/my_custom_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
@@ -15,7 +16,7 @@ class AgencyCreateScreen extends StatefulWidget {
 }
 
 class _AgencyCreateScreenState extends State<AgencyCreateScreen> {
-  // final Color mySecondColor = Color(0xFFc712a2);
+  late SupaBaseHandler supaBaseHandler = SupaBaseHandler();
   final diffBetweenInputs = 20.0;
   String nome = '', foto = '', contactos = '';
   TextEditingController? contactosController = TextEditingController();
@@ -35,6 +36,9 @@ class _AgencyCreateScreenState extends State<AgencyCreateScreen> {
               alignment: Alignment.centerLeft,
               child: TextButton(
                 onPressed: () => Navigator.of(context).pop(),
+                style: const ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(mySecondColor),
+                ),
                 child: Text(
                   'voltar',
                   style: TextStyle(
@@ -113,22 +117,6 @@ class _AgencyCreateScreenState extends State<AgencyCreateScreen> {
                       SizedBox(height: diffBetweenInputs),
                       foto.isEmpty
                           ? ElevatedButton(
-                              child: const Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 10),
-                                //   top: 10,
-                                //   bottom: 10,
-                                //   left: 8,
-                                //   right: 8,
-                                // ),
-                                child: Text(
-                                  '+',
-                                  style: TextStyle(
-                                    color: Color(0xFFc712a2),
-                                    fontSize: 20,
-                                  ),
-                                ),
-                              ),
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.white,
                                 // side: const BorderSide(
@@ -150,8 +138,6 @@ class _AgencyCreateScreenState extends State<AgencyCreateScreen> {
                                 // setState(() => foto);
                                 setState(() => foto = file.path!);
                               },
-                            )
-                          : ElevatedButton(
                               child: const Padding(
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 20, vertical: 10),
@@ -161,14 +147,15 @@ class _AgencyCreateScreenState extends State<AgencyCreateScreen> {
                                 //   right: 8,
                                 // ),
                                 child: Text(
-                                  'x',
+                                  '+',
                                   style: TextStyle(
-                                    // color: Color(0xFFc712a2),
-                                    color: Color(0xFFc712a2),
+                                    color: mySecondColor,
                                     fontSize: 20,
                                   ),
                                 ),
                               ),
+                            )
+                          : ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.white,
                                 // side: const BorderSide(
@@ -180,6 +167,22 @@ class _AgencyCreateScreenState extends State<AgencyCreateScreen> {
                               onPressed: () {
                                 setState(() => foto = '');
                               },
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 10),
+                                //   top: 10,
+                                //   bottom: 10,
+                                //   left: 8,
+                                //   right: 8,
+                                // ),
+                                child: Text(
+                                  'x',
+                                  style: TextStyle(
+                                    color: mySecondColor,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ),
                             ),
                       const SizedBox(height: 30),
                       Text(
@@ -229,12 +232,23 @@ class _AgencyCreateScreenState extends State<AgencyCreateScreen> {
                             //   'foto': myAgency.foto,
                             //   'contactos': myAgency.contactos,
                             // });
-                            SqfliteHelper.insert(
-                                Agency.TABLE_NAME, myAgency.toMap());
+                            supaBaseHandler.addData(
+                              Agency.TABLE_NAME,
+                              myAgency.toMap(),
+                              context,
+                            );
 
                             Navigator.of(context).pop();
                           }
                         },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: thirdColor,
+                          // side: const BorderSide(
+                          //   width: 2, // the thickness
+                          //   color: Color(0xFFe9a42c), // the color of the border
+                          // ),
+                          fixedSize: const Size(150, 45),
+                        ),
                         child: const Padding(
                           padding: EdgeInsets.only(
                             top: 10,
@@ -245,18 +259,10 @@ class _AgencyCreateScreenState extends State<AgencyCreateScreen> {
                           child: Text(
                             'Add',
                             style: TextStyle(
-                              color: Color(0xFFc712a2),
+                              color: mySecondColor,
                               fontSize: 20,
                             ),
                           ),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: thirdColor,
-                          // side: const BorderSide(
-                          //   width: 2, // the thickness
-                          //   color: Color(0xFFe9a42c), // the color of the border
-                          // ),
-                          fixedSize: const Size(150, 45),
                         ),
                       ),
                     ],

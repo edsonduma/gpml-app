@@ -12,7 +12,7 @@ class MenuModelsScreen extends StatefulWidget {
 }
 
 class _MenuModelsScreenState extends State<MenuModelsScreen> {
-  // final Color mySecondColor = Color(0xFFc712a2);
+  // final Color mySecondColor = mySecondColor;
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +96,7 @@ class _MenuModelsScreenState extends State<MenuModelsScreen> {
                           child: Text(
                             'Adicionar',
                             style: TextStyle(
-                              color: Color(0xFFc712a2),
+                              color: mySecondColor,
                               fontSize: 20,
                             ),
                           ),
@@ -123,7 +123,7 @@ class _MenuModelsScreenState extends State<MenuModelsScreen> {
                           child: Text(
                             'Alterar',
                             style: TextStyle(
-                              color: Color(0xFFc712a2),
+                              color: mySecondColor,
                               fontSize: 20,
                             ),
                           ),
@@ -150,7 +150,7 @@ class _MenuModelsScreenState extends State<MenuModelsScreen> {
                           child: Text(
                             'Apagar',
                             style: TextStyle(
-                              color: Color(0xFFc712a2),
+                              color: mySecondColor,
                               fontSize: 20,
                             ),
                           ),

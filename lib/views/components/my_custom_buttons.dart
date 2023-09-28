@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stivy/utils/constants.dart';
 
 class MyCustomButtom extends StatelessWidget {
   MyCustomButtom({super.key, required this.labelName, required this.onPressed});
@@ -20,7 +21,7 @@ class MyCustomButtom extends StatelessWidget {
         child: Text(
           labelName,
           style: TextStyle(
-            color: Color(0xFFc712a2),
+            color: mySecondColor,
             fontSize: 20,
           ),
         ),

@@ -167,7 +167,7 @@ class ModelsDetailsScreen extends StatelessWidget {
                 child: Text(
                   'Requisitar',
                   style: TextStyle(
-                    color: Color(0xFFc712a2),
+                    color: mySecondColor,
                     fontSize: 20,
                   ),
                 ),

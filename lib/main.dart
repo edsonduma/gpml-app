@@ -1,8 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:stivy/utils/constants.dart';
 import 'package:stivy/utils/sqflite_helper.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:stivy/utils/supabase_handler.dart';
+import 'package:stivy/utils/supabase_helper.dart';
 import 'package:stivy/views/splash_screen.dart';
 import 'package:stivy/views/models/menu_models_screen.dart';
 import 'package:stivy/views/agencies/agency_details_screen.dart';
@@ -18,6 +21,7 @@ import 'package:stivy/views/home_screen.dart';
 import 'package:stivy/views/login_screen.dart';
 import 'package:stivy/views/presentation_screen.dart';
 import 'package:stivy/views/register_screen.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> main() async {
   // Avoid errors caused by flutter upgrade.
@@ -32,8 +36,14 @@ Future<void> main() async {
   // );
 
   await GetStorage.init();
-  await SqfliteHelper.init();
-  runApp(const MyApp());
+  // await SqfliteHelper.init();
+  await SupabaseHelper.init();
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => SupaBaseHandler()),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {

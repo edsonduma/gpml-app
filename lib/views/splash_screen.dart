@@ -29,14 +29,26 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         color: primaryColor,
         child: Center(
-          child: Text(
-            'stivy'.toUpperCase(),
-            style: TextStyle(
-              color: secondColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 100,
-              fontFamily: 'Clarendon FS',
-            ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'stivy'.toUpperCase(),
+                style: TextStyle(
+                  color: secondColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 100,
+                  fontFamily: 'Clarendon FS',
+                ),
+              ),
+              const SizedBox(
+                height: 4,
+                width: 100,
+                child: LinearProgressIndicator(
+                  color: mySecondColor,
+                ),
+              ),
+            ],
           ),
         ),
       ),

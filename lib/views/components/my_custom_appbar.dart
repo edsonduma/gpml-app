@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stivy/utils/constants.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:stivy/utils/supabase_handler.dart';
 import 'package:stivy/views/login_screen.dart';
 import 'package:stivy/views/presentation_screen.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MyCustomAppBar extends StatelessWidget {
   // late SharedPreferences prefs;
-
-  MyCustomAppBar({super.key});
+  const MyCustomAppBar({super.key});
 
   // init() async {
   // Future<Widget> getMyContainer(context) async {
@@ -20,10 +22,11 @@ class MyCustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    GetStorage box = GetStorage();
+    // GetStorage box = GetStorage();
     // init();
     // prefs = await SharedPreferences.getInstance();
-    print("nome: ${box.read('nome')}");
+    // print("nome: ${box.read('nome')}");
+    AuthState authState = context.read<AuthState>();
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -44,12 +47,14 @@ class MyCustomAppBar extends StatelessWidget {
         // (prefs.getString('nome') != '' || prefs.getString('nome') != null)
         // (box.read('nome') != '' || box.read('nome') != null)
         // (box.read('nome') != null)
-        (box.read('nome') != '' && box.read('nome') != null)
+        // (box.read('nome') != '' && box.read('nome') != null)
+
+        authState.session != null
             ? Container(
                 alignment: Alignment.centerRight,
                 child: TextButton(
                   onPressed: () async {
-                    box.remove('nome');
+                    // box.remove('nome');
                     // await prefs.remove('nome');
                     // final prefs = await SharedPreferences.getInstance();
                     // await prefs.remove('nome');

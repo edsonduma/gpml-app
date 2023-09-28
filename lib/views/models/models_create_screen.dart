@@ -13,7 +13,7 @@ class ModelsCreateScreen extends StatefulWidget {
 }
 
 class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
-  // final Color mySecondColor = Color(0xFFc712a2);
+  // final Color mySecondColor = mySecondColor;
   final diffBetweenInputs = 20.0;
 
   String? nome, apelido, contactos;
@@ -260,7 +260,7 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                           child: Text(
                             '+',
                             style: TextStyle(
-                              color: Color(0xFFc712a2),
+                              color: mySecondColor,
                               fontSize: 20,
                             ),
                           ),
@@ -330,7 +330,7 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                           child: Text(
                             'Add',
                             style: TextStyle(
-                              color: Color(0xFFc712a2),
+                              color: mySecondColor,
                               fontSize: 20,
                             ),
                           ),

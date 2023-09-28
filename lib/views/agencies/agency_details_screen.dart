@@ -106,7 +106,7 @@ class AgencyDetailsScreen extends StatelessWidget {
               //         // side: const BorderSide(
               //         //   width: 2, // the thickness
               //         //   // color: Color(0xFFe9a42c), // the color of the border
-              //         //   color: Color(0xFFc712a2), // the color of the border
+              //         //   color: mySecondColor, // the color of the border
               //         // ),
               //       ),
               //       child: Text(

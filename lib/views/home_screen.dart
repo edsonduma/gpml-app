@@ -16,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // final Color mySecondColor = Color(0xFFc712a2);
+  // final Color mySecondColor = mySecondColor;
 
   @override
   Widget build(BuildContext context) {

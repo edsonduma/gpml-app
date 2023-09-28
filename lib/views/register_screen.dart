@@ -12,7 +12,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-// final Color mySecondColor = Color(0xFFc712a2);
+// final Color mySecondColor = mySecondColor;
   TextEditingController? _nomeController,
       _emailController,
       _passwordController,
@@ -26,6 +26,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
     _passwordCheckingController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _nomeController!.dispose();
+    _emailController!.dispose();
+    _passwordController!.dispose();
+    _passwordCheckingController!.dispose();
+    super.dispose();
   }
 
   @override
@@ -353,7 +362,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       backgroundColor: Colors.white,
                       side: const BorderSide(
                         width: 2, // the thickness
-                        color: Color(0xFFc712a2), // the color of the border
+                        color: mySecondColor, // the color of the border
                       ),
                     ),
                   ),

@@ -68,7 +68,9 @@ class SqfliteHelper {
 
       _database = openDatabase(
         // path,
-        'storage/stivy_web.db',
+        // 'storage/stivy_web.db',
+        // 'assets/stivy_web.db',
+        'stivy_web.db',
         onCreate: onCreate,
         version: 1,
       );
@@ -147,7 +149,7 @@ class SqfliteHelper {
   // A method that retrieves all the users from the users table.
   // Future<List<dynamic>> getList(String table) async {
   // static Future<List<Map<String, dynamic>>> getList(String table) async {
-  static Future<List<Map<String, dynamic>>> getList(String table) async {
+  static Future<List<Map<String, dynamic>>> getAllList(String table) async {
     // Get a reference to the database.
     final db = await _database;
 
