@@ -10,7 +10,9 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MyCustomAppBar extends StatelessWidget {
   // late SharedPreferences prefs;
-  const MyCustomAppBar({super.key});
+  final SupaBaseHandler supaBaseHandler = SupaBaseHandler();
+
+  MyCustomAppBar({super.key});
 
   // init() async {
   // Future<Widget> getMyContainer(context) async {
@@ -26,7 +28,8 @@ class MyCustomAppBar extends StatelessWidget {
     // init();
     // prefs = await SharedPreferences.getInstance();
     // print("nome: ${box.read('nome')}");
-    AuthState authState = context.read<AuthState>();
+    // AuthState authState = context.read<AuthState>();
+    final session = supabase.auth.currentSession;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,7 +52,7 @@ class MyCustomAppBar extends StatelessWidget {
         // (box.read('nome') != null)
         // (box.read('nome') != '' && box.read('nome') != null)
 
-        authState.session != null
+        session != null
             ? Container(
                 alignment: Alignment.centerRight,
                 child: TextButton(
@@ -59,10 +62,12 @@ class MyCustomAppBar extends StatelessWidget {
                     // final prefs = await SharedPreferences.getInstance();
                     // await prefs.remove('nome');
 
+                    supaBaseHandler.logout(context);
+
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => PresentationScreen(),
+                          builder: (context) => const PresentationScreen(),
                         ),
                         (route) => false);
                   },
@@ -81,7 +86,9 @@ class MyCustomAppBar extends StatelessWidget {
                   onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => LoginScreen(pageFrom: 'admin'),
+                      builder: (context) =>
+                          // const LoginScreen(pageFrom: 'admin'),
+                          const LoginScreen(),
                     ),
                   ),
                   child: Text(

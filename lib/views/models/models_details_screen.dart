@@ -154,7 +154,8 @@ class ModelsDetailsScreen extends StatelessWidget {
               onPressed: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => LoginScreen(pageFrom: 'requesting'),
+                  // builder: (context) => LoginScreen(pageFrom: 'requesting'),
+                  builder: (context) => LoginScreen(),
                 ),
               ),
               child: Padding(

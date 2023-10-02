@@ -37,6 +37,25 @@ import 'adminhome_screen.dart';
 class PresentationScreen extends StatelessWidget {
   const PresentationScreen({super.key});
 
+  Future<void> _redirect(context) async {
+    await Future.delayed(Duration.zero);
+    if (!context.mounted) {
+      return;
+    }
+
+    final session = supabase.auth.currentSession;
+
+    print('session: $session');
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) =>
+            session != null ? AdminHomeScreen() : HomeScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // double widthScreen = MediaQuery.of(context).size.width;
@@ -143,32 +162,34 @@ class PresentationScreen extends StatelessWidget {
                   onPressed: () {
                     // GetStorage box = GetStorage();
 
-                    supabase.auth.onAuthStateChange.listen((data) {
-                      // final Session? session = data.session;
-                      final AuthState authState = context.read<AuthState>();
-                      // authState = data.session;
-                      // Do something when there is an auth event
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          // builder: (context) => HomeScreen(),
-                          builder: (context) => authState.session != null
-                              ? AdminHomeScreen()
-                              : HomeScreen(),
-                        ),
-                      );
+                    // supabase.auth.onAuthStateChange.listen((data) {
+                    //   // final Session? session = data.session;
+                    //   final AuthState authState = context.read<AuthState>();
+                    //   // authState = data.session;
+                    //   // Do something when there is an auth event
+                    //   Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //       // builder: (context) => HomeScreen(),
+                    //       builder: (context) => authState.session != null
+                    //           ? AdminHomeScreen()
+                    //           : HomeScreen(),
+                    //     ),
+                    //   );
 
-                      // if (session != null) {
-                      //   // new Timer(const Duration(milliseconds: 2000), () {
-                      //   // });
-                      //   setState(() {
-                      //     Navigator.of(context).pushAndRemoveUntil(
-                      //       MaterialPageRoute(builder: (context) => PresentationScreen()),
-                      //       (route) => false,
-                      //     );
-                      //   });
-                      // }
-                    });
+                    //   // if (session != null) {
+                    //   //   // new Timer(const Duration(milliseconds: 2000), () {
+                    //   //   // });
+                    //   //   setState(() {
+                    //   //     Navigator.of(context).pushAndRemoveUntil(
+                    //   //       MaterialPageRoute(builder: (context) => PresentationScreen()),
+                    //   //       (route) => false,
+                    //   //     );
+                    //   //   });
+                    //   // }
+
+                    // });
+                    _redirect(context);
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(

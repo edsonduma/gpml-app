@@ -73,9 +73,10 @@ class SupaBaseHandler with ChangeNotifier {
   ) async {
     try {
       await supabase.from(table).upsert(row);
+      // await supabase.from(table).insert(row);
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Saved the $table'),
             Icon(Icons.done),
@@ -84,6 +85,8 @@ class SupaBaseHandler with ChangeNotifier {
         backgroundColor: Colors.green[700],
       ));
     } catch (e) {
+      print("error: $e");
+
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text('Error saving $table'),
         backgroundColor: Colors.red,

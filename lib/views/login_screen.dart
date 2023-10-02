@@ -4,17 +4,18 @@ import 'package:stivy/utils/constants.dart';
 import 'package:stivy/utils/sqflite_helper.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:stivy/utils/supabase_handler.dart';
-import 'package:stivy/utils/supabase_helper.dart';
+// import 'package:stivy/utils/supabase_helper.dart';
 import 'package:stivy/views/adminhome_screen.dart';
 import 'package:stivy/views/home_screen.dart';
 import 'package:stivy/views/agencies/agency_details_screen.dart';
 import 'package:stivy/views/models/menu_models_screen.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class LoginScreen extends StatefulWidget {
-  final String pageFrom;
+  // final String pageFrom;
 
-  // const LoginScreen({super.key});
-  const LoginScreen({Key? key, required this.pageFrom}) : super(key: key);
+  const LoginScreen({super.key});
+  // const LoginScreen({Key? key}) : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -25,11 +26,14 @@ class _LoginScreenState extends State<LoginScreen> {
   // final Color mySecondColor = mySecondColor;
   TextEditingController? _emailController, _passwordController;
   bool passenable = true; //boolean value to track password view enable disable.
+  late FocusNode myFocusNode;
 
   @override
   initState() {
+    _setupAuthListener();
     super.initState();
 
+    myFocusNode = FocusNode();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
   }
@@ -38,7 +42,22 @@ class _LoginScreenState extends State<LoginScreen> {
   void dispose() {
     _emailController!.dispose();
     _passwordController!.dispose();
+
+    myFocusNode.dispose();
     super.dispose();
+  }
+
+  void _setupAuthListener() {
+    supabase.auth.onAuthStateChange.listen((data) {
+      final event = data.event;
+      if (event == AuthChangeEvent.signedIn) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => const AdminHomeScreen(),
+          ),
+        );
+      }
+    });
   }
 
   @override
@@ -51,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Container(
               alignment: Alignment.centerLeft,
               child: TextButton(
@@ -62,9 +81,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             Padding(
-              padding: EdgeInsets.all(50),
+              padding: const EdgeInsets.all(50),
               child: Column(
                 children: [
                   Text(
@@ -75,9 +94,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       fontSize: 80,
                     ),
                   ),
-                  SizedBox(height: 70),
+                  const SizedBox(height: 70),
                   TextField(
                     controller: _emailController,
+                    focusNode: myFocusNode,
                     decoration: const InputDecoration(
                       // border: UnderlineInputBorder(
                       //   borderSide: BorderSide(color: Colors.red),
@@ -113,7 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       fontSize: 20,
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   TextField(
                     controller: _passwordController,
                     obscureText: passenable,
@@ -121,13 +141,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         // border: UnderlineInputBorder(
                         //   borderSide: BorderSide(color: Colors.red),
                         // ),
-                        enabledBorder: UnderlineInputBorder(
+                        enabledBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(
                             color: mySecondColor,
                             width: 2,
                           ),
                         ),
-                        focusedBorder: UnderlineInputBorder(
+                        focusedBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(
                             color: mySecondColor,
                             width: 2,
@@ -136,12 +156,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         labelText: 'Senha',
                         // fillColor: Color(0xFFe9a42c),
                         // fillColor: mySecondColor,
-                        labelStyle: TextStyle(
+                        labelStyle: const TextStyle(
                           color: mySecondColor,
                           fontWeight: FontWeight.bold,
                         ),
                         hintText: 'Digite sua senha',
-                        hintStyle: TextStyle(
+                        hintStyle: const TextStyle(
                           color: mySecondColor,
                           fontWeight: FontWeight.bold,
                         ),
@@ -165,14 +185,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       fontSize: 20,
                     ),
                   ),
-                  SizedBox(height: 70),
+                  const SizedBox(height: 70),
                   ElevatedButton(
                     onPressed: () async {
                       if (_emailController!.text.isNotEmpty) {
                         if (_passwordController!.text.isNotEmpty) {
                           // String? loggedUsername =
                           final loginStatus = await supaBaseHandler.login(
-                            _emailController!.text,
+                            _emailController!.text.trim(),
                             _passwordController!.text,
                           );
 
@@ -180,38 +200,70 @@ class _LoginScreenState extends State<LoginScreen> {
 
                           // if (loggedUsername != null) {
                           if (loginStatus) {
-                            switch (widget.pageFrom) {
-                              case 'admin':
-                                // GetStorage box = GetStorage();
-                                // box.write('nome', loggedUsername);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    // const MenuModelsScreen(),
+                                    const AdminHomeScreen(),
+                              ),
+                            );
+                            // switch (widget.pageFrom) {
+                            //   case 'admin':
+                            //     // GetStorage box = GetStorage();
+                            //     // box.write('nome', loggedUsername);
 
-                                // obtain shared preferences
-                                // final prefs =
-                                //     await SharedPreferences.getInstance();
+                            //     // obtain shared preferences
+                            //     // final prefs =
+                            //     //     await SharedPreferences.getInstance();
 
-                                // // set value
-                                // await prefs.setString('nome', loggedUsername);
+                            //     // // set value
+                            //     // await prefs.setString('nome', loggedUsername);
 
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        // const MenuModelsScreen(),
-                                        const AdminHomeScreen(),
-                                  ),
-                                );
-                              case 'requesting':
-                                Navigator.of(context).pop();
-                            }
+                            //     Navigator.push(
+                            //       context,
+                            //       MaterialPageRoute(
+                            //         builder: (context) =>
+                            //             // const MenuModelsScreen(),
+                            //             const AdminHomeScreen(),
+                            //       ),
+                            //     );
+                            //   case 'requesting':
+                            //     Navigator.of(context).pop();
+                            // }
                           } else {
                             _emailController!.clear();
                             _passwordController!.clear();
 
                             // print("usuario ou senha errados!");
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text('usuario ou senha errados!'),
-                              backgroundColor: Colors.red,
+                            // ScaffoldMessenger.of(context)
+                            //     .showSnackBar(const SnackBar(
+                            //   content: Text(
+                            //     'usuario ou senha errados!',
+                            //     style: TextStyle(fontWeight: FontWeight.bold),
+                            //   ),
+                            //   backgroundColor: Colors.red,
+                            // ));
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'usuario ou senha errados!',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  Icon(
+                                    Icons.error_outline,
+                                    color: Colors.red,
+                                  )
+                                ],
+                              ),
                             ));
+
+                            myFocusNode.requestFocus();
                           }
                         }
                       }
@@ -242,13 +294,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     /* ... */
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   TextButton(
                     onPressed: () {},
                     style: ButtonStyle(
                       foregroundColor: MaterialStateProperty.all(secondColor),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Recuperar senha',
                       style: TextStyle(fontSize: 20),
                     ),

@@ -161,8 +161,9 @@ class _AgenciesListScreenState extends State<AgenciesListScreen> {
               child: FutureBuilder(
                 future: supaBaseHandler.readData(Agency.TABLE_NAME, context),
                 builder: (_, AsyncSnapshot snapshot) {
-                  print(
-                      "${snapshot.data!.length}, snapshot.data: ${snapshot.data!}");
+                  print("snapshot: ${snapshot}");
+                  print("snapshot.data: ${snapshot.data}");
+                  print("snapshot.data: ${snapshot.data!.length}");
                   // print("snapshot.data: ${snapshot.data!}");
 
                   return GridView.builder(
@@ -178,7 +179,7 @@ class _AgenciesListScreenState extends State<AgenciesListScreen> {
 
                         maxCrossAxisExtent: 120,
                         childAspectRatio: 3 / 4,
-                        crossAxisSpacing: 20,
+                        crossAxisSpacing: 11,
                         mainAxisSpacing: 20,
                       ),
                       // scrollDirection: Axis.vertical,

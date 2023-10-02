@@ -32,13 +32,29 @@ class _AgencyCreateScreenState extends State<AgencyCreateScreen> {
         child: Column(
           children: [
             const SizedBox(height: 30),
+            // Container(
+            //   alignment: Alignment.centerLeft,
+            //   child: TextButton(
+            //     onPressed: () => Navigator.of(context).pop(),
+            //     style: const ButtonStyle(
+            //       backgroundColor: MaterialStatePropertyAll(mySecondColor),
+            //     ),
+            //     child: Text(
+            //       'voltar',
+            //       style: TextStyle(
+            //         // color: secondColor,
+            //         color: Colors.white,
+            //         // backgroundColor: secondColor,
+            //         fontSize: 20,
+            //       ),
+            //     ),
+            //   ),
+            // ),
+
             Container(
               alignment: Alignment.centerLeft,
               child: TextButton(
                 onPressed: () => Navigator.of(context).pop(),
-                style: const ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(mySecondColor),
-                ),
                 child: Text(
                   'voltar',
                   style: TextStyle(
@@ -48,7 +64,7 @@ class _AgencyCreateScreenState extends State<AgencyCreateScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 30),
+            // const SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.only(top: 10),
               child: Container(
@@ -220,11 +236,14 @@ class _AgencyCreateScreenState extends State<AgencyCreateScreen> {
                       ElevatedButton(
                         onPressed: () {
                           if (nome.isNotEmpty) {
+                            var [..., lastValue] = foto.trim().split("/");
+
                             Agency myAgency = Agency(
-                              nome: nome,
-                              foto: foto,
+                              // id: null,
+                              nome: nome.trim(),
+                              foto: lastValue,
                               // contactos: contactos!,
-                              contactos: contactosController!.text,
+                              contactos: contactosController!.text.trim(),
                             );
 
                             // SqfliteHelper.insert(Agency.TABLE_NAME, {
@@ -238,7 +257,7 @@ class _AgencyCreateScreenState extends State<AgencyCreateScreen> {
                               context,
                             );
 
-                            Navigator.of(context).pop();
+                            // Navigator.of(context).pop();
                           }
                         },
                         style: ElevatedButton.styleFrom(
