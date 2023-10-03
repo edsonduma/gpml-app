@@ -163,7 +163,7 @@ class _AgenciesListScreenState extends State<AgenciesListScreen> {
                 builder: (_, AsyncSnapshot snapshot) {
                   print("snapshot: ${snapshot}");
                   print("snapshot.data: ${snapshot.data}");
-                  print("snapshot.data: ${snapshot.data!.length}");
+                  print("snapshot.data.length: ${snapshot.data!.length}");
                   // print("snapshot.data: ${snapshot.data!}");
 
                   return GridView.builder(
@@ -177,10 +177,11 @@ class _AgenciesListScreenState extends State<AgenciesListScreen> {
                           const SliverGridDelegateWithMaxCrossAxisExtent(
                         // number of items per row
 
+                        // maxCrossAxisExtent: 120,
                         maxCrossAxisExtent: 120,
                         childAspectRatio: 3 / 4,
                         crossAxisSpacing: 11,
-                        mainAxisSpacing: 20,
+                        // mainAxisSpacing: 20,
                       ),
                       // scrollDirection: Axis.vertical,
                       // number of items in your list
@@ -188,8 +189,17 @@ class _AgenciesListScreenState extends State<AgenciesListScreen> {
                       itemCount: snapshot.data!.length,
                       // SupabaseHelper.getList(Agency.TABLE_NAME)
                       itemBuilder: (_, int index) {
-                        // var [..., lastValue] =
-                        //     snapshot.data![index]["foto"]!.split("/");
+                        var agencyNames =
+                            snapshot.data![index]["nome"]!.split(" ");
+
+                        var nameFormatted = '';
+                        int size = agencyNames.length - 1;
+
+                        for (var i = 0; i < size; i++) {
+                          nameFormatted += agencyNames[i];
+                          nameFormatted += '\n';
+                        }
+                        nameFormatted += agencyNames[size];
 
                         return InkWell(
                           child: Column(
@@ -252,12 +262,14 @@ class _AgenciesListScreenState extends State<AgenciesListScreen> {
                               Text(
                                 // 'Cael Pascoal',
                                 // 'testetstetstetste',
-                                snapshot.data![index]["nome"] ?? 'default',
+                                nameFormatted,
                                 // snapshot.data![index]["nome"] == null
                                 //     ? 'default'
                                 //     : snapshot.data![index]["nome"],
                                 style: const TextStyle(
                                   color: Colors.white,
+                                  // fontWeight: FontWeight.bold,
+                                  fontSize: 22,
                                 ),
                               ),
                             ],

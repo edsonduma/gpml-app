@@ -29,11 +29,11 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             MyCustomAppBar(),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Padding(
-              padding: EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(top: 10),
               child: Container(
                 // color: Colors.white,
                 // margin: EdgeInsets.all(30.0),
@@ -62,7 +62,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                           fontSize: 30,
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Text(
                         'Cadastrar Dados',
                         style: TextStyle(
@@ -70,23 +70,23 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                           fontSize: 18,
                         ),
                       ),
-                      SizedBox(height: 60),
+                      const SizedBox(height: 60),
                       MyCustomButtom(
                         labelName: 'Agência de Moda',
                         onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => MenuAgenciesScreen(),
+                            builder: (context) => const MenuAgenciesScreen(),
                           ),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       MyCustomButtom(
                         labelName: 'Modelos',
                         onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => MenuModelsScreen(),
+                            builder: (context) => const MenuModelsScreen(),
                           ),
                         ),
                       ),

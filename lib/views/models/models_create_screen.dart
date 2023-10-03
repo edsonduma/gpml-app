@@ -1,5 +1,7 @@
+import 'package:stivy/models/agency.dart';
 import 'package:stivy/models/model.dart';
 import 'package:stivy/utils/sqflite_helper.dart';
+import 'package:stivy/utils/supabase_handler.dart';
 import 'package:stivy/views/components/my_custom_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
@@ -13,15 +15,16 @@ class ModelsCreateScreen extends StatefulWidget {
 }
 
 class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
-  // final Color mySecondColor = mySecondColor;
+  SupaBaseHandler supaBaseHandler = SupaBaseHandler();
+
   final diffBetweenInputs = 20.0;
 
-  String? nome, apelido, contactos;
+  String? nome, apelido, genero, contactos;
   double? altura, cintura, anca, sapato;
   late List<String> trabalhos;
-
   // Initial Selected Value
-  String dropdownvalue = 'Freelance';
+  // String representante = 'Freelance';
+  int representante = 0;
 
   // final types = [
   //   'Modelos',
@@ -30,10 +33,38 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
   //   'Stylist',
   //   'Make up',
   // ];
-  final types = [
-    'Freelance',
-    'Agenciado',
-  ];
+
+  // var agencyTypes = [
+  //   {"id": 0, "name": 'Freelance'},
+  // ];
+
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+
+  //   final myAgenciesList = supaBaseHandler.readData(Agency.TABLE_NAME, context);
+  //   // print('myAgenciesList: $myAgenciesList');
+  //   // myAgenciesList.then((value) => print('value: $value'));
+  //   myAgenciesList.then(
+  //     (value) => value?.map((item) {
+  //       agencyTypes.add(
+  //         {
+  //           "id": item["id"],
+  //           "name": item["nome"],
+  //         },
+  //       );
+
+  //       // setState(() {});
+  //       print('agencyTypes: $agencyTypes');
+  //     }),
+  //   );
+
+  //   // final agencyTypes = [
+  //   //   {"id": 0, "name": 'Freelance'},
+  //   //   {"id": 1, "name": 'Agenciado'},
+  //   // ];
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -115,30 +146,63 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                         // ),
                         child: SizedBox(
                           // width: MediaQuery.of(context).size.width,
-                          child: DropdownButton(
-                            isExpanded: true,
-                            // Initial Value
-                            value: dropdownvalue,
+                          child: FutureBuilder(
+                            future: supaBaseHandler.readData(
+                                Agency.TABLE_NAME, context),
+                            builder: (_, snapshot) {
+                              if (snapshot.hasError) {
+                                return Container();
+                              } else if (snapshot.hasData) {
+                                // print("agencyTypes: ${snapshot}");
+                                print("agencyTypes.data: ${snapshot.data}");
+                                print(
+                                    "agencyTypes.length: ${snapshot.data!.length}");
 
-                            // Down Arrow Icon
-                            icon: const Icon(Icons.keyboard_arrow_down),
+                                var agencyTypes = [
+                                  {"id": 0, "name": 'Freelance'},
+                                ];
 
-                            // Array list of types
-                            items: types.map((String types) {
-                              return DropdownMenuItem(
-                                value: types,
-                                child: Text(
-                                  types,
-                                  style: TextStyle(color: secondColor),
-                                ),
-                              );
-                            }).toList(),
-                            // After selecting the desired option,it will
-                            // change button value to selected value
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                dropdownvalue = newValue!;
-                              });
+                                snapshot.data?.forEach((item) {
+                                  agencyTypes.add({
+                                    "id": item["id"],
+                                    "name": item["nome"],
+                                  });
+
+                                  // print('1:agencyTypes: $agencyTypes');
+                                });
+                                // snapshot.data!.forEach((element) { });
+
+                                // print('2:agencyTypes: $agencyTypes');
+                                // setState(() {});
+                                // child: DropdownButton(
+
+                                return DropdownButton(
+                                  isExpanded: true,
+                                  // Initial Value
+                                  value: representante,
+                                  // Down Arrow Icon
+                                  icon: const Icon(Icons.keyboard_arrow_down),
+                                  // Array list of types
+                                  items: agencyTypes.map((item) {
+                                    return DropdownMenuItem(
+                                      value: item["id"] as int,
+                                      child: Text(
+                                        item["name"].toString(),
+                                        style: TextStyle(color: secondColor),
+                                      ),
+                                    );
+                                  }).toList(),
+                                  // After selecting the desired option,it will
+                                  // change button value to selected value
+                                  onChanged: (newValue) {
+                                    setState(() {
+                                      representante = newValue!;
+                                    });
+                                  },
+                                );
+                              } else {
+                                return const CircularProgressIndicator();
+                              }
                             },
                           ),
                         ),
@@ -172,6 +236,8 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                           color: secondColor,
                         ),
                       ),
+                      SizedBox(height: diffBetweenInputs),
+                      genero,
                       SizedBox(height: diffBetweenInputs),
                       TextFormField(
                         onChanged: (value) {
@@ -286,8 +352,10 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                         onPressed: () {
                           if (nome!.isNotEmpty) {
                             Model myModel = Model(
+                              representante: representante,
                               nome: nome!,
                               apelido: apelido!,
+                              genero: genero!,
                               altura: altura!,
                               cintura: cintura!,
                               anca: anca!,
@@ -306,8 +374,11 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                             //   'trabalhos': myModel.trabalhos,
                             //   'contactos': myModel.contactos,
                             // });
-                            SqfliteHelper.insert(
-                                Model.TABLE_NAME, myModel.toMap());
+                            supaBaseHandler.addData(
+                              Model.TABLE_NAME,
+                              myModel.toMap(),
+                              context,
+                            );
 
                             Navigator.of(context).pop();
                           }

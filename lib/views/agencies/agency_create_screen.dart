@@ -257,7 +257,7 @@ class _AgencyCreateScreenState extends State<AgencyCreateScreen> {
                               context,
                             );
 
-                            // Navigator.of(context).pop();
+                            Navigator.of(context).pop();
                           }
                         },
                         style: ElevatedButton.styleFrom(

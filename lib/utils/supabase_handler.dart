@@ -4,10 +4,10 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 final supabase = Supabase.instance.client;
 
 class SupaBaseHandler with ChangeNotifier {
-  register(
-    String email,
-    String password,
-  ) async {
+  register({
+    required String email,
+    required String password,
+  }) async {
     // Email and password sign up
     final result = await supabase.auth.signUp(
       email: email,
@@ -17,10 +17,10 @@ class SupaBaseHandler with ChangeNotifier {
     debugPrint(result.user!.toJson().toString());
   }
 
-  login(
-    String email,
-    String password,
-  ) async {
+  login({
+    required String email,
+    required String password,
+  }) async {
 // Email and password login
     try {
       final response = await supabase.auth.signInWithPassword(
@@ -41,12 +41,13 @@ class SupaBaseHandler with ChangeNotifier {
     }
   }
 
-  loginWithMagicLink(String email) async {
+  loginWithMagicLink({required String email}) async {
 // Magic link login
-    await supabase.auth.signInWithOtp(email: 'my_email@example.com');
+    // await supabase.auth.signInWithOtp(email: 'my_email@example.com');
+    await supabase.auth.signInWithOtp(email: email);
   }
 
-  authStateChanges() async {
+  authStateChanges() {
     Session? mySession;
 
 // Listen to auth state changes
@@ -73,17 +74,17 @@ class SupaBaseHandler with ChangeNotifier {
   ) async {
     try {
       await supabase.from(table).upsert(row);
-      // await supabase.from(table).insert(row);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text('Saved the $table'),
-            Icon(Icons.done),
-          ],
-        ),
-        backgroundColor: Colors.green[700],
-      ));
+
+      // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      //   content: Row(
+      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //     children: [
+      //       Text('Saved the $table'),
+      //       Icon(Icons.done),
+      //     ],
+      //   ),
+      //   backgroundColor: Colors.green[700],
+      // ));
     } catch (e) {
       print("error: $e");
 

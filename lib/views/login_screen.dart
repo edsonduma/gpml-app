@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stivy/models/my_user.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stivy/utils/constants.dart';
 import 'package:stivy/utils/sqflite_helper.dart';
@@ -190,10 +191,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () async {
                       if (_emailController!.text.isNotEmpty) {
                         if (_passwordController!.text.isNotEmpty) {
-                          // String? loggedUsername =
+                          MyUser user = MyUser(
+                            email: _emailController!.text.trim(),
+                            password: _passwordController!.text,
+                          );
+
                           final loginStatus = await supaBaseHandler.login(
-                            _emailController!.text.trim(),
-                            _passwordController!.text,
+                            email: user.email,
+                            password: user.password,
                           );
 
                           print(loginStatus);

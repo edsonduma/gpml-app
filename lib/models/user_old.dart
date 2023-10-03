@@ -1,45 +1,44 @@
-class Agency {
+class User {
   int? id;
-  static const TABLE_NAME = 'agencies';
-  final String nome;
-  final String? foto, contactos;
+  static const TABLE_NAME = 'users';
+  final String nome, email, password;
 
-  Agency({
-    this.id,
+  User({
+    int? this.id,
     required this.nome,
-    this.foto,
-    this.contactos,
+    required this.email,
+    required this.password,
   });
 
-  // Convert a Agency into a Map. The keys must correspond to the names of the
+  // Convert a User into a Map. The keys must correspond to the names of the
   // columns in the database.
   Map<String, dynamic> toMap() {
     if (id != null) {
       return {
         'id': id,
         'nome': nome,
-        'foto': foto,
-        'contactos': contactos,
+        'email': email,
+        'password': password,
       };
     }
 
     return {
       'nome': nome,
-      'foto': foto,
-      'contactos': contactos,
+      'email': email,
+      'password': password,
     };
   }
 
-  // Convert the List<Map<String, dynamic> into a List<Agency>.
+  // Convert the List<Map<String, dynamic> into a List<User>.
   static Future<List<dynamic>> mapsToListOfUser(
       List<Map<String, dynamic>> maps) async {
     return List.generate(
       maps.length,
-      (i) => Agency(
+      (i) => User(
         id: maps[i]['id'],
         nome: maps[i]['nome'],
-        foto: maps[i]['foto'],
-        contactos: maps[i]['contactos'],
+        email: maps[i]['email'],
+        password: maps[i]['password'],
       ),
     );
   }
@@ -48,6 +47,6 @@ class Agency {
   // each user when using the print statement.
   @override
   String toString() {
-    return 'Agency{id: $id, nome: $nome, foto: $foto, contactos: $contactos}';
+    return 'User{id: $id, nome: $nome, email: $email}';
   }
 }

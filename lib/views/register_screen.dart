@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:stivy/models/user.dart';
+import 'package:stivy/models/my_user.dart';
 import 'package:stivy/utils/constants.dart';
 import 'package:stivy/utils/sqflite_helper.dart';
+import 'package:stivy/utils/supabase_handler.dart';
 import 'package:stivy/views/presentation_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -13,6 +14,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
 // final Color mySecondColor = mySecondColor;
+  SupaBaseHandler supaBaseHandler = SupaBaseHandler();
   TextEditingController? _nomeController,
       _emailController,
       _passwordController,
@@ -319,17 +321,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             if (_passwordCheckingController!.text.isNotEmpty) {
                               if (_passwordController!.text ==
                                   _passwordCheckingController!.text) {
-                                User user = User(
-                                  nome: _nomeController!.text,
+                                MyUser user = MyUser(
                                   email: _emailController!.text,
                                   password: _passwordController!.text,
                                 );
 
-                                SqfliteHelper.insert(User.TABLE_NAME, {
-                                  'nome': user.nome,
-                                  'email': user.email,
-                                  'password': user.password,
-                                });
+                                // supaBaseHandler.addData(
+                                //   User.TABLE_NAME,
+                                //   {
+                                //     'nome': user.nome,
+                                //     'email': user.email,
+                                //     'password': user.password,
+                                //   },
+                                //   context,
+                                // );
+                                supaBaseHandler.register(
+                                  email: user.email,
+                                  password: user.password,
+                                );
 
                                 Navigator.of(context).pushAndRemoveUntil(
                                   MaterialPageRoute(

@@ -1,15 +1,19 @@
 class Model {
   int? id;
+  int representante;
   static const TABLE_NAME = 'models';
-  final String nome, apelido, contactos;
+  final String nome, apelido, genero, contactos;
   final double altura, cintura, anca, sapato;
   final List<String> trabalhos;
+
   // final List<String> contactos;
 
   Model({
     int? this.id,
+    required this.representante,
     required this.nome,
     required this.apelido,
+    required this.genero,
     required this.altura,
     required this.cintura,
     required this.anca,
@@ -21,15 +25,32 @@ class Model {
   // Convert a Model into a Map. The keys must correspond to the names of the
   // columns in the database.
   Map<String, dynamic> toMap() {
+    if (id != null) {
+      return {
+        'id': id,
+        'representante': representante,
+        'nome': nome,
+        'apelido': apelido,
+        'genero': genero,
+        'altura': altura,
+        'cintura': cintura,
+        'anca': anca,
+        'sapato': sapato,
+        'trabalhos': trabalhos.toString(),
+        'contactos': contactos,
+      };
+    }
+
     return {
-      'id': id,
+      'representante': representante,
       'nome': nome,
       'apelido': apelido,
+      'genero': genero,
       'altura': altura,
       'cintura': cintura,
       'anca': anca,
       'sapato': sapato,
-      'trabalhos': trabalhos,
+      'trabalhos': trabalhos.toString(),
       'contactos': contactos,
     };
   }
@@ -40,9 +61,11 @@ class Model {
     return List.generate(
       maps.length,
       (i) => Model(
+        representante: maps[i]['representante'],
         id: maps[i]['id'],
         nome: maps[i]['nome'],
         apelido: maps[i]['apelido'],
+        genero: maps[i]['genero'],
         altura: maps[i]['altura'],
         cintura: maps[i]['cintura'],
         anca: maps[i]['anca'],

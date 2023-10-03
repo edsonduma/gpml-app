@@ -5,7 +5,7 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_common_ffi_web/sqflite_ffi_web.dart';
 
-class SqfliteHelper {
+class SqfliteHelperOLD {
   // static late final _database;
   static late final _database;
 

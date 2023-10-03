@@ -19,11 +19,11 @@ class ModelsListScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             MyCustomAppBar(),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Padding(
-              padding: EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(top: 10),
               child: Container(
                 // color: Colors.white,
                 // margin: EdgeInsets.all(30.0),
@@ -52,7 +52,7 @@ class ModelsListScreen extends StatelessWidget {
                           fontSize: 20,
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -63,7 +63,7 @@ class ModelsListScreen extends StatelessWidget {
                               fontSize: 15,
                             ),
                           ),
-                          SizedBox(width: 30),
+                          const SizedBox(width: 30),
                           Text(
                             'MULHERES'.toUpperCase(),
                             style: TextStyle(
@@ -72,7 +72,7 @@ class ModelsListScreen extends StatelessWidget {
                               fontSize: 15,
                             ),
                           ),
-                          SizedBox(width: 30),
+                          const SizedBox(width: 30),
                           Text(
                             'HOMENS'.toUpperCase(),
                             style: TextStyle(
@@ -80,10 +80,10 @@ class ModelsListScreen extends StatelessWidget {
                               fontSize: 15,
                             ),
                           ),
-                          SizedBox(width: 20),
+                          const SizedBox(width: 20),
                         ],
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       TextField(
                         decoration: InputDecoration(
                           // border: const OutlineInputBorder(),
@@ -100,7 +100,7 @@ class ModelsListScreen extends StatelessWidget {
                       //   children: [
                       //   ],
                       // ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -110,8 +110,16 @@ class ModelsListScreen extends StatelessWidget {
                           // ),
                           ElevatedButton(
                             onPressed: () {},
-                            child: Padding(
-                              padding: const EdgeInsets.only(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: thirdColor,
+                              // side: const BorderSide(
+                              //   width: 2, // the thickness
+                              //   color: Color(0xFFe9a42c), // the color of the border
+                              // ),
+                              fixedSize: const Size(250, 45),
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.only(
                                 top: 10,
                                 bottom: 10,
                                 // left: 15,
@@ -125,14 +133,6 @@ class ModelsListScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: thirdColor,
-                              // side: const BorderSide(
-                              //   width: 2, // the thickness
-                              //   color: Color(0xFFe9a42c), // the color of the border
-                              // ),
-                              fixedSize: Size(250, 45),
-                            ),
                           ),
                         ],
                       ),
@@ -142,7 +142,7 @@ class ModelsListScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -156,7 +156,7 @@ class ModelsListScreen extends StatelessWidget {
                           height: 150,
                         ),
                       ),
-                      Text(
+                      const Text(
                         'Cael Pascoal',
                         style: TextStyle(
                           color: Colors.white,
@@ -167,7 +167,7 @@ class ModelsListScreen extends StatelessWidget {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ModelsDetailsScreen(),
+                      builder: (context) => const ModelsDetailsScreen(),
                     ),
                   ),
                 ),
@@ -181,7 +181,7 @@ class ModelsListScreen extends StatelessWidget {
                           height: 150,
                         ),
                       ),
-                      Text(
+                      const Text(
                         'Emma Diogo',
                         style: TextStyle(
                           color: Colors.white,
@@ -192,7 +192,7 @@ class ModelsListScreen extends StatelessWidget {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ModelsDetailsScreen(),
+                      builder: (context) => const ModelsDetailsScreen(),
                     ),
                   ),
                 ),
@@ -206,7 +206,7 @@ class ModelsListScreen extends StatelessWidget {
                           height: 150,
                         ),
                       ),
-                      Text(
+                      const Text(
                         'Nádia Campos',
                         style: TextStyle(
                           color: Colors.white,
@@ -217,13 +217,13 @@ class ModelsListScreen extends StatelessWidget {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ModelsDetailsScreen(),
+                      builder: (context) => const ModelsDetailsScreen(),
                     ),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -237,7 +237,7 @@ class ModelsListScreen extends StatelessWidget {
                           height: 150,
                         ),
                       ),
-                      Text(
+                      const Text(
                         'Stélvia Firmino',
                         style: TextStyle(
                           color: Colors.white,
@@ -248,7 +248,7 @@ class ModelsListScreen extends StatelessWidget {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ModelsDetailsScreen(),
+                      builder: (context) => const ModelsDetailsScreen(),
                     ),
                   ),
                 ),
@@ -262,7 +262,7 @@ class ModelsListScreen extends StatelessWidget {
                           height: 150,
                         ),
                       ),
-                      Text(
+                      const Text(
                         'Stélvia Firmino',
                         style: TextStyle(
                           color: Colors.white,
@@ -273,7 +273,7 @@ class ModelsListScreen extends StatelessWidget {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ModelsDetailsScreen(),
+                      builder: (context) => const ModelsDetailsScreen(),
                     ),
                   ),
                 ),
@@ -287,7 +287,7 @@ class ModelsListScreen extends StatelessWidget {
                           height: 150,
                         ),
                       ),
-                      Text(
+                      const Text(
                         'Stélvia Firmino',
                         style: TextStyle(
                           color: Colors.white,
@@ -298,7 +298,7 @@ class ModelsListScreen extends StatelessWidget {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ModelsDetailsScreen(),
+                      builder: (context) => const ModelsDetailsScreen(),
                     ),
                   ),
                 ),

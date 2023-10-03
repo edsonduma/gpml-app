@@ -24,7 +24,7 @@ class _MenuModelsScreenState extends State<MenuModelsScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             // Container(
             //   alignment: Alignment.centerLeft,
             //   child: TextButton(
@@ -39,9 +39,9 @@ class _MenuModelsScreenState extends State<MenuModelsScreen> {
             //   ),
             // ),
             MyCustomAppBar(),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Padding(
-              padding: EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(top: 10),
               child: Container(
                 // color: Colors.white,
                 // margin: EdgeInsets.all(30.0),
@@ -70,7 +70,7 @@ class _MenuModelsScreenState extends State<MenuModelsScreen> {
                           fontSize: 30,
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Text(
                         'MODELOS',
                         style: TextStyle(
@@ -78,16 +78,16 @@ class _MenuModelsScreenState extends State<MenuModelsScreen> {
                           fontSize: 18,
                         ),
                       ),
-                      SizedBox(height: 60),
+                      const SizedBox(height: 60),
                       ElevatedButton(
                         onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ModelsCreateScreen(),
+                            builder: (context) => const ModelsCreateScreen(),
                           ),
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(
+                        child: const Padding(
+                          padding: EdgeInsets.only(
                             top: 10,
                             bottom: 10,
                             left: 8,
@@ -107,14 +107,14 @@ class _MenuModelsScreenState extends State<MenuModelsScreen> {
                           //   width: 2, // the thickness
                           //   color: Color(0xFFe9a42c), // the color of the border
                           // ),
-                          fixedSize: Size(200, 45),
+                          fixedSize: const Size(200, 45),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: () {},
-                        child: Padding(
-                          padding: const EdgeInsets.only(
+                        child: const Padding(
+                          padding: EdgeInsets.only(
                             top: 10,
                             bottom: 10,
                             left: 8,
@@ -134,14 +134,14 @@ class _MenuModelsScreenState extends State<MenuModelsScreen> {
                           //   width: 2, // the thickness
                           //   color: Color(0xFFe9a42c), // the color of the border
                           // ),
-                          fixedSize: Size(200, 45),
+                          fixedSize: const Size(200, 45),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: () {},
-                        child: Padding(
-                          padding: const EdgeInsets.only(
+                        child: const Padding(
+                          padding: EdgeInsets.only(
                             top: 10,
                             bottom: 10,
                             left: 8,
@@ -161,7 +161,7 @@ class _MenuModelsScreenState extends State<MenuModelsScreen> {
                           //   width: 2, // the thickness
                           //   color: Color(0xFFe9a42c), // the color of the border
                           // ),
-                          fixedSize: Size(200, 45),
+                          fixedSize: const Size(200, 45),
                         ),
                       ),
                     ],
