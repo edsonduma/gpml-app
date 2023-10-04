@@ -7,7 +7,9 @@ import 'package:stivy/views/about_screen.dart';
 import 'package:stivy/views/events_screen.dart';
 
 class AgencyDetailsScreen extends StatelessWidget {
-  const AgencyDetailsScreen({super.key});
+  final myAgency;
+
+  const AgencyDetailsScreen({super.key, required this.myAgency});
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +50,8 @@ class AgencyDetailsScreen extends StatelessWidget {
                           width: 200,
                           //   decoration: BoxDecoration(
                           //       border: Border.all(color: Colors.black)),
-                          child: const Text('HADJA MODELS'),
+                          // child: const Text('HADJA MODELS'),
+                          child: Text(myAgency["nome"]),
                         ),
                       ),
                       const SizedBox(height: 10),
@@ -58,10 +61,12 @@ class AgencyDetailsScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 15),
-            const Column(children: [
+            Column(children: [
               MyCircleButton(
                 buttonLabel: 'Sobre',
-                nextScreen: AboutScreen(),
+                nextScreen: AboutScreen(
+                  myAgency: myAgency,
+                ),
               ),
               SizedBox(height: 10),
               MyCircleButton(

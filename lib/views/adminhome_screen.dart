@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
-import 'package:stivy/views/agencies/agency_models_screen.dart';
 import 'package:stivy/views/components/my_custom_appbar.dart';
 import 'package:stivy/views/components/my_custom_buttons.dart';
-import 'package:stivy/views/agencies/agencies_list_screen.dart';
-import 'package:stivy/views/login_screen.dart';
 import 'package:stivy/views/agencies/menu_agencies_screen.dart';
+import 'package:stivy/views/designers/menu_designers_screen.dart';
+import 'package:stivy/views/makeup_artists/menu_makeup_artists_screen.dart';
 import 'package:stivy/views/models/menu_models_screen.dart';
-import 'package:stivy/views/models/models_list_screen.dart';
+import 'package:stivy/views/photographers/menu_photographers_screen.dart';
+import 'package:stivy/views/stylists/menu_stylists_screen.dart';
 
 class AdminHomeScreen extends StatefulWidget {
   const AdminHomeScreen({super.key});
@@ -72,7 +72,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                       ),
                       const SizedBox(height: 60),
                       MyCustomButtom(
-                        labelName: 'Agência de Moda',
+                        labelName: 'Agências de Moda',
                         onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -90,36 +90,48 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                           ),
                         ),
                       ),
-                      // SizedBox(height: 20),
-                      // MyCustomButtom(
-                      //   labelName: 'Modelos free',
-                      //   onPressed: () => Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //       builder: (context) => ModelsListScreen(),
-                      //     ),
-                      //   ),
-                      // ),
-                      // SizedBox(height: 20),
-                      // MyCustomButtom(
-                      //   labelName: 'Fotografos',
-                      //   onPressed: () {},
-                      // ),
-                      // SizedBox(height: 20),
-                      // MyCustomButtom(
-                      //   labelName: 'Design',
-                      //   onPressed: () {},
-                      // ),
-                      // SizedBox(height: 20),
-                      // MyCustomButtom(
-                      //   labelName: 'Stylist',
-                      //   onPressed: () {},
-                      // ),
-                      // SizedBox(height: 20),
-                      // MyCustomButtom(
-                      //   labelName: 'Make up',
-                      //   onPressed: () {},
-                      // ),
+                      const SizedBox(height: 20),
+                      MyCustomButtom(
+                        labelName: 'Fotógrafos',
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const MenuPhotographersScreen(),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      MyCustomButtom(
+                        labelName: 'Designers',
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MenuDesignersScreen(),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      MyCustomButtom(
+                        labelName: 'Stylists',
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MenuStylistsScreen(),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      MyCustomButtom(
+                        labelName: 'Makeup artists',
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const MenuMakeupArtistsScreen(),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),

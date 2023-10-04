@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
 import 'package:stivy/views/components/my_custom_appbar.dart';
-import 'package:stivy/views/components/my_custom_buttons.dart';
 import 'package:stivy/views/models/models_create_screen.dart';
+import 'package:stivy/views/models/models_list_screen.dart';
 
 class MenuModelsScreen extends StatefulWidget {
   const MenuModelsScreen({super.key});
@@ -95,6 +95,38 @@ class _MenuModelsScreenState extends State<MenuModelsScreen> {
                           ),
                           child: Text(
                             'Adicionar',
+                            style: TextStyle(
+                              color: mySecondColor,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: thirdColor,
+                          // side: const BorderSide(
+                          //   width: 2, // the thickness
+                          //   color: Color(0xFFe9a42c), // the color of the border
+                          // ),
+                          fixedSize: const Size(200, 45),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ModelsListScreen(),
+                          ),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.only(
+                            top: 10,
+                            bottom: 10,
+                            left: 8,
+                            right: 8,
+                          ),
+                          child: Text(
+                            'Listar',
                             style: TextStyle(
                               color: mySecondColor,
                               fontSize: 20,

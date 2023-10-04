@@ -3,7 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 final supabase = Supabase.instance.client;
 
-class SupaBaseHandler with ChangeNotifier {
+class SupaBaseHandler {
   register({
     required String email,
     required String password,
@@ -47,20 +47,20 @@ class SupaBaseHandler with ChangeNotifier {
     await supabase.auth.signInWithOtp(email: email);
   }
 
-  authStateChanges() {
-    Session? mySession;
+//   authStateChanges() {
+//     Session? mySession;
 
-// Listen to auth state changes
-    supabase.auth.onAuthStateChange.listen((data) {
-      final AuthChangeEvent event = data.event;
-      final Session? session = data.session;
-      // Do something when there is an auth event
+// // Listen to auth state changes
+//     supabase.auth.onAuthStateChange.listen((data) {
+//       final AuthChangeEvent event = data.event;
+//       final Session? session = data.session;
+//       // Do something when there is an auth event
 
-      mySession = session;
-    });
+//       mySession = session;
+//     });
 
-    return mySession;
-  }
+//     return mySession;
+//   }
 
   logout(context) async {
     await supabase.auth.signOut();

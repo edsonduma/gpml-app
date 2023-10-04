@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stivy/models/my_user.dart';
 import 'package:stivy/utils/constants.dart';
-import 'package:stivy/utils/sqflite_helper.dart';
 import 'package:stivy/utils/supabase_handler.dart';
 import 'package:stivy/views/presentation_screen.dart';
 

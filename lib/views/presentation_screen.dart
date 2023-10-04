@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:provider/provider.dart';
 import 'package:stivy/utils/constants.dart';
 import 'package:stivy/utils/supabase_handler.dart';
-import 'package:stivy/views/login_screen.dart';
-import 'package:stivy/views/register_screen.dart';
 import 'package:stivy/views/home_screen.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'adminhome_screen.dart';
 

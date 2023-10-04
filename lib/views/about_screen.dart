@@ -1,12 +1,11 @@
 import 'package:stivy/views/components/my_custom_appbar.dart';
-import 'package:stivy/views/components/my_custom_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
-import 'package:stivy/views/components/my_custom_input.dart.txt';
-import 'package:stivy/views/login_screen.dart';
 
 class AboutScreen extends StatelessWidget {
-  const AboutScreen({super.key});
+  final myAgency;
+
+  AboutScreen({super.key, this.myAgency});
 
   final aboutText =
       '\t\t\t\t\t\t\tA Hadja Models Angola é uma agência líder de modelos no mercado Angolano desde 2010, tendo para além do agenciamento de modelos, músicos, actores e apresentadores de televisão, dedica-se ainda aprodução de vários eventos anuais como Angola Fashion Week, Moda Solidária, em aégide do Comité MisterAngola. \n\t\t\t\t\t\t\tEm seu portfólio constam tam 78 modelos do sexo masculino e feminino com participações em eventos mundiais como New York Fashion Week, Africa Fashion Week Africa Fashion Week, Joanesburg Fashion Week, Mocambique FW, Botswana Fashion Week, Botswana Fashion Week e muitos outros Junto a este curriculum colocamos o nosso selo de Empresa de Sucesso Angola.';
@@ -56,7 +55,8 @@ class AboutScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 10),
                       Text(
-                        'Hadja Models',
+                        // 'Hadja Models',
+                        myAgency["nome"],
                         style: TextStyle(
                           color: secondColor,
                           fontSize: 18,
@@ -75,7 +75,8 @@ class AboutScreen extends StatelessWidget {
                 right: 20,
               ),
               child: Text(
-                aboutText,
+                // aboutText,
+                myAgency["sobre"],
                 textAlign: TextAlign.justify,
                 style: TextStyle(color: Colors.white, fontSize: 17),
               ),

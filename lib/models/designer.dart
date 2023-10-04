@@ -1,24 +1,17 @@
-class Model {
+class Designer {
   int? id;
   int representante;
-  static const TABLE_NAME = 'models';
-  final String nome, apelido, genero, contactos;
-  final double altura, peito, cintura, anca, sapato;
+  static const TABLE_NAME = 'designers';
+  final String nome, apelido, contactos;
   final List<String> trabalhos;
 
   // final List<String> contactos;
 
-  Model({
+  Designer({
     int? this.id,
     required this.representante,
     required this.nome,
     required this.apelido,
-    required this.genero,
-    required this.altura,
-    required this.peito,
-    required this.cintura,
-    required this.anca,
-    required this.sapato,
     required this.trabalhos,
     required this.contactos,
   });
@@ -32,12 +25,6 @@ class Model {
         'representante': representante,
         'nome': nome,
         'apelido': apelido,
-        'genero': genero,
-        'altura': altura,
-        'peito': peito,
-        'cintura': cintura,
-        'anca': anca,
-        'sapato': sapato,
         'trabalhos': trabalhos.toString(),
         'contactos': contactos,
       };
@@ -47,12 +34,6 @@ class Model {
       'representante': representante,
       'nome': nome,
       'apelido': apelido,
-      'genero': genero,
-      'altura': altura,
-      'peito': peito,
-      'cintura': cintura,
-      'anca': anca,
-      'sapato': sapato,
       'trabalhos': trabalhos.toString(),
       'contactos': contactos,
     };
@@ -63,17 +44,11 @@ class Model {
       List<Map<String, dynamic>> maps) async {
     return List.generate(
       maps.length,
-      (i) => Model(
+      (i) => Designer(
         representante: maps[i]['representante'],
         id: maps[i]['id'],
         nome: maps[i]['nome'],
         apelido: maps[i]['apelido'],
-        genero: maps[i]['genero'],
-        altura: maps[i]['altura'],
-        peito: maps[i]['peito'],
-        cintura: maps[i]['cintura'],
-        anca: maps[i]['anca'],
-        sapato: maps[i]['sapato'],
         trabalhos: maps[i]['trabalhos'],
         contactos: maps[i]['contactos'],
       ),

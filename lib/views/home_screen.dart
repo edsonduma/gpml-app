@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
-import 'package:stivy/views/agencies/agency_models_screen.dart';
 import 'package:stivy/views/components/my_custom_appbar.dart';
 import 'package:stivy/views/components/my_custom_buttons.dart';
 import 'package:stivy/views/agencies/agencies_list_screen.dart';
-import 'package:stivy/views/login_screen.dart';
-import 'package:stivy/views/models/menu_models_screen.dart';
+import 'package:stivy/views/designers/designers_list_screen.dart';
+import 'package:stivy/views/makeup_artists/makeup_artists_list_screen.dart';
 import 'package:stivy/views/models/models_list_screen.dart';
+import 'package:stivy/views/photographers/photographers_list_screen.dart';
+import 'package:stivy/views/stylists/stylists_list_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -28,11 +29,11 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             MyCustomAppBar(),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Padding(
-              padding: EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(top: 10),
               child: Container(
                 // color: Colors.white,
                 // margin: EdgeInsets.all(30.0),
@@ -61,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontSize: 30,
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Text(
                         'Escolha os nossos serviços',
                         style: TextStyle(
@@ -69,45 +70,67 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontSize: 18,
                         ),
                       ),
-                      SizedBox(height: 60),
+                      const SizedBox(height: 60),
                       MyCustomButtom(
-                        labelName: 'Agência de Moda',
+                        labelName: 'Agências de Moda',
                         onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => AgenciesListScreen(),
+                            builder: (context) => const AgenciesListScreen(),
                           ),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       MyCustomButtom(
                         labelName: 'Modelos free',
                         onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ModelsListScreen(),
+                            builder: (context) => const ModelsListScreen(),
                           ),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       MyCustomButtom(
                         labelName: 'Fotografos',
-                        onPressed: () {},
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const PhotographersListScreen(),
+                          ),
+                        ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       MyCustomButtom(
-                        labelName: 'Design',
-                        onPressed: () {},
+                        labelName: 'Designers',
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const DesignersListScreen(),
+                          ),
+                        ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       MyCustomButtom(
-                        labelName: 'Stylist',
-                        onPressed: () {},
+                        labelName: 'Stylists',
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const StylistsListScreen(),
+                          ),
+                        ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       MyCustomButtom(
-                        labelName: 'Make up',
-                        onPressed: () {},
+                        labelName: 'Makeup artists',
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const MakeupArtistsListScreen(),
+                          ),
+                        ),
                       ),
                     ],
                   ),

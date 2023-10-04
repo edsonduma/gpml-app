@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
 import 'package:stivy/views/login_screen.dart';
 
-class ModelsDetailsScreen extends StatelessWidget {
-  final myModel;
+class StylistsDetailsScreen extends StatelessWidget {
+  final myDesigner;
 
-  const ModelsDetailsScreen({super.key, required this.myModel});
+  const StylistsDetailsScreen({super.key, required this.myDesigner});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class ModelsDetailsScreen extends StatelessWidget {
                       SizedBox(height: 10),
                       Text(
                         // 'CAEL PASCOAL'.toUpperCase(),
-                        myModel["nome"].toUpperCase(),
+                        myDesigner["nome"].toUpperCase(),
                         style: TextStyle(
                           color: secondColor,
                           fontSize: 18,
@@ -78,31 +78,31 @@ class ModelsDetailsScreen extends StatelessWidget {
               children: [
                 Text(
                   // 'Altura: 178cm',
-                  'Altura: ${myModel["altura"]}cm',
+                  'Altura: ${myDesigner["altura"]}cm',
                   style: TextStyle(
                     color: Colors.white,
                   ),
                 ),
                 Text(
-                  'Peito/Busto: ${myModel["peito"]}cm',
+                  'Peito/Busto: ${myDesigner["peito"]}cm',
                   style: TextStyle(
                     color: Colors.white,
                   ),
                 ),
                 Text(
-                  'Cintura: ${myModel["cintura"]}cm',
+                  'Cintura: ${myDesigner["cintura"]}cm',
                   style: TextStyle(
                     color: Colors.white,
                   ),
                 ),
                 Text(
-                  'Anca: ${myModel["anca"]}cm',
+                  'Anca: ${myDesigner["anca"]}cm',
                   style: TextStyle(
                     color: Colors.white,
                   ),
                 ),
                 Text(
-                  'Sapato: ${myModel["sapato"]}cm',
+                  'Sapato: ${myDesigner["sapato"]}cm',
                   style: TextStyle(
                     color: Colors.white,
                   ),

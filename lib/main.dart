@@ -38,12 +38,13 @@ Future<void> main() async {
   await GetStorage.init();
   // await SqfliteHelper.init();
   await SupabaseHelper.init();
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: (_) => SupaBaseHandler()),
-    ],
-    child: const MyApp(),
-  ));
+  // runApp(MultiProvider(
+  //   providers: [
+  //     ChangeNotifierProvider(create: (_) => Model()),
+  //   ],
+  //   child: const MyApp(),
+  // ));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

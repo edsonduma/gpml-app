@@ -2,12 +2,13 @@ class Agency {
   int? id;
   static const TABLE_NAME = 'agencies';
   final String nome;
-  final String? foto, contactos;
+  final String? foto, sobre, contactos;
 
   Agency({
     this.id,
     required this.nome,
     this.foto,
+    this.sobre,
     this.contactos,
   });
 
@@ -19,6 +20,7 @@ class Agency {
         'id': id,
         'nome': nome,
         'foto': foto,
+        'sobre': sobre,
         'contactos': contactos,
       };
     }
@@ -26,6 +28,7 @@ class Agency {
     return {
       'nome': nome,
       'foto': foto,
+      'sobre': sobre,
       'contactos': contactos,
     };
   }
@@ -39,6 +42,7 @@ class Agency {
         id: maps[i]['id'],
         nome: maps[i]['nome'],
         foto: maps[i]['foto'],
+        sobre: maps[i]['sobre'],
         contactos: maps[i]['contactos'],
       ),
     );
@@ -48,6 +52,6 @@ class Agency {
   // each user when using the print statement.
   @override
   String toString() {
-    return 'Agency{id: $id, nome: $nome, foto: $foto, contactos: $contactos}';
+    return 'Agency{id: $id, nome: $nome}';
   }
 }

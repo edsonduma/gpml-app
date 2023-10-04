@@ -1,80 +1,32 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
-import 'package:stivy/models/model.dart';
+import 'package:stivy/models/designer.dart';
 import 'package:stivy/utils/supabase_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
 
 enum GeneroEnum { masculino, feminino }
 
-class ModelsCreateScreen extends StatefulWidget {
-  const ModelsCreateScreen({super.key});
+class DesignersCreateScreen extends StatefulWidget {
+  const DesignersCreateScreen({super.key});
 
   @override
-  State<ModelsCreateScreen> createState() => _ModelsCreateScreenState();
+  State<DesignersCreateScreen> createState() => _DesignersCreateScreenState();
 }
 
-class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
+class _DesignersCreateScreenState extends State<DesignersCreateScreen> {
   SupaBaseHandler supaBaseHandler = SupaBaseHandler();
 
   final diffBetweenInputs = 20.0;
 
   String nome = '', apelido = '', contactos = '';
-  GeneroEnum _genero = GeneroEnum.masculino;
-  double? altura, peito, cintura, anca, sapato;
-  // late List<String> trabalhos;
   String trabalhos = '';
-  // Initial Selected Value
-  // String representante = 'Freelance';
   int representante = 0;
-
-  // final types = [
-  //   'Modelos',
-  //   'Fotografos',
-  //   'Designers',
-  //   'Stylist',
-  //   'Make up',
-  // ];
-
-  // var agencyTypes = [
-  //   {"id": 0, "name": 'Freelance'},
-  // ];
-
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-
-  //   final myAgenciesList = supaBaseHandler.readData(Agency.TABLE_NAME, context);
-  //   // print('myAgenciesList: $myAgenciesList');
-  //   // myAgenciesList.then((value) => print('value: $value'));
-  //   myAgenciesList.then(
-  //     (value) => value?.map((item) {
-  //       agencyTypes.add(
-  //         {
-  //           "id": item["id"],
-  //           "name": item["nome"],
-  //         },
-  //       );
-
-  //       // setState(() {});
-  //       print('agencyTypes: $agencyTypes');
-  //     }),
-  //   );
-
-  //   // final agencyTypes = [
-  //   //   {"id": 0, "name": 'Freelance'},
-  //   //   {"id": 1, "name": 'Agenciado'},
-  //   // ];
-  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: primaryColor,
-      // appBar: AppBar(
-      //   backgroundColor: primaryColor,
-      // ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -92,13 +44,9 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                 ),
               ),
             ),
-            // const SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.only(top: 10),
               child: Container(
-                // color: Colors.white,
-                // margin: EdgeInsets.all(30.0),
-                // padding: EdgeInsets.all(10.0),
                 decoration: BoxDecoration(
                   border: Border.all(
                     width: 2,
@@ -132,34 +80,19 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                         ),
                       ),
                       SizedBox(height: diffBetweenInputs),
-                      // MyCustomInput(
-                      //   labelName: 'Nome',
-                      // ),
                       DecoratedBox(
-                        // hintText: 'Vinculação',
                         decoration: BoxDecoration(
-                          // border: Border.all(),
                           border: Border.all(color: Colors.black38, width: 3),
                           borderRadius: BorderRadius.circular(5),
-                          // hintStyle: TextStyle(color: secondColor),
                         ),
-                        // style: TextStyle(
-                        //   color: secondColor,
-                        // ),
                         child: SizedBox(
-                          // width: MediaQuery.of(context).size.width,
                           child: FutureBuilder(
                             future: supaBaseHandler.readData(
-                                Model.TABLE_NAME, context),
+                                Designer.TABLE_NAME, context),
                             builder: (_, snapshot) {
                               if (snapshot.hasError) {
                                 return Container();
                               } else if (snapshot.hasData) {
-                                // print("agencyTypes: ${snapshot}");
-                                // print("agencyTypes.data: ${snapshot.data}");
-                                // print(
-                                //     "agencyTypes.length: ${snapshot.data!.length}");
-
                                 var agencyTypes = [
                                   {"id": 0, "name": 'Freelance'},
                                 ];
@@ -169,25 +102,12 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                                     "id": item["id"],
                                     "name": item["nome"],
                                   });
-
-                                  // print('1:agencyTypes: $agencyTypes');
                                 });
-                                // snapshot.data!.forEach((element) { });
-
-                                // print('2:agencyTypes: $agencyTypes');
-                                // setState(() {});
-                                // child: DropdownButton(
 
                                 return DropdownButton(
-                                  // hint: const Text('Selecione o Representante'),
-                                  // disabledHint:
-                                  //     const Text('Selecione o Representante'),
                                   isExpanded: true,
-                                  // Initial Value
                                   value: representante,
-                                  // Down Arrow Icon
                                   icon: const Icon(Icons.keyboard_arrow_down),
-                                  // Array list of types
                                   items: agencyTypes.map((item) {
                                     return DropdownMenuItem(
                                       value: item["id"] as int,
@@ -201,8 +121,6 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                                       ),
                                     );
                                   }).toList(),
-                                  // After selecting the desired option,it will
-                                  // change button value to selected value
                                   onChanged: (newValue) {
                                     setState(() {
                                       representante = newValue!;
@@ -219,7 +137,6 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                       SizedBox(height: diffBetweenInputs),
                       TextFormField(
                         onChanged: (value) {
-                          // print('value: $value');
                           nome = value;
                         },
                         decoration: InputDecoration(
@@ -257,158 +174,6 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                             ),
                           ),
                           hintText: 'Apelido',
-                          hintStyle: TextStyle(color: secondColor),
-                        ),
-                        style: TextStyle(
-                          color: secondColor,
-                        ),
-                      ),
-                      SizedBox(height: diffBetweenInputs),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Row(children: [
-                            Radio(
-                              activeColor: secondColor,
-                              value: GeneroEnum.masculino,
-                              groupValue: _genero,
-                              onChanged: (value) {
-                                setState(() {
-                                  _genero = value!;
-                                });
-                              },
-                            ),
-                            const Text('M'),
-                            const SizedBox(width: 10),
-                            Radio(
-                              activeColor: secondColor,
-                              value: GeneroEnum.feminino,
-                              groupValue: _genero,
-                              onChanged: (value) {
-                                setState(() {
-                                  _genero = value!;
-                                });
-                              },
-                            ),
-                            const Text('F'),
-                          ]),
-                        ],
-                      ),
-                      SizedBox(height: diffBetweenInputs),
-                      TextFormField(
-                        keyboardType: TextInputType.number,
-                        onChanged: (value) {
-                          altura = double.parse(value);
-                        },
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: primaryColor,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: secondColor,
-                            ),
-                          ),
-                          hintText: 'Altura',
-                          hintStyle: TextStyle(color: secondColor),
-                        ),
-                        style: TextStyle(
-                          color: secondColor,
-                        ),
-                      ),
-                      SizedBox(height: diffBetweenInputs),
-                      TextFormField(
-                        keyboardType: TextInputType.number,
-                        onChanged: (value) {
-                          peito = double.parse(value);
-                        },
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: primaryColor,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: secondColor,
-                            ),
-                          ),
-                          hintText: 'Peito/Busto',
-                          hintStyle: TextStyle(color: secondColor),
-                        ),
-                        style: TextStyle(
-                          color: secondColor,
-                        ),
-                      ),
-                      SizedBox(height: diffBetweenInputs),
-                      TextFormField(
-                        keyboardType: TextInputType.number,
-                        onChanged: (value) {
-                          cintura = double.parse(value);
-                        },
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: primaryColor,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: secondColor,
-                            ),
-                          ),
-                          hintText: 'Cintura',
-                          hintStyle: TextStyle(color: secondColor),
-                        ),
-                        style: TextStyle(
-                          color: secondColor,
-                        ),
-                      ),
-                      SizedBox(height: diffBetweenInputs),
-                      TextFormField(
-                        keyboardType: TextInputType.number,
-                        onChanged: (value) {
-                          anca = double.parse(value);
-                        },
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: primaryColor,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: secondColor,
-                            ),
-                          ),
-                          hintText: 'Anca',
-                          hintStyle: TextStyle(color: secondColor),
-                        ),
-                        style: TextStyle(
-                          color: secondColor,
-                        ),
-                      ),
-                      SizedBox(height: diffBetweenInputs),
-                      TextFormField(
-                        keyboardType: TextInputType.number,
-                        onChanged: (value) {
-                          sapato = double.parse(value);
-                        },
-                        decoration: InputDecoration(
-                          // border: const OutlineInputBorder(),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: primaryColor,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: secondColor,
-                            ),
-                          ),
-                          hintText: 'Sapato',
                           hintStyle: TextStyle(color: secondColor),
                         ),
                         style: TextStyle(
@@ -548,17 +313,10 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                       ElevatedButton(
                         onPressed: () {
                           if (nome.isNotEmpty) {
-                            Model myModel = Model(
+                            Designer myDesigner = Designer(
                               representante: representante,
                               nome: nome,
                               apelido: apelido,
-                              genero:
-                                  _genero == GeneroEnum.masculino ? "M" : "F",
-                              altura: altura!,
-                              peito: peito!,
-                              cintura: cintura!,
-                              anca: anca!,
-                              sapato: sapato!,
                               trabalhos: [trabalhos],
                               contactos: contactos,
                             );
@@ -574,8 +332,8 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                             //   'contactos': myModel.contactos,
                             // });
                             supaBaseHandler.addData(
-                              Model.TABLE_NAME,
-                              myModel.toMap(),
+                              Designer.TABLE_NAME,
+                              myDesigner.toMap(),
                               context,
                             );
 

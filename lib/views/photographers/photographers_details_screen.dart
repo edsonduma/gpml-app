@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
 import 'package:stivy/views/login_screen.dart';
 
-class ModelsDetailsScreen extends StatelessWidget {
-  final myModel;
+class PhotographersDetailsScreen extends StatelessWidget {
+  final myPhotographer;
 
-  const ModelsDetailsScreen({super.key, required this.myModel});
+  const PhotographersDetailsScreen({super.key, required this.myPhotographer});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class ModelsDetailsScreen extends StatelessWidget {
                       SizedBox(height: 10),
                       Text(
                         // 'CAEL PASCOAL'.toUpperCase(),
-                        myModel["nome"].toUpperCase(),
+                        myPhotographer["nome"].toUpperCase(),
                         style: TextStyle(
                           color: secondColor,
                           fontSize: 18,
@@ -78,31 +78,31 @@ class ModelsDetailsScreen extends StatelessWidget {
               children: [
                 Text(
                   // 'Altura: 178cm',
-                  'Altura: ${myModel["altura"]}cm',
+                  'Altura: ${myPhotographer["altura"]}cm',
                   style: TextStyle(
                     color: Colors.white,
                   ),
                 ),
                 Text(
-                  'Peito/Busto: ${myModel["peito"]}cm',
+                  'Peito/Busto: ${myPhotographer["peito"]}cm',
                   style: TextStyle(
                     color: Colors.white,
                   ),
                 ),
                 Text(
-                  'Cintura: ${myModel["cintura"]}cm',
+                  'Cintura: ${myPhotographer["cintura"]}cm',
                   style: TextStyle(
                     color: Colors.white,
                   ),
                 ),
                 Text(
-                  'Anca: ${myModel["anca"]}cm',
+                  'Anca: ${myPhotographer["anca"]}cm',
                   style: TextStyle(
                     color: Colors.white,
                   ),
                 ),
                 Text(
-                  'Sapato: ${myModel["sapato"]}cm',
+                  'Sapato: ${myPhotographer["sapato"]}cm',
                   style: TextStyle(
                     color: Colors.white,
                   ),

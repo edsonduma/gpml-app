@@ -1,18 +1,18 @@
-import 'package:stivy/models/model.dart';
+import 'package:stivy/models/designer.dart';
 import 'package:stivy/utils/supabase_handler.dart';
 import 'package:stivy/views/components/my_custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
-import 'package:stivy/views/models/models_details_screen.dart';
+import 'package:stivy/views/designers/designers_details_screen.dart';
 
-class ModelsListScreen extends StatefulWidget {
-  const ModelsListScreen({super.key});
+class DesignersListScreen extends StatefulWidget {
+  const DesignersListScreen({super.key});
 
   @override
-  State<ModelsListScreen> createState() => _ModelsListScreenState();
+  State<DesignersListScreen> createState() => _DesignersListScreenState();
 }
 
-class _ModelsListScreenState extends State<ModelsListScreen> {
+class _DesignersListScreenState extends State<DesignersListScreen> {
   late SupaBaseHandler supaBaseHandler = SupaBaseHandler();
 
   @override
@@ -51,7 +51,7 @@ class _ModelsListScreenState extends State<ModelsListScreen> {
                   child: Column(
                     children: [
                       Text(
-                        'Modelos'.toUpperCase(),
+                        'Designers'.toUpperCase(),
                         style: TextStyle(
                           color: secondColor,
                           fontWeight: FontWeight.bold,
@@ -152,7 +152,7 @@ class _ModelsListScreenState extends State<ModelsListScreen> {
             SizedBox(
               height: 500,
               child: FutureBuilder(
-                future: supaBaseHandler.readData(Model.TABLE_NAME, context),
+                future: supaBaseHandler.readData(Designer.TABLE_NAME, context),
                 builder: (_, AsyncSnapshot snapshot) {
                   // print("snapshot: ${snapshot}");
                   // print("snapshot.data: ${snapshot.data}");
@@ -193,8 +193,8 @@ class _ModelsListScreenState extends State<ModelsListScreen> {
                             onTap: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ModelsDetailsScreen(
-                                    myModel: snapshot.data![index]),
+                                builder: (context) => DesignersDetailsScreen(
+                                    myDesigner: snapshot.data![index]),
                               ),
                             ),
                             child: Column(
@@ -269,7 +269,7 @@ class _ModelsListScreenState extends State<ModelsListScreen> {
             //       onTap: () => Navigator.push(
             //         context,
             //         MaterialPageRoute(
-            //           builder: (context) => const ModelsDetailsScreen(),
+            //           builder: (context) => const DesignersDetailsScreen(),
             //         ),
             //       ),
             //     ),
@@ -294,7 +294,7 @@ class _ModelsListScreenState extends State<ModelsListScreen> {
             //       onTap: () => Navigator.push(
             //         context,
             //         MaterialPageRoute(
-            //           builder: (context) => const ModelsDetailsScreen(),
+            //           builder: (context) => const DesignersDetailsScreen(),
             //         ),
             //       ),
             //     ),
@@ -319,7 +319,7 @@ class _ModelsListScreenState extends State<ModelsListScreen> {
             //       onTap: () => Navigator.push(
             //         context,
             //         MaterialPageRoute(
-            //           builder: (context) => const ModelsDetailsScreen(),
+            //           builder: (context) => const DesignersDetailsScreen(),
             //         ),
             //       ),
             //     ),
@@ -350,7 +350,7 @@ class _ModelsListScreenState extends State<ModelsListScreen> {
             //       onTap: () => Navigator.push(
             //         context,
             //         MaterialPageRoute(
-            //           builder: (context) => const ModelsDetailsScreen(),
+            //           builder: (context) => const DesignersDetailsScreen(),
             //         ),
             //       ),
             //     ),
@@ -375,7 +375,7 @@ class _ModelsListScreenState extends State<ModelsListScreen> {
             //       onTap: () => Navigator.push(
             //         context,
             //         MaterialPageRoute(
-            //           builder: (context) => const ModelsDetailsScreen(),
+            //           builder: (context) => const DesignersDetailsScreen(),
             //         ),
             //       ),
             //     ),
@@ -400,7 +400,7 @@ class _ModelsListScreenState extends State<ModelsListScreen> {
             //       onTap: () => Navigator.push(
             //         context,
             //         MaterialPageRoute(
-            //           builder: (context) => const ModelsDetailsScreen(),
+            //           builder: (context) => const DesignersDetailsScreen(),
             //         ),
             //       ),
             //     ),

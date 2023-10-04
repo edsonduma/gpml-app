@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
-import 'package:stivy/views/agencies/agencies_list_screen.dart';
-import 'package:stivy/views/agencies/agency_create_screen.dart';
 import 'package:stivy/views/components/my_custom_appbar.dart';
+import 'package:stivy/views/makeup_artists/makeup_artists_create_screen.dart';
+import 'package:stivy/views/makeup_artists/makeup_artists_list_screen.dart';
 
-class MenuAgenciesScreen extends StatefulWidget {
-  const MenuAgenciesScreen({super.key});
+class MenuMakeupArtistsScreen extends StatefulWidget {
+  const MenuMakeupArtistsScreen({super.key});
 
   @override
-  State<MenuAgenciesScreen> createState() => _MenuAgenciesScreenState();
+  State<MenuMakeupArtistsScreen> createState() =>
+      _MenuMakeupArtistsScreenState();
 }
 
-class _MenuAgenciesScreenState extends State<MenuAgenciesScreen> {
+class _MenuMakeupArtistsScreenState extends State<MenuMakeupArtistsScreen> {
   // final Color mySecondColor = mySecondColor;
 
   @override
@@ -63,7 +64,7 @@ class _MenuAgenciesScreenState extends State<MenuAgenciesScreen> {
                   child: Column(
                     children: [
                       Text(
-                        'AGÊNCIAS',
+                        'Maquiadores'.toUpperCase(),
                         style: TextStyle(
                           color: secondColor,
                           fontWeight: FontWeight.bold,
@@ -72,7 +73,7 @@ class _MenuAgenciesScreenState extends State<MenuAgenciesScreen> {
                       ),
                       const SizedBox(height: 10),
                       Text(
-                        'Gestão de Agências',
+                        'Maquiadores'.toUpperCase(),
                         style: TextStyle(
                           color: secondColor,
                           fontSize: 18,
@@ -83,7 +84,8 @@ class _MenuAgenciesScreenState extends State<MenuAgenciesScreen> {
                         onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const AgencyCreateScreen(),
+                            builder: (context) =>
+                                const MakeupArtistsCreateScreen(),
                           ),
                         ),
                         child: const Padding(
@@ -115,7 +117,8 @@ class _MenuAgenciesScreenState extends State<MenuAgenciesScreen> {
                         onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const AgenciesListScreen(),
+                            builder: (context) =>
+                                const MakeupArtistsListScreen(),
                           ),
                         ),
                         child: const Padding(
