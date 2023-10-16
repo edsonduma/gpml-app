@@ -142,60 +142,60 @@ class _MenuModelsScreenState extends State<MenuModelsScreen> {
                           fixedSize: const Size(200, 45),
                         ),
                       ),
-                      const SizedBox(height: 20),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: const Padding(
-                          padding: EdgeInsets.only(
-                            top: 10,
-                            bottom: 10,
-                            left: 8,
-                            right: 8,
-                          ),
-                          child: Text(
-                            'Alterar',
-                            style: TextStyle(
-                              color: mySecondColor,
-                              fontSize: 20,
-                            ),
-                          ),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: thirdColor,
-                          // side: const BorderSide(
-                          //   width: 2, // the thickness
-                          //   color: Color(0xFFe9a42c), // the color of the border
-                          // ),
-                          fixedSize: const Size(200, 45),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: const Padding(
-                          padding: EdgeInsets.only(
-                            top: 10,
-                            bottom: 10,
-                            left: 8,
-                            right: 8,
-                          ),
-                          child: Text(
-                            'Apagar',
-                            style: TextStyle(
-                              color: mySecondColor,
-                              fontSize: 20,
-                            ),
-                          ),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: thirdColor,
-                          // side: const BorderSide(
-                          //   width: 2, // the thickness
-                          //   color: Color(0xFFe9a42c), // the color of the border
-                          // ),
-                          fixedSize: const Size(200, 45),
-                        ),
-                      ),
+                      // const SizedBox(height: 20),
+                      // ElevatedButton(
+                      //   onPressed: () {},
+                      //   child: const Padding(
+                      //     padding: EdgeInsets.only(
+                      //       top: 10,
+                      //       bottom: 10,
+                      //       left: 8,
+                      //       right: 8,
+                      //     ),
+                      //     child: Text(
+                      //       'Alterar',
+                      //       style: TextStyle(
+                      //         color: mySecondColor,
+                      //         fontSize: 20,
+                      //       ),
+                      //     ),
+                      //   ),
+                      //   style: ElevatedButton.styleFrom(
+                      //     backgroundColor: thirdColor,
+                      //     // side: const BorderSide(
+                      //     //   width: 2, // the thickness
+                      //     //   color: Color(0xFFe9a42c), // the color of the border
+                      //     // ),
+                      //     fixedSize: const Size(200, 45),
+                      //   ),
+                      // ),
+                      // const SizedBox(height: 20),
+                      // ElevatedButton(
+                      //   onPressed: () {},
+                      //   child: const Padding(
+                      //     padding: EdgeInsets.only(
+                      //       top: 10,
+                      //       bottom: 10,
+                      //       left: 8,
+                      //       right: 8,
+                      //     ),
+                      //     child: Text(
+                      //       'Apagar',
+                      //       style: TextStyle(
+                      //         color: mySecondColor,
+                      //         fontSize: 20,
+                      //       ),
+                      //     ),
+                      //   ),
+                      //   style: ElevatedButton.styleFrom(
+                      //     backgroundColor: thirdColor,
+                      //     // side: const BorderSide(
+                      //     //   width: 2, // the thickness
+                      //     //   color: Color(0xFFe9a42c), // the color of the border
+                      //     // ),
+                      //     fixedSize: const Size(200, 45),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),

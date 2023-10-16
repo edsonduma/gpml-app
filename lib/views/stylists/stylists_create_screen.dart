@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
+import 'package:stivy/models/agency.dart';
 import 'package:stivy/models/stylist.dart';
 import 'package:stivy/utils/supabase_handler.dart';
 import 'package:flutter/material.dart';
@@ -64,7 +65,7 @@ class _StylistsCreateScreenState extends State<StylistsCreateScreen> {
                   child: Column(
                     children: [
                       Text(
-                        'Modelos',
+                        'Stylists',
                         style: TextStyle(
                           color: secondColor,
                           fontWeight: FontWeight.bold,
@@ -73,7 +74,7 @@ class _StylistsCreateScreenState extends State<StylistsCreateScreen> {
                       ),
                       const SizedBox(height: 40),
                       Text(
-                        'Cadastrar Modelos',
+                        'Cadastrar Stylists',
                         style: TextStyle(
                           color: secondColor,
                           fontSize: 18,
@@ -88,7 +89,7 @@ class _StylistsCreateScreenState extends State<StylistsCreateScreen> {
                         child: SizedBox(
                           child: FutureBuilder(
                             future: supaBaseHandler.readData(
-                                Stylist.TABLE_NAME, context),
+                                Agency.TABLE_NAME, context),
                             builder: (_, snapshot) {
                               if (snapshot.hasError) {
                                 return Container();
