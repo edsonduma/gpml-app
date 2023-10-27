@@ -1,24 +1,19 @@
 import 'package:flutter/material.dart';
+
 import 'package:stivy/utils/constants.dart';
+import 'package:stivy/views/agencies/menu_agencies_screen.dart';
 import 'package:stivy/views/components/my_custom_appbar.dart';
 import 'package:stivy/views/components/my_custom_buttons.dart';
-import 'package:stivy/views/agencies/menu_agencies_screen.dart';
 import 'package:stivy/views/designers/menu_designers_screen.dart';
 import 'package:stivy/views/makeup_artists/menu_makeup_artists_screen.dart';
 import 'package:stivy/views/models/menu_models_screen.dart';
 import 'package:stivy/views/photographers/menu_photographers_screen.dart';
 import 'package:stivy/views/stylists/menu_stylists_screen.dart';
 
-class AdminHomeScreen extends StatefulWidget {
+class AdminHomeScreen extends StatelessWidget {
   const AdminHomeScreen({super.key});
 
-  @override
-  State<AdminHomeScreen> createState() => _AdminHomeScreenState();
-}
-
-class _AdminHomeScreenState extends State<AdminHomeScreen> {
   // final Color mySecondColor = mySecondColor;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
