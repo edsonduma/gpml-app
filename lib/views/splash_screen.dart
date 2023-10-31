@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   color: secondColor,
                   fontWeight: FontWeight.bold,
                   fontSize: 100,
-                  fontFamily: 'Clarendon FS',
+                  // fontFamily: 'Clarendon FS',
                 ),
               ),
               const SizedBox(

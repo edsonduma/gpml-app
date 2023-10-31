@@ -52,7 +52,7 @@ class _PhotographersListScreenState extends State<PhotographersListScreen> {
                   child: Column(
                     children: [
                       Text(
-                        'Fotografos'.toUpperCase(),
+                        'Fotógrafos'.toUpperCase(),
                         style: TextStyle(
                           color: secondColor,
                           fontWeight: FontWeight.bold,

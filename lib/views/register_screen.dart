@@ -281,7 +281,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           TextButton(
                             onPressed: () {},
                             child: const Text(
-                              'Fotografos',
+                              'Fotógrafos',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 15,
