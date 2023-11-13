@@ -14,12 +14,12 @@ class AgencyDetailsScreen extends AbstractScreenModel {
   AgencyDetailsScreen.setModel({super.key, required this.dataModel});
 
   @override
-  set setModel(final dataModel) {
+  set setModel(dataModel) {
     this.dataModel = dataModel;
   }
 
   @override
-  setModel2(final dataModel) {
+  setModel2(dataModel) {
     this.dataModel = dataModel;
   }
 
@@ -63,8 +63,8 @@ class AgencyDetailsScreen extends AbstractScreenModel {
                           //   decoration: BoxDecoration(
                           //       border: Border.all(color: Colors.black)),
                           // child: const Text('HADJA MODELS'),
-                          // child: Text(dataModel["nome"]),
-                          child: Text(dataModel.nome),
+                          child: Text(dataModel["nome"]),
+                          // child: Text(dataModel.nome),
                         ),
                       ),
                       const SizedBox(height: 10),

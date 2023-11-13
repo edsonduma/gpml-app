@@ -63,54 +63,6 @@ class _CardViewWidgetState extends State<CardViewWidget> {
     super.dispose();
   }
 
-  Padding bigCover({
-    required Color color,
-    required double size,
-  }) =>
-      Padding(
-        padding: const EdgeInsets.only(
-          top: 20.0,
-          bottom: 0,
-          left: 150.0,
-          right: 150.0,
-        ),
-        child: ClipRRect(
-          borderRadius: const BorderRadius.all(
-            Radius.circular(20.0),
-          ),
-          child: Container(
-            color: color,
-            width: size * 0.3,
-            height: size,
-          ),
-        ),
-      );
-
-  SizedBox miniCover({
-    required Color color,
-    required double size,
-  }) =>
-      SizedBox(
-        height: size * 0.4,
-        child: Tab(
-          child: Padding(
-            padding: const EdgeInsets.only(
-              bottom: 20,
-            ),
-            child: ClipRRect(
-              borderRadius: const BorderRadius.all(
-                Radius.circular(20.0),
-              ),
-              child: Container(
-                color: color,
-                width: size * 0.3,
-                height: size,
-              ),
-            ),
-          ),
-        ),
-      );
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -152,13 +104,16 @@ class _CardViewWidgetState extends State<CardViewWidget> {
                                 right: 150.0,
                               ),
                               child: InkWell(
-                                onTap: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        detailsScreen.setModel2(e),
-                                  ),
-                                ),
+                                onTap: () {
+                                  detailsScreen.setModel2(e);
+
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => detailsScreen,
+                                    ),
+                                  );
+                                },
                                 child: ClipRRect(
                                   borderRadius: const BorderRadius.all(
                                     Radius.circular(20.0),

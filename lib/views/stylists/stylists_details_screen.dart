@@ -11,12 +11,12 @@ class StylistsDetailsScreen extends AbstractScreenModel {
   StylistsDetailsScreen.setModel({super.key, required this.dataModel});
 
   @override
-  set setModel(final dataModel) {
+  set setModel(dataModel) {
     this.dataModel = dataModel;
   }
 
   @override
-  setModel2(final dataModel) {
+  setModel2(dataModel) {
     this.dataModel = dataModel;
   }
 
