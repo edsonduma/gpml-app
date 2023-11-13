@@ -52,7 +52,7 @@ class _PhotographersListScreenState extends State<PhotographersListScreen> {
                   child: Column(
                     children: [
                       Text(
-                        'Fotografos'.toUpperCase(),
+                        'Fotógrafos'.toUpperCase(),
                         style: TextStyle(
                           color: secondColor,
                           fontWeight: FontWeight.bold,
@@ -196,8 +196,8 @@ class _PhotographersListScreenState extends State<PhotographersListScreen> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>
-                                    PhotographersDetailsScreen(
-                                        myPhotographer: snapshot.data![index]),
+                                    PhotographersDetailsScreen.setModel(
+                                        dataModel: snapshot.data![index]),
                               ),
                             ),
                             child: Column(

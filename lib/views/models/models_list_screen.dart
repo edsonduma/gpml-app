@@ -193,8 +193,11 @@ class _ModelsListScreenState extends State<ModelsListScreen> {
                             onTap: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ModelsDetailsScreen(
-                                    myModel: snapshot.data![index]),
+                                // builder: (context) => ModelsDetailsScreen(
+                                //     myModel: snapshot.data![index]),
+                                builder: (context) =>
+                                    ModelsDetailsScreen.setModel(
+                                        dataModel: snapshot.data![index]),
                               ),
                             ),
                             child: Column(

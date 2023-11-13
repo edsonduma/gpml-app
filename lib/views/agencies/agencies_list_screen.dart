@@ -202,8 +202,9 @@ class _AgenciesListScreenState extends State<AgenciesListScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => AgencyDetailsScreen(
-                                      myAgency: snapshot.data![index]),
+                                  builder: (context) =>
+                                      AgencyDetailsScreen.setModel(
+                                          dataModel: snapshot.data![index]),
                                 ),
                               );
                             },

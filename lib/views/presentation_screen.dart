@@ -38,15 +38,16 @@ class PresentationScreen extends StatelessWidget {
       return;
     }
 
-    final session = supabase.auth.currentSession;
+    // final session = supabase.auth.currentSession;
 
-    print('session: $session');
+    // print('session: $session');
 
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) =>
-            session != null ? AdminHomeScreen() : HomeScreen(),
+            // session != null ? const AdminHomeScreen() : HomeScreen(),
+            HomeScreen(),
       ),
     );
   }

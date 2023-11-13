@@ -193,8 +193,9 @@ class _DesignersListScreenState extends State<DesignersListScreen> {
                             onTap: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => DesignersDetailsScreen(
-                                    myDesigner: snapshot.data![index]),
+                                builder: (context) =>
+                                    DesignersDetailsScreen.setModel(
+                                        dataModel: snapshot.data![index]),
                               ),
                             ),
                             child: Column(

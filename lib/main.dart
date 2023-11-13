@@ -58,6 +58,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         // primarySwatch: primaryColor,
         primaryColor: primaryColor,
+        fontFamily: 'Clarendon FS',
       ),
       home: const SplashScreen(),
       // home: const PresentationScreen(),

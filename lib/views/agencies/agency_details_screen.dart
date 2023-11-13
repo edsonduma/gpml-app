@@ -5,11 +5,23 @@ import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
 import 'package:stivy/views/about_screen.dart';
 import 'package:stivy/views/events_screen.dart';
+import 'package:stivy/views/models/abstract_screen_model.dart';
 
-class AgencyDetailsScreen extends StatelessWidget {
-  final myAgency;
+class AgencyDetailsScreen extends AbstractScreenModel {
+  var dataModel;
 
-  const AgencyDetailsScreen({super.key, required this.myAgency});
+  AgencyDetailsScreen({super.key});
+  AgencyDetailsScreen.setModel({super.key, required this.dataModel});
+
+  @override
+  set setModel(dataModel) {
+    this.dataModel = dataModel;
+  }
+
+  @override
+  setModel2(dataModel) {
+    this.dataModel = dataModel;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +63,8 @@ class AgencyDetailsScreen extends StatelessWidget {
                           //   decoration: BoxDecoration(
                           //       border: Border.all(color: Colors.black)),
                           // child: const Text('HADJA MODELS'),
-                          child: Text(myAgency["nome"]),
+                          child: Text(dataModel["nome"]),
+                          // child: Text(dataModel.nome),
                         ),
                       ),
                       const SizedBox(height: 10),
@@ -65,7 +78,7 @@ class AgencyDetailsScreen extends StatelessWidget {
               MyCircleButton(
                 buttonLabel: 'Sobre',
                 nextScreen: AboutScreen(
-                  myAgency: myAgency,
+                  myAgency: dataModel,
                 ),
               ),
               SizedBox(height: 10),

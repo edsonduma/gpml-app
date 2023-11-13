@@ -196,8 +196,8 @@ class _MakeupArtistsListScreenState extends State<MakeupArtistsListScreen> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>
-                                    MakeupArtistsDetailsScreen(
-                                        myDesigner: snapshot.data![index]),
+                                    MakeupArtistsDetailsScreen.setModel(
+                                        dataModel: snapshot.data![index]),
                               ),
                             ),
                             child: Column(

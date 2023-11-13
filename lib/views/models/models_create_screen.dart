@@ -31,7 +31,7 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
 
   // final types = [
   //   'Modelos',
-  //   'Fotografos',
+  //   'Fotógrafos',
   //   'Designers',
   //   'Stylist',
   //   'Make up',
