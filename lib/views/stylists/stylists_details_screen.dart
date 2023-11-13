@@ -2,11 +2,23 @@ import 'package:stivy/views/components/my_custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:stivy/utils/constants.dart';
 import 'package:stivy/views/login_screen.dart';
+import 'package:stivy/views/models/abstract_screen_model.dart';
 
-class StylistsDetailsScreen extends StatelessWidget {
-  final myDesigner;
+class StylistsDetailsScreen extends AbstractScreenModel {
+  var dataModel;
 
-  const StylistsDetailsScreen({super.key, required this.myDesigner});
+  StylistsDetailsScreen({super.key});
+  StylistsDetailsScreen.setModel({super.key, required this.dataModel});
+
+  @override
+  set setModel(final dataModel) {
+    this.dataModel = dataModel;
+  }
+
+  @override
+  setModel2(final dataModel) {
+    this.dataModel = dataModel;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +65,7 @@ class StylistsDetailsScreen extends StatelessWidget {
                       SizedBox(height: 10),
                       Text(
                         // 'CAEL PASCOAL'.toUpperCase(),
-                        myDesigner["nome"].toUpperCase(),
+                        dataModel["nome"].toUpperCase(),
                         style: TextStyle(
                           color: secondColor,
                           fontSize: 18,
@@ -78,31 +90,31 @@ class StylistsDetailsScreen extends StatelessWidget {
               children: [
                 Text(
                   // 'Altura: 178cm',
-                  'Altura: ${myDesigner["altura"]}cm',
+                  'Altura: ${dataModel["altura"]}cm',
                   style: TextStyle(
                     color: Colors.white,
                   ),
                 ),
                 Text(
-                  'Peito/Busto: ${myDesigner["peito"]}cm',
+                  'Peito/Busto: ${dataModel["peito"]}cm',
                   style: TextStyle(
                     color: Colors.white,
                   ),
                 ),
                 Text(
-                  'Cintura: ${myDesigner["cintura"]}cm',
+                  'Cintura: ${dataModel["cintura"]}cm',
                   style: TextStyle(
                     color: Colors.white,
                   ),
                 ),
                 Text(
-                  'Anca: ${myDesigner["anca"]}cm',
+                  'Anca: ${dataModel["anca"]}cm',
                   style: TextStyle(
                     color: Colors.white,
                   ),
                 ),
                 Text(
-                  'Sapato: ${myDesigner["sapato"]}cm',
+                  'Sapato: ${dataModel["sapato"]}cm',
                   style: TextStyle(
                     color: Colors.white,
                   ),

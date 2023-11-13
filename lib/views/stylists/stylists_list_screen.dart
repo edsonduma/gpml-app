@@ -193,8 +193,9 @@ class _StylistsListScreenState extends State<StylistsListScreen> {
                             onTap: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => StylistsDetailsScreen(
-                                    myDesigner: snapshot.data![index]),
+                                builder: (context) =>
+                                    StylistsDetailsScreen.setModel(
+                                        dataModel: snapshot.data![index]),
                               ),
                             ),
                             child: Column(

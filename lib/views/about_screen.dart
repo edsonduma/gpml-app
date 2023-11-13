@@ -56,7 +56,8 @@ class AboutScreen extends StatelessWidget {
                       SizedBox(height: 10),
                       Text(
                         // 'Hadja Models',
-                        myAgency["nome"],
+                        // myAgency["nome"],
+                        myAgency.nome,
                         style: TextStyle(
                           color: secondColor,
                           fontSize: 18,
@@ -76,7 +77,8 @@ class AboutScreen extends StatelessWidget {
               ),
               child: Text(
                 // aboutText,
-                myAgency["sobre"],
+                // myAgency["sobre"],
+                myAgency.sobre,
                 textAlign: TextAlign.justify,
                 style: TextStyle(color: Colors.white, fontSize: 17),
               ),
