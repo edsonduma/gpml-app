@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
+import 'package:stivy/models/agency.dart';
 import 'package:stivy/models/photographer.dart';
 import 'package:stivy/utils/supabase_handler.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +66,7 @@ class _PhotographersCreateScreenState extends State<PhotographersCreateScreen> {
                   child: Column(
                     children: [
                       Text(
-                        'Modelos',
+                        'Fotógrafos',
                         style: TextStyle(
                           color: secondColor,
                           fontWeight: FontWeight.bold,
@@ -74,7 +75,7 @@ class _PhotographersCreateScreenState extends State<PhotographersCreateScreen> {
                       ),
                       const SizedBox(height: 40),
                       Text(
-                        'Cadastrar Modelos',
+                        'Cadastrar Fotógrafos',
                         style: TextStyle(
                           color: secondColor,
                           fontSize: 18,
@@ -89,7 +90,7 @@ class _PhotographersCreateScreenState extends State<PhotographersCreateScreen> {
                         child: SizedBox(
                           child: FutureBuilder(
                             future: supaBaseHandler.readData(
-                                Photographer.TABLE_NAME, context),
+                                Agency.TABLE_NAME, context),
                             builder: (_, snapshot) {
                               if (snapshot.hasError) {
                                 return Container();

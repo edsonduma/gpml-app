@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
+import 'package:stivy/models/agency.dart';
 import 'package:stivy/models/model.dart';
 import 'package:stivy/utils/supabase_handler.dart';
 import 'package:flutter/material.dart';
@@ -150,7 +151,7 @@ class _ModelsCreateScreenState extends State<ModelsCreateScreen> {
                           // width: MediaQuery.of(context).size.width,
                           child: FutureBuilder(
                             future: supaBaseHandler.readData(
-                                Model.TABLE_NAME, context),
+                                Agency.TABLE_NAME, context),
                             builder: (_, snapshot) {
                               if (snapshot.hasError) {
                                 return Container();
