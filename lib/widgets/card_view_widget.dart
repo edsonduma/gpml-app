@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'dart:math';
 
-import 'package:flutter/material.dart';
 // import 'package:stivy/models/agency.dart';
 import 'package:stivy/utils/constants.dart';
 import 'package:stivy/utils/supabase_handler.dart';
@@ -68,7 +69,7 @@ class _CardViewWidgetState extends State<CardViewWidget> {
     return DefaultTabController(
       length: items.length,
       child: Scaffold(
-        backgroundColor: myForthColor,
+        // backgroundColor: myForthColor,
         floatingActionButton: supabase.auth.currentSession == null
             ? null
             : FloatingActionButton(
@@ -92,7 +93,7 @@ class _CardViewWidgetState extends State<CardViewWidget> {
             : Column(
                 children: [
                   Expanded(
-                    flex: 1,
+                    flex: 3,
                     child: TabBarView(
                       children: items
                           .map(
@@ -150,7 +151,8 @@ class _CardViewWidgetState extends State<CardViewWidget> {
                                       child: Image(
                                         image: AssetImage(
                                             'assets/images/models/foto0${randomNumber(1, 7)}.jpg'),
-                                        height: 150,
+                                        // height: 100,
+                                        height: 50,
                                       ),
                                     ),
                                   ),
